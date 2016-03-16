@@ -39,7 +39,7 @@ router.get('/', function (req, res, next) {
     'use strict';
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
-    res.render('onepage/spa', { hostname: hostname, isMobile: isMobile(req)});
+    res.render('onepage/eng', { hostname: hostname, isMobile: isMobile(req)});
 });
 
 router.get('/D5CCCAAOJIXZZD53AD', function (req, res, next) { //Temporal debug route
