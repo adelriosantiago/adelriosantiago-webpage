@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alejandro del Río Santiago</title>
+    <script src="javascripts/vendor/modernizr.js"></script>
+
+    <!-- P5.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.7/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.7/addons/p5.sound-min.js"></script>
+    <!-- <script language="javascript" type="text/javascript" src="/p5/sketch.js"></script>
+    <script language="javascript" type="text/javascript" src="/p5/soundball.js"></script> -->
+    <script language="javascript" type="text/javascript" src="/p5/bounce.js"></script>
+
+
+    <!-- CSS's -->
+    <link rel="stylesheet" href="stylesheets/foundation.css" />
+    <link rel="stylesheet" href="stylesheets/custom.css" />
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Rambla:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700,500' rel='stylesheet' type='text/css' />
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet" />
+    <link rel="stylesheet" href="stylesheets/font-awesome.min.css" />
+
+    <!-- Chat testing styles -->
+    <style>
+        form {
+            background: #000;
+            padding: 3px;
+            width: 100%;
+        }
+        
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>p5 testing</h1>
+    <div id='p5-container'></div>
+    <br/>
+    <!-- <h1>socket testing</h1>
+    <div>
+        <ul id="messages"></ul>
+        <form id='chat-ui' action="">
+            <input id="m" autocomplete="off" />
+            <button>Send</button>
+        </form>
+    </div>
+    <br/> -->
+    <h1>p5.js sound</h1>
+    <div id='p5-soundball'></div>
+    <br/>
+    <h1>p5.js bounce</h1>
+    <div id='p5-bounce'></div>
+
+    <section id='footer' class='text-center gray'>
+        <p id='copyright'>© 2015 Alejandro del Río</p>
+    </section>
+
+    <script src="javascripts/vendor/jquery.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+    <script src="javascripts/foundation.min.js"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+
+</html>
