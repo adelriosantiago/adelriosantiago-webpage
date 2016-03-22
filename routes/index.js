@@ -192,87 +192,11 @@ router.get('/blog/:article', function (req, res, next) {
     //res.render('blog', { title: 'Express' });*/
 });
 
-/*router.get('/blog', function (req, res, next) {
-    'use strict';
-
-    var articles = path.join(__dirname, '../public') + '/articles/',
-        data = [];
-
-    //Load spanish articles
-    fs.readdir(articles, function (err, files) {
-        if (err) { throw err; }
-
-        var c = 0;
-        files.forEach(function (file) {
-            c++;
-
-            fs.readFile(articles + file, 'utf-8', function (err, html) {
-                if (err) { throw err; }
-                var rendered = md.render(html),
-                    regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
-                    regexPermalink = /<permalink.*>(.*?)<\/permalink>/i, //Regex to extract titles
-                    regexDateMonth = /<month.*>(.*?)<\/month>/i, //Regex to extract the order of the articles
-                    regexDateYear = /<year.*>(.*?)<\/year>/i, //Regex to extract the order of the articles
-                    header = rendered.match(regexTitle),
-                    permalink = rendered.match(regexPermalink),
-                    month = Number(rendered.match(regexDateMonth)[1]),
-                    year = Number(rendered.match(regexDateYear)[1]),
-                    order = year + (month / 100.0),
-                    monthName = allMonths[month],
-                    sortedData;
-
-                data[c] = {id: file, title: header[1], slug: slug(permalink[1]), content: rendered, year: year, month: monthName, order: order};
-
-                if (0 === --c) {
-                    sortedData = sortByKey(data, "order");
-
-                    return res.render('blog', {data: sortedData});
-                }
-            });
-        });
-    });
-    
-    //res.render('blog', { title: 'Express' });
-});*/
-
 router.get('/testing', function (req, res, next) {
     'use strict';
 
     res.render('testing', {});
 });
-
-/*router.get('/old', function(req, res, next) {
-    //Determine language
-    if (req.query.lang == 'spa') {
-        var articles = path.join(__dirname, '../views') + '/articles/spa/';
-        var data = [];
-
-        //Load spanish articles        
-        fs.readdir(articles, function(err,files) {
-            if (err) throw err;
-            var regex = /<h1.*>(.*?)<\/h1>/i; //Regex to extract titles
-            var c = 0;
-            files.forEach(function(file) {
-                c++;
-                fs.readFile(articles + file, 'utf-8', function(err, html) {
-                    if (err) throw err;
-                    var rendered = md.render(html);
-                    var header = rendered.match(regex);
-                    data[c] = {id: file, title: header[1], slug: slug(header[1]), content: rendered};
-
-                    if (0 === --c) {
-                        //console.log(data);
-                        var sortedData = sortByKey(data, "id");
-                        res.render('spa', {data: sortedData});
-                    }
-                });
-            });
-        });
-    } else {
-        //Load english articles
-        res.render('eng', { title: 'Express' });
-    }
-});*/
 
 //TODO: Create a redirection to / and change the URL too
 /*router.get('*', function(req, res, next) {
