@@ -11,7 +11,7 @@ var allMonths = ["January", "February", "March", "April", "May", "June", "July",
 var allLanguages = {eng: 'English', spa: 'Español', ita: 'Italiano'};
 var excludedFiles = ['.git', 'LICENSE', 'README.md', 'images'];
 
-//var hljs = require('highlight.js');
+//var hljs = require('highlight.js'); //TODO: Implement highlight on <code> sections
 var md = require('markdown-it')({
     html: true,
     linkify: true,
@@ -83,7 +83,9 @@ router.get('/blog/:article', function (req, res, next) {
 	
     //Read all chapters (if available)
     fs.readdir(articles, function (err, files) {
-        if (err) { throw err; }
+        if (err) {
+			res.redirect('/blog/index#all');
+		}
         
         files = _.difference(files, excludedFiles); //Remove files in excludedFiles
         console.log('chapters', files.length);
