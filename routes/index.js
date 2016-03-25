@@ -39,14 +39,14 @@ router.get('/', function (req, res, next) {
     'use strict';
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
-    res.render('onepage/eng', { hostname: hostname, isMobile: isMobile(req)});
+    return res.render('onepage/eng', { hostname: hostname, isMobile: isMobile(req)});
 });
 
 router.get('/D5CCCAAOJIXZZD53AD', function (req, res, next) { //Temporal debug route
     'use strict';
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-    res.render('spa', { hostname: hostname }); //This is the second version
+    return  res.render('spa', { hostname: hostname }); //This is the second version
 });
 
 //Functions
@@ -64,7 +64,7 @@ function sortByKey(array, key) {
 router.get('/blog', function (req, res, next) {
     'use strict';
     
-    res.redirect('/blog/index#all'); //Show the articles in all languages
+    return res.redirect('/blog/index#all'); //Show the articles in all languages
 });
 
 router.get('/blog/:article', function (req, res, next) {
@@ -147,57 +147,13 @@ router.get('/blog/:article', function (req, res, next) {
         }
         //Load index here
     });
-    
     console.log('art', articlePath);
-    
-    //Read chapters (md's inside directories)
-    
-    /*var articles = path.join(__dirname, '../public') + '/articles/' + articlePath,
-        data = [];
-
-    //Load spanish articles
-    fs.readdir(articles, function (err, files) {
-        if (err) { throw err; }
-
-        files = _.difference(files, excludedFiles); //Remove files in excludedFiles
-
-        var c = 0;
-        files.forEach(function (file) {
-            c++;
-
-            fs.readFile(articles + file, 'utf-8', function (err, html) {
-                if (err) { throw err; }
-                var rendered = md.render(html),
-                    regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
-                    regexPermalink = /<permalink.*>(.*?)<\/permalink>/i, //Regex to extract titles
-                    regexDateMonth = /<month.*>(.*?)<\/month>/i, //Regex to extract the order of the articles
-                    regexDateYear = /<year.*>(.*?)<\/year>/i, //Regex to extract the order of the articles
-                    header = rendered.match(regexTitle),
-                    permalink = rendered.match(regexPermalink),
-                    month = Number(rendered.match(regexDateMonth)[1]),
-                    year = Number(rendered.match(regexDateYear)[1]),
-                    order = year + (month / 100.0),
-                    monthName = allMonths[month],
-                    sortedData;
-
-                data[c] = {id: file, title: header[1], slug: slug(permalink[1]), content: rendered, year: year, month: monthName, order: order};
-
-                if (0 === --c) {
-                    sortedData = sortByKey(data, "order");
-
-                    return res.render('blog', {data: sortedData});
-                }
-            });
-        });
-    });
-    
-    //res.render('blog', { title: 'Express' });*/
 });
 
 router.get('/testing', function (req, res, next) {
     'use strict';
 
-    res.render('testing', {});
+    return res.render('testing', {});
 });
 
 //TODO: Create a redirection to / and change the URL too
