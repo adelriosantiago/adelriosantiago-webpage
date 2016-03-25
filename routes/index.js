@@ -78,13 +78,13 @@ router.get('/blog/:article', function (req, res, next) {
     console.log(articles);
     
 	if (!fs.existsSync(articles)) {
-		res.redirect('/blog/index#all');
+		return res.redirect('/blog/index#all');
 	}
 	
     //Read all chapters (if available)
     fs.readdir(articles, function (err, files) {
         if (err) {
-			res.redirect('/blog/index#all');
+			return res.redirect('/blog/index#all');
 		}
         
         files = _.difference(files, excludedFiles); //Remove files in excludedFiles
