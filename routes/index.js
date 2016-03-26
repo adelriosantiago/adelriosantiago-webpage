@@ -92,7 +92,7 @@ router.get('/blog/:article', function (req, res, next) {
         
         if (files.length != 0) {
             var c = 0;
-			var cUnskipped = 0;  
+			var cUnskipped = 0;
 			var hasChapters = false;			
             //if (files.length > 1) { hasChapters = true; }
 
@@ -150,10 +150,16 @@ router.get('/blog/:article', function (req, res, next) {
     console.log('art', articlePath);
 });
 
-router.get('/testing', function (req, res, next) {
+router.get('/testing/p5', function (req, res, next) {
     'use strict';
 
-    return res.render('testing', {});
+    return res.render('p5', {});
+});
+
+router.get('/testing/gitarticle', function (req, res, next) {
+    'use strict';
+
+    return res.render('gitarticle', {});
 });
 
 //TODO: Create a redirection to / and change the URL too
