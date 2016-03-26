@@ -39,14 +39,7 @@ router.get('/', function (req, res, next) {
     'use strict';
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
-    return res.render('onepage/eng', { hostname: hostname, isMobile: isMobile(req)});
-});
-
-router.get('/D5CCCAAOJIXZZD53AD', function (req, res, next) { //Temporal debug route
-    'use strict';
-    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;
-
-    return  res.render('spa', { hostname: hostname }); //This is the second version
+    return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
 });
 
 //Functions
@@ -150,16 +143,23 @@ router.get('/blog/:article', function (req, res, next) {
     console.log('art', articlePath);
 });
 
-router.get('/testing/p5', function (req, res, next) {
+router.get('/p5', function (req, res, next) {
     'use strict';
 
     return res.render('p5', {});
 });
 
-router.get('/testing/gitarticle', function (req, res, next) {
+router.get('/gitarticle', function (req, res, next) {
     'use strict';
 
     return res.render('gitarticle', {});
+});
+
+router.get('/spa', function (req, res, next) { //Temporal debug route
+    'use strict';
+    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+    return  res.render('spa', { hostname: hostname }); //This is the second version
 });
 
 //TODO: Create a redirection to / and change the URL too
