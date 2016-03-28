@@ -4,6 +4,7 @@ var path = require('path');
 var util = require('util');
 var router = express.Router();
 var slug = require('slug');
+var git = require('gitty');
 var _ = require('lodash');
 
 var trueHostname = 'http://www.adelriosantiago.com/';
@@ -152,9 +153,22 @@ router.get('/p5', function (req, res, next) {
 router.get('/gitarticle', function (req, res, next) {
     'use strict';
 
+	var articles_repo_path = path.join(__dirname, '../public') + '/articles/';
+	var repoA = git(articles_repo_path);
+	console.log(repoA);
 	
+	var current_article = "100-duolingo";
 	
-    return res.render('gitarticle', {});
+	repoA.exec('log', {'p' : current_article, "follow" : true}, function(err, msg) {
+		return res.render('gitarticle', {gitlog: msg});
+	});
+	
+	/*repoA.log({"p": current_article, "follow" : true}, function(err, log) {
+		if (err) return console.log('Error:', err);
+		console.log("gitlog:");
+		console.log(log);
+		return res.render('gitarticle', {gitlog: log});
+	});*/
 });
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
