@@ -159,16 +159,18 @@ router.get('/gitarticle', function (req, res, next) {
 	
 	var current_article = "100-duolingo";
 	
-	repoA.exec('log', {'p' : current_article, "follow" : true}, function(err, msg) {
+	/*repoA.exec('log', {'p' : current_article, "follow" : true}, function(err, msg) {
 		return res.render('gitarticle', {gitlog: msg});
-	});
+	});*/
 	
-	/*repoA.log({"p": current_article, "follow" : true}, function(err, log) {
+	//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
+
+	repoA.log(current_article, {"follow" : true}, function(err, log) {
 		if (err) return console.log('Error:', err);
 		console.log("gitlog:");
 		console.log(log);
 		return res.render('gitarticle', {gitlog: log});
-	});*/
+	});
 });
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
