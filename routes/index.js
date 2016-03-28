@@ -152,6 +152,8 @@ router.get('/p5', function (req, res, next) {
 router.get('/gitarticle', function (req, res, next) {
     'use strict';
 
+	
+	
     return res.render('gitarticle', {});
 });
 
