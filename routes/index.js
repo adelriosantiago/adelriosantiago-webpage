@@ -4,13 +4,18 @@ var path = require('path');
 var util = require('util');
 var router = express.Router();
 var slug = require('slug');
-var git = require('gitty');
+var git_wrapper = require('git-wrapper');
 var _ = require('lodash');
 
 var trueHostname = 'http://www.adelriosantiago.com/';
 var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var allLanguages = {eng: 'English', spa: 'Español', ita: 'Italiano'};
 var excludedFiles = ['.git', 'LICENSE', 'README.md', 'images'];
+
+var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%s"}\',';
+if (require('os').platform() === 'win32') {
+	logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ad\\",\\"message\\":\\"%s\\"},';
+}
 
 //var hljs = require('highlight.js'); //TODO: Implement highlight on <code> sections
 var md = require('markdown-it')({
@@ -153,24 +158,32 @@ router.get('/p5', function (req, res, next) {
 router.get('/gitarticle', function (req, res, next) {
     'use strict';
 
-	var articles_repo_path = path.join(__dirname, '../public') + '/articles/';
-	var repoA = git(articles_repo_path);
-	console.log(repoA);
-	
-	var current_article = "100-duolingo";
-	
-	/*repoA.exec('log', {'p' : current_article, "follow" : true}, function(err, msg) {
+	var current_article = "-- 100-duolingo";
+		
+	var articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
+	var git = new git_wrapper({'git-dir': articles_repo_path});
+
+	console.log(git);
+		
+	//Working git status
+	/*git.exec('status', {'porcelain' : true}, function(err, msg) {
+		console.log(err);
 		return res.render('gitarticle', {gitlog: msg});
 	});*/
 	
+	git.exec('log', {"follow" : true, 'pretty' : logFmt}, [current_article], function(err, msg) {
+		console.log(err);
+		return res.render('gitarticle', {gitlog: msg});
+	});
+	
 	//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
 
-	repoA.log(current_article, {"follow" : true}, function(err, log) {
+	/*repoA.log(current_article, {"follow" : true}, function(err, log) {
 		if (err) return console.log('Error:', err);
 		console.log("gitlog:");
 		console.log(log);
 		return res.render('gitarticle', {gitlog: log});
-	});
+	});*/
 });
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
