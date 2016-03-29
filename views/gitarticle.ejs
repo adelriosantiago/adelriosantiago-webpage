@@ -10,10 +10,40 @@
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+		
+	<!-- include the jQuery and jQuery UI scripts -->
+	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+					
+	<!-- plus a jQuery UI theme, here I use "flick" -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+
+	<script src="javascripts/sliderpips.js"></script>
+	<link rel="stylesheet" href="stylesheets/sliderpips.css" />	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/bootstrap-slider.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.1.5/css/bootstrap-slider.css" />
 </head>
 <body>
 	<h1>gitlog</h1>
-	<%= gitlog %>
+	<%- file_commits %>
 	<h1>articles</h1>
+	<div id="circles-slider"></div>
+	<input id="ex8" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+	<br/>
+	<%= sha_contents %>
+	
+	<script>
+		$( document ).ready(function() {
+			$("#circles-slider").slider({
+				max: 50,
+				value: 5
+			}).slider("pips");
+			
+			$("#ex8").slider({
+				tooltip: 'always'
+			});
+		});
+	</script>
 </body>
 </html>

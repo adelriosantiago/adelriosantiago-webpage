@@ -171,19 +171,21 @@ router.get('/gitarticle', function (req, res, next) {
 		return res.render('gitarticle', {gitlog: msg});
 	});*/
 	
+	var file_commits;
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, [current_article], function(err, msg) {
 		console.log(err);
-		return res.render('gitarticle', {gitlog: msg});
+		file_commits = msg;
+		
+		//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
+		var sha_contents;
+		git.exec('show', ["5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md"], function(err, msg) {
+			console.log(err);
+			sha_contents = msg;
+			
+			return res.render('gitarticle', {file_commits: file_commits, sha_contents : sha_contents});
+			
+		});
 	});
-	
-	//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
-
-	/*repoA.log(current_article, {"follow" : true}, function(err, log) {
-		if (err) return console.log('Error:', err);
-		console.log("gitlog:");
-		console.log(log);
-		return res.render('gitarticle', {gitlog: log});
-	});*/
 });
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
