@@ -159,7 +159,6 @@ router.get('/gitarticle', function (req, res, next) {
     'use strict';
 
 	var current_article = "-- 100-duolingo";
-		
 	var articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
 	var git = new git_wrapper({'git-dir': articles_repo_path});
 
@@ -177,6 +176,7 @@ router.get('/gitarticle', function (req, res, next) {
 		file_commits = msg;
 		
 		//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
+		
 		var sha_contents;
 		git.exec('show', ["5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md"], function(err, msg) {
 			console.log(err);
