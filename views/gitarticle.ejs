@@ -30,7 +30,8 @@
 	<h1>articles</h1>
 	<!-- <div id="circles-slider"></div> -->
 	<input id="ex19" type="text" data-provide="slider" data-slider-ticks="[1, 2, 3]" data-slider-ticks-labels='["short", "medium", "long"]' data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="3" data-slider-tooltip="hide" />
-	
+	<p>value:</p>
+	<p id="slider_value"></p>
 	<br/>
 	<%= sha_contents %>
 	
@@ -41,7 +42,9 @@
 				value: 5
 			}).slider("pips");*/
 			
-			
+			$('#ex19').slider().on('slide', function(ev){
+				$('#slider_value').html(ev.value);
+			});
 		});
 	</script>
 </body>
