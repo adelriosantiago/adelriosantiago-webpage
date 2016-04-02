@@ -18,9 +18,6 @@
 	<!-- plus a jQuery UI theme, here I use "flick" -->
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 
-	<!-- <script src="javascripts/sliderpips.js"></script>
-	<link rel="stylesheet" href="stylesheets/sliderpips.css" />	-->
-
 	<script src="javascripts/bootslider.js"></script>
 	<link rel="stylesheet" href="stylesheets/bootslider.css" />
 </head>
@@ -37,13 +34,8 @@
 	
 	<script>
 		$( document ).ready(function() {
-			/*$("#circles-slider").slider({
-				max: 50,
-				value: 5
-			}).slider("pips");*/
-			
-			$('#ex19').slider().on('slide', function(ev){
-				$('#slider_value').html(ev.value);
+			$('#ex19').slider().on('change', function(ev){
+				$('#slider_value').html(ev.value.newValue);
 			});
 		});
 	</script>
