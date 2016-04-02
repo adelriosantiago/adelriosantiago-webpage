@@ -182,7 +182,19 @@ router.get('/gitarticle', function (req, res, next) {
 			console.log(err);
 			sha_contents = msg;
 			
-			return res.render('gitarticle', {file_commits: file_commits, sha_contents : sha_contents});
+			file_commits = file_commits.substring(0, file_commits.length - 1);
+			file_commits = "[" + file_commits + "]";
+			file_commits = JSON.parse(file_commits);
+			
+			var hashes = _.map(file_commits, 'commit');
+			var dates = _.map(file_commits, 'date');
+			var messages = _.map(file_commits, 'message');
+			//var texts = _.map(file_commits, 'texts');
+			var range = _.range(hashes.length);
+			
+			var data = [hashes, dates, messages];
+			
+			return res.render('gitarticle', {data : data, sha_contents : sha_contents, range : range});
 			
 		});
 	});
