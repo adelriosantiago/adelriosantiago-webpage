@@ -20,22 +20,39 @@
 
 	<script src="javascripts/bootslider.js"></script>
 	<link rel="stylesheet" href="stylesheets/bootslider.css" />
+	
+	<style>
+		.active {
+			color: red;
+		}
+	</style>
+	
 </head>
 <body>
-	<h1>gitlog</h1>
+	<h1>all data</h1>
 	<%- JSON.stringify(data) %>
-	<h1>articles</h1>
-	<!-- <div id="circles-slider"></div> -->
+	<h1>loop</h1>
+	<div id="filtered">
+		<% data[0].forEach(function(el) { %>
+			<div><%= el %></div>
+		<% }); %>
+	</div>
+	
+	<p>slider</p>
 	<input id="ex19" type="text" data-provide="slider" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-	<p>value:</p>
 	<p id="slider_value"></p>
-	<br/>
+	
+	<h1>sample article</h1>
 	<%= sha_contents %>
 	
 	<script>
 		$( document ).ready(function() {
 			$('#ex19').slider().on('change', function(ev){
 				$('#slider_value').html(ev.value.newValue);
+				
+				$('div#filtered').children().removeClass('active');
+				$("div#filtered div:nth-child(" + (ev.value.newValue + 1) +")").addClass("active");
+				
 			});
 		});
 	</script>
