@@ -185,23 +185,30 @@ router.get('/gitarticle', function (req, res, next) {
 		var messages = _.map(file_commits, 'message');
 		//var texts = _.map(file_commits, 'texts');
 		var range = _.range(hashes.length);
-		
-		var data = [hashes, dates, messages];
+		var texts = []; //Will contain each commit content text
 		
 		//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
 		
-		hashes.forEach(function(hash) {
-			console.log("hash");
-		});
+		for (var i = 0; i < hashes.length; i++) {
+			console.log(i);
+			
+			var getCommitContent = function(hash, callback) {
+				git.exec('show', [hash + ":" + current_file], function(err, msg) {
+					//console.log("txt: " + msg);
+					console.log(err);
+					callback(msg);
+				});
+			}
+			
+			getCommitContent(hashes[i], function(ct) {
+				console.log(ct);
+				texts[i] = ct;
+			})
+		}
 		
-		var sha_contents;
-		git.exec('show', [hashes[5] + ":" + current_file], function(err, msg) {
-			console.log(err);
-			sha_contents = msg;
-			
-			return res.render('gitarticle', {data : data, sha_contents : sha_contents, range : range});
-			
-		});
+		var data = [hashes, dates, messages, texts];
+		
+		return res.render('gitarticle', {data : data, range : range});
 	});
 });
 
