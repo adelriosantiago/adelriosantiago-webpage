@@ -173,26 +173,31 @@ router.get('/gitarticle', function (req, res, next) {
 	var file_commits;
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, [current_article], function(err, msg) {
 		console.log(err);
-		file_commits = msg;
+		
+		var current_file = "100-duolingo/spa.md";
+		
+		file_commits = msg.substring(0, msg.length - 1);
+		file_commits = "[" + file_commits + "]";
+		file_commits = JSON.parse(file_commits);
+		
+		var hashes = _.map(file_commits, 'commit');
+		var dates = _.map(file_commits, 'date');
+		var messages = _.map(file_commits, 'message');
+		//var texts = _.map(file_commits, 'texts');
+		var range = _.range(hashes.length);
+		
+		var data = [hashes, dates, messages];
 		
 		//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
 		
+		hashes.forEach(function(hash) {
+			console.log("hash);			
+		});
+		
 		var sha_contents;
-		git.exec('show', ["5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md"], function(err, msg) {
+		git.exec('show', [hashes[5] + ":" + current_file], function(err, msg) {
 			console.log(err);
 			sha_contents = msg;
-			
-			file_commits = file_commits.substring(0, file_commits.length - 1);
-			file_commits = "[" + file_commits + "]";
-			file_commits = JSON.parse(file_commits);
-			
-			var hashes = _.map(file_commits, 'commit');
-			var dates = _.map(file_commits, 'date');
-			var messages = _.map(file_commits, 'message');
-			//var texts = _.map(file_commits, 'texts');
-			var range = _.range(hashes.length);
-			
-			var data = [hashes, dates, messages];
 			
 			return res.render('gitarticle', {data : data, sha_contents : sha_contents, range : range});
 			
