@@ -191,7 +191,7 @@ router.get('/gitarticle', function (req, res, next) {
 		//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
 		
 		hashes.forEach(function(hash) {
-			console.log("hash);			
+			console.log("hash");
 		});
 		
 		var sha_contents;
