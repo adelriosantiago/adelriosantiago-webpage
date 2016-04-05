@@ -191,24 +191,25 @@ router.get('/gitarticle', function (req, res, next) {
 		
 		for (var i = 0; i < hashes.length; i++) {
 			console.log(i);
+			var processed = hashes.length;
 			
-			var getCommitContent = function(hash, callback) {
-				git.exec('show', [hash + ":" + current_file], function(err, msg) {
-					//console.log("txt: " + msg);
+			var getCommitContent = function(index, next) {
+				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
 					console.log(err);
-					callback(msg);
+					
+					texts[index] = msg;
+					processed--;
+					if (processed <= 0) {
+						next();
+					}
 				});
 			}
 			
-			getCommitContent(hashes[i], function(ct) {
-				console.log(ct);
-				texts[i] = ct;
+			getCommitContent(i, function() {
+				var data = [hashes, dates, messages, texts];
+				return res.render('gitarticle', {data : data, range : range});
 			})
 		}
-		
-		var data = [hashes, dates, messages, texts];
-		
-		return res.render('gitarticle', {data : data, range : range});
 	});
 });
 

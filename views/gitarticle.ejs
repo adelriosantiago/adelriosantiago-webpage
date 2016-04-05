@@ -22,25 +22,29 @@
 	<link rel="stylesheet" href="stylesheets/bootslider.css" />
 	
 	<style>
-		.active {
-			color: red;
+		#filtered .content {
+			display: none;
+		}
+		#filtered .content.active {
+			display: block;
 		}
 	</style>
 	
 </head>
 <body>
-	<h1>all data</h1>
-	<%- JSON.stringify(data) %>
 	<h1>loop</h1>
 	<div id="filtered">
-		<% data[0].forEach(function(el) { %>
-			<div><%= el %></div>
+		<% data[3].forEach(function(el) { %>
+			<div class="content"><%= el %></div>
 		<% }); %>
 	</div>
 	
 	<p>slider</p>
 	<input id="ex19" type="text" data-provide="slider" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
 	<p id="slider_value"></p>
+	
+	<h1>all data</h1>
+	<%- JSON.stringify(data) %>
 	
 	<script>
 		$( document ).ready(function() {
