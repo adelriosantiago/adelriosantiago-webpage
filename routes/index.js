@@ -144,7 +144,6 @@ router.get('/blog/:article', function (req, res, next) {
             });
             //res.render('blog', { title: 'Express' });
         }
-        //Load index here
     });
     console.log('art', articlePath);
 });
@@ -164,7 +163,7 @@ router.get('/gitarticle', function (req, res, next) {
 
 	console.log(git);
 		
-	//Working git status
+	//Working git status, not used currently
 	/*git.exec('status', {'porcelain' : true}, function(err, msg) {
 		console.log(err);
 		return res.render('gitarticle', {gitlog: msg});
@@ -183,11 +182,10 @@ router.get('/gitarticle', function (req, res, next) {
 		var hashes = _.map(file_commits, 'commit');
 		var dates = _.map(file_commits, 'date');
 		var messages = _.map(file_commits, 'message');
-		//var texts = _.map(file_commits, 'texts');
 		var range = _.range(hashes.length);
 		var texts = []; //Will contain each commit content text
 		
-		//git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md works
+		//Example of a working command to show the content of a single commit in time: git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md
 		
 		for (var i = 0; i < hashes.length; i++) {
 			console.log(i);
