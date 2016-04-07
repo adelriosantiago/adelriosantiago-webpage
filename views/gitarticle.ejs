@@ -42,7 +42,7 @@
 		   		<div class="hashes"><%= data[0][i] %></div>
 				<div class="date"><%= data[1][i] %></div>
 				<div class="messages"><%= data[2][i] %></div>
-				<div class="content"><%- data[3][i] %></div>
+				<div class="content"><%- JSON.stringify(data[3][i]) %></div>
 		   </div>
 		<% } %>
 	</div>

@@ -195,7 +195,26 @@ router.get('/gitarticle', function (req, res, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
 					console.log(err);
 					
-					texts[index] = msg;
+					
+					//TODO: Process markdown here					
+					var rendered = md.render(msg),
+						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
+						regexPermalink = /<permalink.*>(.*?)<\/permalink>/i, //Regex to extract titles
+						regexDateMonth = /<month.*>(.*?)<\/month>/i, //Regex to extract the order of the articles
+						regexDateYear = /<year.*>(.*?)<\/year>/i, //Regex to extract the order of the articles
+						header = rendered.match(regexTitle),
+						permalink = rendered.match(regexPermalink),
+						lang = allLanguages[permalink[1]],
+						month = Number(rendered.match(regexDateMonth)[1]),
+						year = Number(rendered.match(regexDateYear)[1]),
+						order = year + (month / 100.0),
+						monthName = allMonths[month],
+						sortedData;
+
+					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
+					
+					
+					texts[index] = datav2;
 					processed--;
 					if (processed <= 0) {
 						next();
