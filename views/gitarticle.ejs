@@ -51,10 +51,18 @@
 			$('#ex19').slider().on('change', function(ev){
 				$('#slider_value').html(ev.value.newValue);
 				
+				//Update the text content
 				$('div#filtered').children().removeClass('active');
 				$("div#filtered div:nth-child(" + (ev.value.newValue + 1) +")").addClass("active");
+				//TODO: Update the commit message
+				
+				//TODO: Update the commit date
+				
 				
 			});
+			
+			//TODO: Trigger a change here on the commit number 1
+			
 		});
 	</script>
 </body>
