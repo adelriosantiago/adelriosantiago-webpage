@@ -21,6 +21,9 @@
 	<script src="javascripts/bootslider.js"></script>
 	<link rel="stylesheet" href="stylesheets/bootslider.css" />
 	
+	<link rel="stylesheet" href="/stylesheets/foundation.css" />
+    <link rel="stylesheet" href="/stylesheets/custom.css" />
+	
 	<style>
 		#filtered .content {
 			display: none;
@@ -35,11 +38,11 @@
 	<h1>loop</h1>
 	<div id="filtered">
 		<% for(var i = 0; i < data[0].length; i++) { %>
-		   <div class="content">
-		   		<div class="date"><%= data[0][i] %></div>
-				<div class="message"><%= data[1][i] %></div>
-				<div class="message"><%= data[2][i] %></div>
-				<div class="message"><%= data[3][i] %></div>
+		   <div class="content markdown-body">
+		   		<div class="hashes"><%= data[0][i] %></div>
+				<div class="date"><%= data[1][i] %></div>
+				<div class="messages"><%= data[2][i] %></div>
+				<div class="content"><%- data[3][i] %></div>
 		   </div>
 		<% } %>
 	</div>
