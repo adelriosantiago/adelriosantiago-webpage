@@ -154,11 +154,20 @@ router.get('/p5', function (req, res, next) {
     return res.render('p5', {});
 });
 
-router.get('/gitarticle', function (req, res, next) {
+router.get('/gitarticle/:article', function (req, res, next) {
     'use strict';
+	
+	var articlePath = req.params.article,
+        articles_repo_path;
 
-	var current_article = "-- 100-duolingo";
-	var articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
+	articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
+    
+    console.log(articles_repo_path);
+    
+	if (!fs.existsSync(articles_repo_path)) {
+		return res.redirect('/gitarticle/index#all');
+	}
+	
 	var git = new git_wrapper({'git-dir': articles_repo_path});
 
 	console.log(git);
@@ -170,7 +179,7 @@ router.get('/gitarticle', function (req, res, next) {
 	});*/
 	
 	var file_commits;
-	git.exec('log', {"follow" : true, 'pretty' : logFmt}, [current_article], function(err, msg) {
+	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
 		console.log(err);
 		
 		var current_file = "100-duolingo/spa.md";
