@@ -61,6 +61,9 @@ h6 {
 .line-left { border-left: 1px solid #CACCCC; }
 .line-right { border-right: 1px solid #CACCCC; }
 
+.wide { width: 100%; }
+.half { width: 50%; }
+
 /* Links */
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -451,6 +454,10 @@ section.fullpage {
 /* Articles */
 hidden {
 	display: none;
+}
+
+#gitslider-front {
+	width: 100%;
 }
 
 .container-border {

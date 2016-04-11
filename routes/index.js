@@ -186,6 +186,11 @@ router.get('/gitarticle/:article', function (req, res, next) {
 		
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
+		
+		console.log("---");
+		console.log(file_commits);
+		console.log("---");
+		
 		file_commits = JSON.parse(file_commits);
 		
 		var hashes = _.map(file_commits, 'commit');
@@ -203,7 +208,6 @@ router.get('/gitarticle/:article', function (req, res, next) {
 			var getCommitContent = function(index, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
 					console.log(err);
-					
 					
 					//TODO: Process markdown here					
 					var rendered = md.render(msg),

@@ -10,7 +10,11 @@
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-		
+
+	<!-- CSS's -->
+	<link rel="stylesheet" href="/stylesheets/foundation.css" />
+	<link rel="stylesheet" href="/stylesheets/custom.css" />
+	
 	<!-- include the jQuery and jQuery UI scripts -->
 	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
@@ -25,40 +29,45 @@
     <link rel="stylesheet" href="/stylesheets/custom.css" />
 	
 	<style>
-		#filtered .content {
+		#filtered .gitarticle {
 			display: none;
 		}
-		#filtered .content.active {
+		#filtered .gitarticle.active {
 			display: block;
 		}
 	</style>
 	
 </head>
 <body>
-	<h1>loop</h1>
+	<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
+	<p id="slider_value"></p>
+	
 	<div id="filtered">
 		<% for(var i = 0; i < data[0].length; i++) { %>
-		   <div class="content markdown-body">
+		   <div class="gitarticle markdown-body">
 		   		<div class="hash"><%= data[0][i] %></div>
 				<div class="date"><%= data[1][i] %></div>
 				<div class="message"><%= data[2][i] %></div>
-				<div class="text"><%- JSON.stringify(data[3][i]) %></div>
+				<div id='<%- data[3][i].slug %>' class="bb-item">
+					<div class="content">
+						<div class="scroller">
+							<div class='blog_article markdown-body'>
+								<%- data[3][i].content %>
+								<div class='write_date'><%- data[3][i].month %>, <%- data[3][i].year %></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+
+				
 		   </div>
-		<% } %>
+		<% }; %>
 	</div>
-	
-	<p>slider</p>
-	<input id="ex19" type="text" data-provide="slider" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-	<p id="slider_value"></p>
-	<p id="commit_message"></p>
-	<p id="commit_date"></p>
-	
-	<h1>all data</h1>
-	<%- JSON.stringify(data) %>
 	
 	<script>
 		$( document ).ready(function() {
-			$('#ex19').slider().on('change', function(ev){
+			$('#gitslider-back').slider().on('change', function(ev){
 				$('#slider_value').html(ev.value.newValue);
 				
 				//Update the text content
