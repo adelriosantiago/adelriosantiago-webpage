@@ -17,10 +17,6 @@
 	
 	<!-- include the jQuery and jQuery UI scripts -->
 	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-					
-	<!-- plus a jQuery UI theme, here I use "flick" -->
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 
 	<script src="/javascripts/bootslider.js"></script>
 	<link rel="stylesheet" href="/stylesheets/bootslider.css" />
@@ -66,8 +62,11 @@
 	</div>
 	
 	<script>
-		$( document ).ready(function() {
-			$('#gitslider-back').slider().on('change', function(ev){
+		var gitSlider;
+		$(document).ready(function() {
+			gitSlider = $('#gitslider-back').slider();
+			
+			gitSlider.on('change', function(ev){
 				$('#slider_value').html(ev.value.newValue);
 				
 				//Update the text content
@@ -77,11 +76,9 @@
 				
 				//$('#commit_message').html(data[2][ev.value.newValue]);
 				//TODO: Update the commit date
-				
-				
 			});
-			
 			//TODO: Trigger a change here on the commit number 1
+			
 			
 		});
 	</script>
