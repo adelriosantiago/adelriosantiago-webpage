@@ -67,18 +67,23 @@
 			gitSlider = $('#gitslider-back').slider();
 			
 			gitSlider.on('change', function(ev){
-				$('#slider_value').html(ev.value.newValue);
+				updateGitText(ev.value.newValue)
+			});
+			
+			$('#gitslider-back').slider('setValue', 0);
+			updateGitText(0);
+			
+			function updateGitText(newValue) {
+				$('#slider_value').html(newValue);
 				
 				//Update the text content
 				$('div#filtered').children().removeClass('active');
-				$("div#filtered div:nth-child(" + (ev.value.newValue + 1) +")").addClass("active");
+				$("div#filtered div:nth-child(" + (newValue + 1) +")").addClass("active");
 				//TODO: Update the commit message
 				
 				//$('#commit_message').html(data[2][ev.value.newValue]);
 				//TODO: Update the commit date
-			});
-			//TODO: Trigger a change here on the commit number 1
-			
+			}
 			
 		});
 	</script>
