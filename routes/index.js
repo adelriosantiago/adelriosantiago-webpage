@@ -154,20 +154,14 @@ router.get('/p5', function (req, res, next) {
     return res.render('p5', {});
 });
 
-router.get('/gitarticle/:article/:lang?', function (req, res, next) {
+router.get('/gitarticle/:lang?/:article', function (req, res, next) {
     'use strict';
 	
-	var articlePath = req.params.article,
-		articleLang = req.params.lang,
+	var articleLang = req.params.lang,
+		articlePath = req.params.article,
         articles_repo_path;
 	
-	console.log("lang b:");
-	console.log(articleLang);	
-	
-	if (!articleLang) { articleLang = articleLang = "eng" }
-	
-	console.log("lang a:");
-	console.log(articleLang);
+	if (!articleLang) { articleLang = "eng"; }
 
 	articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
     
@@ -191,7 +185,7 @@ router.get('/gitarticle/:article/:lang?', function (req, res, next) {
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
 		console.log(err);
 		
-		var current_file = "100-duolingo/spa.md";
+		var current_file = articlePath + "/" + articleLang + ".md";
 		
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
