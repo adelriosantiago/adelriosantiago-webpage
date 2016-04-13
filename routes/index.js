@@ -154,11 +154,20 @@ router.get('/p5', function (req, res, next) {
     return res.render('p5', {});
 });
 
-router.get('/gitarticle/:article', function (req, res, next) {
+router.get('/gitarticle/:article/:lang?', function (req, res, next) {
     'use strict';
 	
 	var articlePath = req.params.article,
+		articleLang = req.params.lang,
         articles_repo_path;
+	
+	console.log("lang b:");
+	console.log(articleLang);	
+	
+	if (!articleLang) { articleLang = articleLang = "eng" }
+	
+	console.log("lang a:");
+	console.log(articleLang);
 
 	articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
     
