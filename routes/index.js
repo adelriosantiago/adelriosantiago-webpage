@@ -165,15 +165,11 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 
 	articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
     
-    console.log(articles_repo_path);
-    
 	if (!fs.existsSync(articles_repo_path)) {
-		return res.redirect('/gitblog/index#all');
+		return res.redirect('/blog/index#all');
 	}
 	
 	var git = new git_wrapper({'git-dir': articles_repo_path});
-
-	console.log(git);
 		
 	//Working git status, not used currently
 	/*git.exec('status', {'porcelain' : true}, function(err, msg) {
@@ -181,19 +177,20 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		return res.render('gitblog', {gitlog: msg});
 	});*/
 	
-	var file_commits;
+	var current_file = articlePath + "/" + articleLang + ".md";
+	var full_article_path = path.join(__dirname, '../public/articles/') + current_file;
+	
+	if (!fs.existsSync(full_article_path)) {
+		return res.redirect('/blog/index#all');
+	}
+	
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
-		console.log(err);
+		var file_commits;
 		
-		var current_file = articlePath + "/" + articleLang + ".md";
+		console.log(err);
 		
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
-		
-		console.log("---");
-		console.log(file_commits);
-		console.log("---");
-		
 		file_commits = JSON.parse(file_commits);
 		
 		var hashes = _.map(file_commits, 'commit');
@@ -205,7 +202,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		//Example of a working command to show the content of a single commit in time: git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md
 		
 		for (var i = 0; i < hashes.length; i++) {
-			console.log(i);
 			var processed = hashes.length;
 			
 			var getCommitContent = function(index, next) {
@@ -228,7 +224,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						sortedData;
 
 					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
-					
 					
 					texts[index] = datav2;
 					processed--;
