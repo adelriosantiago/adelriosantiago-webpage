@@ -151,6 +151,8 @@ router.get('/blog/:article', function (req, res, next) {
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
 	
+	return res.redirect('/blog/index#all'); //Debug only, we don't want this route to be available yet
+	
 	var articleLang = req.params.lang,
 		articlePath = req.params.article,
         articles_repo_path;
