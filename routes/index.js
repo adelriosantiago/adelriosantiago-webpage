@@ -154,7 +154,7 @@ router.get('/p5', function (req, res, next) {
     return res.render('p5', {});
 });
 
-router.get('/gitarticle/:lang?/:article', function (req, res, next) {
+router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
 	
 	var articleLang = req.params.lang,
@@ -168,7 +168,7 @@ router.get('/gitarticle/:lang?/:article', function (req, res, next) {
     console.log(articles_repo_path);
     
 	if (!fs.existsSync(articles_repo_path)) {
-		return res.redirect('/gitarticle/index#all');
+		return res.redirect('/gitblog/index#all');
 	}
 	
 	var git = new git_wrapper({'git-dir': articles_repo_path});
@@ -178,7 +178,7 @@ router.get('/gitarticle/:lang?/:article', function (req, res, next) {
 	//Working git status, not used currently
 	/*git.exec('status', {'porcelain' : true}, function(err, msg) {
 		console.log(err);
-		return res.render('gitarticle', {gitlog: msg});
+		return res.render('gitblog', {gitlog: msg});
 	});*/
 	
 	var file_commits;
@@ -240,7 +240,7 @@ router.get('/gitarticle/:lang?/:article', function (req, res, next) {
 			
 			getCommitContent(i, function() {
 				var data = [hashes, dates, messages, texts];
-				return res.render('gitarticle', {data : data, range : range});
+				return res.render('gitblog', {data : data, range : range});
 			})
 		}
 	});
