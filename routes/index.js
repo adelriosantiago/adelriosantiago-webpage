@@ -40,15 +40,7 @@ function isMobile(req) {
     return false;
 }
 
-//Show the home page
-router.get('/', function (req, res, next) {
-    'use strict';
-    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
-
-    return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
-});
-
-//Functions
+//Sort by key function
 function sortByKey(array, key) {
     'use strict';
 
@@ -59,6 +51,14 @@ function sortByKey(array, key) {
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
 }
+
+//Show the home page
+router.get('/', function (req, res, next) {
+    'use strict';
+    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
+
+    return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
+});
 
 router.get('/blog', function (req, res, next) {
     'use strict';
@@ -146,12 +146,6 @@ router.get('/blog/:article', function (req, res, next) {
         }
     });
     console.log('art', articlePath);
-});
-
-router.get('/p5', function (req, res, next) {
-    'use strict';
-
-    return res.render('p5', {});
 });
 
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
@@ -245,6 +239,12 @@ router.get('/spa', function (req, res, next) { //Temporal debug route
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     return  res.render('spa', { hostname: hostname }); //This is the second version
+});
+
+router.get('/p5', function (req, res, next) {
+    'use strict';
+
+    return res.render('p5', {});
 });
 
 //TODO: Create a redirection to / and change the URL too
