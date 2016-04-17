@@ -31,12 +31,16 @@
 		#filtered .gitarticle.active {
 			display: block;
 		}
+		#gitslider {
+			margin: 25px 100px;
+		}
 	</style>
 	
 </head>
 <body>
-	<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-	<p id="slider_value"></p>
+	<div id="gitslider">
+		<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
+	</div>
 	
 	<div id="filtered">
 		<% for(var i = 0; i < data[0].length; i++) { %>
@@ -54,9 +58,6 @@
 						</div>
 					</div>
 				</div>
-				
-
-				
 		   </div>
 		<% }; %>
 	</div>
