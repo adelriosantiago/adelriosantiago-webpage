@@ -203,7 +203,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
 					console.log(err);
 					
-					//TODO: Process markdown here					
 					var rendered = md.render(msg),
 						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
 						regexPermalink = /<permalink.*>(.*?)<\/permalink>/i, //Regex to extract titles
