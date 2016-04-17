@@ -198,6 +198,19 @@ a:hover { text-decoration: underline; }
 }
 
 /* Blog */
+
+.blogRow {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: initial;
+}
+
+#leftside-bio {
+	margin-top: 50px;
+	text-align: center;
+}
+
 .info-button-blog {
     height: 50px;
     width: 50px;
