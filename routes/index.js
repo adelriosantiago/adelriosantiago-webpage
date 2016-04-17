@@ -11,6 +11,8 @@ var trueHostname = 'http://www.adelriosantiago.com/';
 var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var allLanguages = {eng: 'English', spa: 'Español', ita: 'Italiano'};
 var excludedFiles = ['.git', 'LICENSE', 'README.md', 'images'];
+var articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
+var git = new git_wrapper({'git-dir': articles_repo_path});
 
 var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%s"}\',';
 if (require('os').platform() === 'win32') {
@@ -161,30 +163,26 @@ router.get('/blog/:article', function (req, res, next) {
     console.log('art', articlePath);
 });
 
+router.get('/gitblog', function (req, res, next) {
+	return res.redirect('/blog/index#all');
+});
+
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
 	
 	//return res.redirect('/blog/index#all'); //Debug only, we don't want this route to be available yet
+	
+	//Working git status, not used currently
+	/*git.exec('status', {'porcelain' : true}, function(err, msg) {
+		console.log(err);
+		return res.render('gitblog', {gitlog: msg});
+	});*/
 	
 	var articleLang = sanitizeParam(req.params.lang),
 		articlePath = sanitizeParam(req.params.article),
         articles_repo_path;
 	
 	if (!articleLang) { articleLang = "eng"; }
-
-	articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
-    
-	if (!fs.existsSync(articles_repo_path)) {
-		return res.redirect('/blog/index#all');
-	}
-	
-	var git = new git_wrapper({'git-dir': articles_repo_path});
-		
-	//Working git status, not used currently
-	/*git.exec('status', {'porcelain' : true}, function(err, msg) {
-		console.log(err);
-		return res.render('gitblog', {gitlog: msg});
-	});*/
 	
 	var current_file = articlePath + "/" + articleLang + ".md";
 	var full_article_path = path.join(__dirname, '../public/articles/') + current_file;
