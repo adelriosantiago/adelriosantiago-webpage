@@ -32,30 +32,35 @@
 			display: block;
 		}
 		#gitslider {
-			margin: 25px 100px;
+			margin: 10px 5px;
 		}
 	</style>
 	
 </head>
 <body>
 	<div class="row">
-		<div class="large-1 columns">
+		<div class="large-3 columns">
 			<p>sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf</p>
 			<p>sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf</p>
 			<p>sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf</p>
 			<p>sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf</p>
 			<p>sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf, sadfasf asdfsaf</p>
 		</div>
-		<div class="large-11 columns">
+		<div class="large-9 columns">
 			<div id="gitslider">
 				<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
 			
 				<div id="filtered">
 					<% for(var i = 0; i < data[0].length; i++) { %>
 					   <div class="gitarticle markdown-body">
-							<div class="hash"><%= data[0][i] %></div>
-							<div class="date"><%= data[1][i] %></div>
-							<div class="message"><%= data[2][i] %></div>
+							<div class="text-right">
+								<small>
+									<div class="hash"><%= data[0][i] %></div>
+									<div class="date"><%= data[1][i] %></div>
+									<div class="message"><%= data[2][i] %></div>
+								</small>
+							</div>
+							
 							<div id='<%- data[3][i].slug %>' class="bb-item">
 								<div class="content">
 									<div class="scroller">
