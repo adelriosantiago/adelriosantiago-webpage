@@ -54,9 +54,11 @@ function sortByKey(array, key) {
 
 //Parameter sanitize function
 function sanitizeParam(input, len) {
+	if (input == null) { return ""; }
+	if (len == null) { len = 255; }
+	
 	var output;
 	
-	if (len == null) { len = 255; }
 	output = input.substring(0, len);
 	output = slug(output);
 	
@@ -161,7 +163,6 @@ router.get('/blog/:article', function (req, res, next) {
 
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
-	
 	
 	//return res.redirect('/blog/index#all'); //Debug only, we don't want this route to be available yet
 	
