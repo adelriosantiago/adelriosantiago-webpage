@@ -167,6 +167,10 @@ router.get('/gitblog', function (req, res, next) {
 	return res.redirect('/blog/index#all');
 });
 
+router.get('/gitblog/index', function (req, res, next) {
+	return res.redirect('/blog/index#all');
+});
+
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
 	
@@ -194,6 +198,10 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
 		console.log(err);
 		
+		
+		console.log("NEXT: ");
+		console.log(msg);
+		
 		var file_commits;
 		
 		file_commits = msg.substring(0, msg.length - 1);
@@ -212,7 +220,16 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 			//Example of a working command to show the content of a single commit in time: git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md
 			var getCommitContent = function(index, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
-					console.log(err);
+					if (err) {
+						console.log("Error:");
+						console.log(err);
+						
+						//TODO: DRY'fy this with the second
+						processed--;
+						if (processed <= 0) { next(); }
+					
+						return;
+					}
 					
 					var rendered = md.render(msg),
 						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
@@ -229,17 +246,20 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						sortedData;
 
 					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
-					
 					texts[index] = datav2;
+					
+					//TODO: DRY'fy this with the first
 					processed--;
-					if (processed <= 0) {
-						next();
-					}
+					if (processed <= 0) { next(); }
 				});
 			}
 			
+			console.log("about to display");
+			
 			getCommitContent(i, function() {
 				var data = [hashes, dates, messages, texts];
+				console.log(data);
+				
 				return res.render('gitblog', {data : data, range : range});
 			})
 		}
