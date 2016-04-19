@@ -198,10 +198,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
 		console.log(err);
 		
-		
-		console.log("NEXT: ");
-		console.log(msg);
-		
 		var file_commits;
 		
 		file_commits = msg.substring(0, msg.length - 1);
@@ -213,6 +209,8 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		var messages = _.map(file_commits, 'message');
 		var range = _.range(hashes.length);
 		var texts = []; //Will contain each commit content text
+		
+		//TODO: If thhe requested file is the index then only get the last hash
 		
 		for (var i = 0; i < hashes.length; i++) {
 			var processed = hashes.length;
