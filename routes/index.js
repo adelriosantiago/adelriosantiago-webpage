@@ -67,14 +67,6 @@ function sanitizeParam(input, len) {
 	return output;
 }
 
-//Show the home page
-router.get('/', function (req, res, next) {
-    'use strict';
-    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
-
-    return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
-});
-
 router.get('/blog', function (req, res, next) {
     'use strict';
     
@@ -277,13 +269,20 @@ router.get('/p5', function (req, res, next) {
     return res.render('p5', {});
 });
 
-//TODO: Create a redirection to / and change the URL too
-//TODO: DRY'fy this section
-router.get('*', function(req, res, next) {
+//Show the home page
+router.get('/', function (req, res, next) {
     'use strict';
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
     return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
+});
+
+//TODO: Create a redirection to / and change the URL too
+//TODO: DRY'fy this section
+router.get('*', function(req, res, next) {
+    'use strict';
+
+	return res.redirect('/');
 });
 
 module.exports = router;
