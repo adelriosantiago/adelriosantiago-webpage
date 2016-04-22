@@ -209,6 +209,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		for (var i = 0; i < hashes.length; i++) {
 			var processed = hashes.length;
 			
+					//TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			//Example of a working command to show the content of a single commit in time: git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md
 			var getCommitContent = function(index, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
@@ -252,7 +253,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				var data = [hashes, dates, messages, texts];
 				console.log(data);
 				
-				return res.render('gitblog', {data : data, range : range});
+				return res.render('gitblog', {data : data, range : range}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});
