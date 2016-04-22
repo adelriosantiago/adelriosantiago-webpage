@@ -278,8 +278,12 @@ router.get('/p5', function (req, res, next) {
 });
 
 //TODO: Create a redirection to / and change the URL too
-/*router.get('*', function(req, res, next) {
-    res.render('spa', { title: 'Express' });
-});*/
+//TODO: DRY'fy this section
+router.get('*', function(req, res, next) {
+    'use strict';
+    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
+
+    return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
+});
 
 module.exports = router;
