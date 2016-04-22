@@ -1,3 +1,5 @@
+//TODO: Lint this please
+
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
@@ -163,14 +165,6 @@ router.get('/blog/:article', function (req, res, next) {
     console.log('art', articlePath);
 });
 
-router.get('/gitblog', function (req, res, next) {
-	return res.redirect('/blog/index#all');
-});
-
-router.get('/gitblog/index', function (req, res, next) {
-	return res.redirect('/blog/index#all');
-});
-
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
 	
@@ -192,7 +186,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 	var full_article_path = path.join(__dirname, '../public/articles/') + current_file;
 	
 	if (!fs.existsSync(full_article_path)) {
-		return res.redirect('/blog/index#all');
+		return res.redirect('gitblog/all/index');
 	}
 	
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
@@ -263,6 +257,15 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		}
 	});
 });
+
+router.get('/gitblog/index', function (req, res, next) {
+	return res.redirect('gitblog/all/index');
+});
+
+router.get('/gitblog', function (req, res, next) {
+	return res.redirect('gitblog/all/index');
+});
+
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
     'use strict';
