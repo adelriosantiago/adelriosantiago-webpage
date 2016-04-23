@@ -203,6 +203,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		var messages = _.map(file_commits, 'message');
 		var range = _.range(hashes.length);
 		var texts = []; //Will contain each commit content text
+		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
 		//TODO: If thhe requested file is the index then only get the last hash
 		
@@ -238,7 +239,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						monthName = allMonths[month],
 						sortedData;
 
-					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
+					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hasTimeline : hasTimeline};
 					texts[index] = datav2;
 					
 					//TODO: DRY'fy this with the first
@@ -281,7 +282,7 @@ router.get('/p5', function (req, res, next) {
     return res.render('p5', {});
 });
 
-//This MUST be last on the file
+//This MUST be last on this file
 router.get('*', function(req, res, next) {
     'use strict';
 
