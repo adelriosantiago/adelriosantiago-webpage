@@ -199,6 +199,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		file_commits = JSON.parse(file_commits);
 		file_commits = file_commits.reverse();
 		
+		var gitBlogData = {};
 		var hashes = _.map(file_commits, 'commit');
 		var dates = _.map(file_commits, 'date');
 		var messages = _.map(file_commits, 'message');
@@ -243,6 +244,8 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
 					texts[index] = datav2;
 					
+					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index]};
+					
 					//TODO: DRY'fy this with the first
 					processed--;
 					if (processed <= 0) { next(); }
@@ -256,11 +259,10 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				var data = [hashes, dates, messages, texts];
 				
 				console.log("-");
-				console.log(texts);
-				console.log(texts.length);
+				console.log(gitBlogData);
 				console.log("-");
 				
-				return res.render('gitblog', {data : data, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+				return res.render('gitblog', {data : data, gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});

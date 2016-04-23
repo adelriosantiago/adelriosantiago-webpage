@@ -74,29 +74,35 @@
 				<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
 				
 				<div id="filtered">
-					<% for(var i = 0; i < data[3].length; i++) { %>
-					   <div class="gitarticle markdown-body">
+					<% Object.keys(gitBlogData).forEach(function(key){ %>
+						<div class="gitarticle markdown-body">
 							<div id="commit-info" class="text-right">
 								<small>
-									<div class="hash" style="display: none;"><%= data[0][i] %></div>
-									<div class="date"><%= data[1][i] %></div>
-									<div class="message"><%= data[2][i] %></div>
+									<div class="hash" style="display: none;"><%= gitBlogData[key].hash %></div>
+									<div class="date"><%= gitBlogData[key].hash %></div>
+									<div class="message"><%= gitBlogData[key].hash %></div>
 								</small>
 							</div>
 							
-							<div id='<%- data[3][i].slug %>' class="bb-item">
+							<div id='<%- gitBlogData[key].hash %>' class="bb-item">
 								<div class="content">
 									<div class="scroller">
 										<div class='blog_article markdown-body'>
-											<%- data[3][i].content %>
-											<div class='write_date'><%- data[3][i].month %>, <%- data[3][i].year %></div>
+											<%- gitBlogData[key].hash %>
+											<div class='write_date'><%- gitBlogData[key].hash %>, <%- gitBlogData[key].hash %></div>
 										</div>
 									</div>
 								</div>
 							</div>
 					   </div>
-					<% }; %>
+					<% }); %>
 				</div>
+				
+				
+				
+			
+				
+				
 			</div>
 		</div>
 	</div>
