@@ -197,6 +197,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
 		file_commits = JSON.parse(file_commits);
+		file_commits = file_commits.reverse();
 		
 		var hashes = _.map(file_commits, 'commit');
 		var dates = _.map(file_commits, 'date');
@@ -205,12 +206,12 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		var texts = []; //Will contain each commit content text
 		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
-		//TODO: If thhe requested file is the index then only get the last hash
-		
+		//TODO: If the requested file is the index then only get the last hash???
+				
 		for (var i = 0; i < hashes.length; i++) {
 			var processed = hashes.length;
 			
-					//TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+			//TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			//Example of a working command to show the content of a single commit in time: git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md
 			var getCommitContent = function(index, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
@@ -248,11 +249,16 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				});
 			}
 			
-			console.log("about to display");
-			
+			console.log("->" + i);
+						
 			getCommitContent(i, function() {
+				texts = texts.filter(function(n){ return n != undefined }); //Remove missing elements
 				var data = [hashes, dates, messages, texts];
-				console.log(data);
+				
+				console.log("-");
+				console.log(texts);
+				console.log(texts.length);
+				console.log("-");
 				
 				return res.render('gitblog', {data : data, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
