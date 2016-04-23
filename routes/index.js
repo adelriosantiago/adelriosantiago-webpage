@@ -259,10 +259,12 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				var data = [hashes, dates, messages, texts];
 				
 				console.log("-");
-				console.log(gitBlogData);
+				console.log(Object.keys(gitBlogData).length);
 				console.log("-");
 				
-				return res.render('gitblog', {data : data, gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+				var rangev2 = _.range(Object.keys(gitBlogData).length);				
+				
+				return res.render('gitblog', {data : data, gitBlogData : gitBlogData, range : rangev2, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});
