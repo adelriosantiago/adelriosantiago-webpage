@@ -37,6 +37,13 @@
 		}
 	</style>
 	
+	<!-- TODO: Move into a separate file, this is the timeline visibility classes -->
+	<style>
+		#gitslider-front, #commit-info {
+			visibility: <%= hasTimeline ? 'visible' : 'hidden' %>;
+		}
+	</style>
+	
 </head>
 <body>
 	<div class="row blogRow">
@@ -65,11 +72,11 @@
 		<div class="large-9 columns">
 			<div id="gitslider">
 				<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-			
+				
 				<div id="filtered">
 					<% for(var i = 0; i < data[3].length; i++) { %>
 					   <div class="gitarticle markdown-body">
-							<div class="text-right">
+							<div id="commit-info" class="text-right">
 								<small>
 									<div class="hash" style="display: none;"><%= data[0][i] %></div>
 									<div class="date"><%= data[1][i] %></div>
@@ -118,7 +125,6 @@
 				//$('#commit_message').html(data[2][ev.value.newValue]);
 				//TODO: Update the commit date
 			}
-			
 		});
 	</script>
 </body>

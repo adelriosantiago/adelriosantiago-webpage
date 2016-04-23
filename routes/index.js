@@ -239,7 +239,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						monthName = allMonths[month],
 						sortedData;
 
-					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hasTimeline : hasTimeline};
+					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
 					texts[index] = datav2;
 					
 					//TODO: DRY'fy this with the first
@@ -254,7 +254,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				var data = [hashes, dates, messages, texts];
 				console.log(data);
 				
-				return res.render('gitblog', {data : data, range : range}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+				return res.render('gitblog', {data : data, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});
