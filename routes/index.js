@@ -244,7 +244,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
 					texts[index] = datav2;
 					
-					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index]};
+					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
 					
 					//TODO: DRY'fy this with the first
 					processed--;

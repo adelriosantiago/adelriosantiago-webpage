@@ -79,17 +79,17 @@
 							<div id="commit-info" class="text-right">
 								<small>
 									<div class="hash" style="display: none;"><%= gitBlogData[key].hash %></div>
-									<div class="date"><%= gitBlogData[key].hash %></div>
-									<div class="message"><%= gitBlogData[key].hash %></div>
+									<div class="date"><%= gitBlogData[key].date %></div>
+									<div class="message"><%= gitBlogData[key].message %></div>
 								</small>
 							</div>
 							
-							<div id='<%- gitBlogData[key].hash %>' class="bb-item">
+							<div id='<%- gitBlogData[key].slug %>' class="bb-item">
 								<div class="content">
 									<div class="scroller">
 										<div class='blog_article markdown-body'>
-											<%- gitBlogData[key].hash %>
-											<div class='write_date'><%- gitBlogData[key].hash %>, <%- gitBlogData[key].hash %></div>
+											<%- gitBlogData[key].content %>
+											<div class='write_date'><%- gitBlogData[key].month %>, <%- gitBlogData[key].year %></div>
 										</div>
 									</div>
 								</div>
@@ -97,11 +97,6 @@
 					   </div>
 					<% }); %>
 				</div>
-				
-				
-				
-			
-				
 				
 			</div>
 		</div>
