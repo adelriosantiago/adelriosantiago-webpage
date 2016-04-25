@@ -115,8 +115,12 @@
 				updateGitText(ev.value.newValue)
 			});
 			
-			$('#gitslider-back').slider('setValue', 0);
-			updateGitText(0);
+			setSliderPosition(parseInt($('#gitslider-back').attr("data-slider-max"))); //Always go to the last commit
+			
+			function setSliderPosition(newPosition) {
+				$('#gitslider-back').slider('setValue', newPosition);
+				updateGitText(newPosition);
+			}
 			
 			function updateGitText(newValue) {
 				$('#slider_value').html(newValue);
