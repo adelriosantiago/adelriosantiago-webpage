@@ -180,6 +180,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		articlePath = sanitizeParam(req.params.article),
         articles_repo_path;
 	
+	//TODO: We need something to at least get the article if it is in another language (for example: spa, ita, etc)
 	if (!articleLang) { articleLang = "eng"; }
 	
 	var current_file = articlePath + "/" + articleLang + ".md";
@@ -204,6 +205,9 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		var dates = _.map(file_commits, 'date');
 		var messages = _.map(file_commits, 'message');
 		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
+		if (articlePath == "index") {
+			hasTimeline = false;
+		}
 		
 		//TODO: If the requested file is the index then only get the last hash???
 				
