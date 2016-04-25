@@ -205,9 +205,11 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		var dates = _.map(file_commits, 'date');
 		var messages = _.map(file_commits, 'message');
 		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
-		if (articlePath == "index") {
+		
+		//Git timeline will be always enabled for now
+		/*if (articlePath == "index") {
 			hasTimeline = false;
-		}
+		}*/
 		
 		//TODO: If the requested file is the index then only get the last hash???
 				
@@ -250,8 +252,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					if (processed <= 0) { next(); }
 				});
 			}
-			
-			console.log("->" + i);
 						
 			getCommitContent(i, function() {
 				var range = _.range(Object.keys(gitBlogData).length);				
