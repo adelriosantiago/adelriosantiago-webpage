@@ -89,7 +89,10 @@
 									<div class="scroller">
 										<div class='blog_article markdown-body'>
 											<%- gitBlogData[key].content %>
-											<div class='write_date'><%- gitBlogData[key].month %>, <%- gitBlogData[key].year %></div>
+											<div style="display: none;">
+												<!-- Currently hidden, do we need this anyway now that this is GIT powered? -->
+												<div class='write_date'><%- gitBlogData[key].month %>, <%- gitBlogData[key].year %></div>
+											</div>
 										</div>
 									</div>
 								</div>
