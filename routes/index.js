@@ -203,8 +203,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		var hashes = _.map(file_commits, 'commit');
 		var dates = _.map(file_commits, 'date');
 		var messages = _.map(file_commits, 'message');
-		var range = _.range(hashes.length);
-		var texts = []; //Will contain each commit content text
 		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
 		//TODO: If the requested file is the index then only get the last hash???
@@ -240,9 +238,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						order = year + (month / 100.0),
 						monthName = allMonths[month],
 						sortedData;
-
-					var datav2 = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order};
-					texts[index] = datav2;
 					
 					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
 					
@@ -255,16 +250,9 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 			console.log("->" + i);
 						
 			getCommitContent(i, function() {
-				texts = texts.filter(function(n){ return n != undefined }); //Remove missing elements
-				var data = [hashes, dates, messages, texts];
+				var range = _.range(Object.keys(gitBlogData).length);				
 				
-				console.log("-");
-				console.log(Object.keys(gitBlogData).length);
-				console.log("-");
-				
-				var rangev2 = _.range(Object.keys(gitBlogData).length);				
-				
-				return res.render('gitblog', {data : data, gitBlogData : gitBlogData, range : rangev2, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+				return res.render('gitblog', {gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});
