@@ -16,9 +16,12 @@ var excludedFiles = ['.git', 'LICENSE', 'README.md', 'images'];
 var articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
 var git = new git_wrapper({'git-dir': articles_repo_path});
 
-var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%s"}\',';
+
+var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%f"}\','; //TODO: Fix this... This is only a workaround, we should be using the following line, however it will fail because some commits have double quotes (")
+//var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%s"}\',';
 if (require('os').platform() === 'win32') {
-	logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ad\\",\\"message\\":\\"%s\\"},';
+	logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ad\\",\\"message\\":\\"%f\\"},'; //TODO: Fix this... This is only a workaround, we should be using the following line, however it will fail because some commits have double quotes (")
+	//logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ad\\",\\"message\\":\\"%s\\"},';
 }
 
 //var hljs = require('highlight.js'); //TODO: Implement highlight on <code> sections
