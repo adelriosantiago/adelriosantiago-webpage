@@ -16,7 +16,6 @@ var excludedFiles = ['.git', 'LICENSE', 'README.md', 'images'];
 var articles_repo_path = path.join(__dirname, '../public') + '/articles/.git';
 var git = new git_wrapper({'git-dir': articles_repo_path});
 
-
 var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%f"}\','; //TODO: Fix this... This is only a workaround, we should be using the following line, however it will fail because some commits have double quotes (")
 //var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%s"}\',';
 if (require('os').platform() === 'win32') {
@@ -36,6 +35,8 @@ md.use(require('markdown-it-mark'));
 
 //Return "true" if mobile
 function isMobile(req) {
+	'use strict';
+	
     var userAgent = req.headers['user-agent'].toLowerCase(),
         isMobile = false;
 
@@ -61,6 +62,8 @@ function sortByKey(array, key) {
 
 //Parameter sanitize function
 function sanitizeParam(input, len) {
+	'use strict';
+	
 	if (input == null) { return ""; }
 	if (len == null) { len = 255; }
 	
@@ -266,13 +269,16 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 });
 
 router.get('/gitblog/index', function (req, res, next) {
+	'use strict';
+	
 	return res.redirect('gitblog/all/index');
 });
 
 router.get('/gitblog', function (req, res, next) {
+	'use strict';
+	
 	return res.redirect('gitblog/all/index');
 });
-
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
     'use strict';
