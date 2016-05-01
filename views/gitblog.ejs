@@ -60,6 +60,7 @@
 	
 </head>
 <body>
+	<div id="fb-root"><!-- Needed for the comments plugin --></div>
 	<div class="row blogRow">
 		<div class="large-2 columns">
 			<div id="leftside-bio">
@@ -110,6 +111,7 @@
 												<!-- Currently hidden, do we need this anyway now that this is GIT powered? -->
 												<div class='write_date'><%- gitBlogData[key].month %>, <%- gitBlogData[key].year %></div>
 											</div>
+											<div class="fb-comments" data-href="" data-width="500px" data-numposts="10"></div>
 										</div>
 									</div>
 								</div>
@@ -122,7 +124,6 @@
 		</div>
 	</div>
 
-	
 	<script>
 		var gitSlider;
 		$(document).ready(function() {
@@ -151,6 +152,18 @@
 				//TODO: Update the commit date
 			}
 		});
+	</script>
+	
+	<!-- Load the Facebook SDK -->
+	<script>
+		$(".fb-comments").attr("data-href", window.location.href);
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1096286213717702";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 	</script>
 </body>
 </html>
