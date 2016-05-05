@@ -26,6 +26,24 @@
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700,500' rel='stylesheet' type='text/css'/>
         <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet"/>
         <link rel="stylesheet" href="stylesheets/font-awesome.min.css"/>
+		
+		
+		<style>
+		    div#centerDiv {
+				width: 100%;
+				text-align: center;
+				/*border: 1px solid red;*/
+			}
+			ul.centerUL {
+				margin: 2px auto;
+				line-height: 1.4;
+				padding-left: 0;
+			}
+			.centerUL li {
+				display: inline;
+				text-align: center;
+			}
+		</style>
     </head>
     <body id='main-spa'>
         <!-- Load analytics -->
@@ -59,41 +77,30 @@
                             <h5>Hi! I’m Alex. I obtained my <b>B.S. in Electronics Engineering</b> from the ITESM University. I’m passionate about startups and software development. I love coding in <b>Node.js</b> and have strong interests in <b>Real-Time Collaboration</b> technologies, Data Visualization and Infographics.</h5>
                         </div>
                     </div>
+				</div>
+				<div class="large-8 large-centered medium-10 medium-centered small-10 small-centered columns">
                     <div class='margin-bottom-med'>
                         <div class='row'>
                             <div class='text-center'>
 								<!-- TODO: Replace columns by an always-centered flex grid -->
                                 <h6>Follow me on the social networks or read more about me at my blog.</h6>
-                                <div class='large-2 medium-4 small-4 columns'>
-                                    <a href="https://twitter.com/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-twitter"></i></a>
-                                </div>
-                                <div class='large-2 medium-4 small-4 columns'>
-                                    <a href="https://mx.linkedin.com/in/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-linkedin"></i></a>
-                                </div>
-                                <div class='large-2 medium-4 small-4 columns'>
-                                    <a href="http://stackoverflow.com/users/1996066/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-stack-overflow"></i></a>
-                                </div>
-                                <div class='large-2 medium-4 small-4 columns'>
-                                    <a href="https://github.com/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-github"></i></a>
-                                </div>
-                                <div class='large-2 medium-4 small-4 columns'>
-                                    <a class="easy-modal-open" href="#" data-reveal-id="skype" target='_blank'><i class="fa hoves fa-3x fa-skype"></i></a>
-                                </div>
-								<!-- <div class='large-2 medium-4 small-4 columns'>
-                                    <a href="https://pinterest.com/adelriosantiago/" target='_blank'><i class="fa hoves fa-3x fa-pinterest"></i></a>
-                                </div> -->
-								<!-- <div class='large-2 medium-4 small-4 columns'>
-                                    <a class="easy-modal-open" href="#" data-reveal-id="snapchat" target='_blank'><i class="fa hoves fa-3x fa-snapchat"></i></a>
-                                </div> -->
-                                <!-- <div class='large-2 medium-4 small-4 columns'>
-                                    <a class="easy-modal-open" href="#" data-reveal-id="mail" target='_blank'><i class="fa hoves fa-3x fa-envelope-o"></i></a>
-                                </div> -->
-                                <div class='large-2 medium-4 small-4 columns'>
-                                    <a class="relative" href="<%= hostname %>gitblog">
-                                        <p class='blog-legend absolute'>Blog</p>
-                                        <i class="fa hoves fa-3x fa-book"></i>
-                                    </a>
-                                </div>
+								
+								<div id="centerDiv">
+									<ul class="centerUL">
+										<a href="https://twitter.com/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-twitter"></i></a>
+										<a href="https://mx.linkedin.com/in/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-linkedin"></i></a>
+										<a href="http://stackoverflow.com/users/1996066/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-stack-overflow"></i></a>
+										<a href="https://github.com/adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-github"></i></a>
+										<a class="easy-modal-open" href="#" data-reveal-id="skype" target='_blank'><i class="fa hoves fa-3x fa-skype"></i></a>
+										<a href="https://pinterest.com/adelriosantiago/" target='_blank'><i class="fa hoves fa-3x fa-pinterest"></i></a>
+										<!-- <a class="easy-modal-open" href="#" data-reveal-id="snapchat" target='_blank'><i class="fa hoves fa-3x fa-snapchat"></i></a>
+										<a class="easy-modal-open" href="#" data-reveal-id="mail" target='_blank'><i class="fa hoves fa-3x fa-envelope-o"></i></a> -->
+										<a class="relative" href="<%= hostname %>gitblog">
+											<p class='blog-legend absolute'>Blog</p>
+											<i class="fa hoves fa-3x fa-book"></i>
+										</a>
+									</ul>
+								</div>
                             </div>
                         </div>
                     </div>
