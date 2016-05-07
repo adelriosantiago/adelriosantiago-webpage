@@ -89,6 +89,7 @@ router.get('/blog', function (req, res, next) {
     return res.redirect('/blog/index#all'); //Show the articles in all languages
 });
 
+//The old version of the blog
 router.get('/blog/:article', function (req, res, next) {
     'use strict';
     
@@ -171,10 +172,11 @@ router.get('/blog/:article', function (req, res, next) {
     console.log('art', articlePath);
 });
 
+//The new version of the blog, now git-powered
 router.get('/gitblog/:lang?/:article', function (req, res, next) {
     'use strict';
 	
-	//return res.redirect('/blog/index#all'); //Debug only, we don't want this route to be available yet
+	//return res.redirect('/blog/index#all'); //Uncomment to disable gitblog
 	
 	//Working git status, not used currently
 	/*git.exec('status', {'porcelain' : true}, function(err, msg) {

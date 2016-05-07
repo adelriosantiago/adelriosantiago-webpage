@@ -241,7 +241,16 @@ a:hover { text-decoration: underline; }
         font-weight: bold;
     }
 
-
+/* Gitblog */
+#filtered .gitarticle {
+	display: none;
+}
+#filtered .gitarticle.active {
+	display: block;
+}
+#gitslider {
+	margin: 10px 5px;
+}
 
 /* Sections */
 div.separator {
