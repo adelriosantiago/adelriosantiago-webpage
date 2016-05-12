@@ -78,6 +78,7 @@ function sanitizeParam(input, len) {
 //Show the home page
 router.get('/', function (req, res, next) {
     'use strict';
+	
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
     return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
