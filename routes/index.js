@@ -229,15 +229,18 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 			//Example of a working command to show the content of a single commit in time: git show 5757f05edd1656fde44ded344cd9a41fea7bc968:100-duolingo/spa.md
 			var getCommitContent = function(index, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
-					if (err) {
-						console.log("Error:");
-						console.log(err);
-						
-						//TODO: DRY'fy this with the second
+					function processOrNext() {
 						processed--;
 						if (processed <= 0) { next(); }
 					
 						return;
+					}
+					
+					if (err) {
+						console.log("Error:");
+						console.log(err);
+						
+						return processOrNext();
 					}
 					
 					var rendered = md.render(msg),
@@ -256,9 +259,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					
 					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
 					
-					//TODO: DRY'fy this with the first
-					processed--;
-					if (processed <= 0) { next(); }
+					return processOrNext();
 				});
 			}
 						
