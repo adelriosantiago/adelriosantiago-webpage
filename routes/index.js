@@ -19,7 +19,7 @@ var git = new git_wrapper({'git-dir': articles_repo_path});
 var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%f"}\','; //TODO: Fix this... This is only a workaround, we should be using the following line, however it will fail because some commits have double quotes (")
 //var logFmt = 'format:\'{"commit":"%H",' + '"date":"%ad","message":"%s"}\',';
 if (require('os').platform() === 'win32') {
-	logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ad\\",\\"message\\":\\"%f\\"},'; //TODO: Fix this... This is only a workaround, we should be using the following line, however it will fail because some commits have double quotes (")
+	logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ar\\",\\"message\\":\\"%f\\"},'; //TODO: Fix this... This is only a workaround, we should be using the following line, however it will fail because some commits have double quotes (")
 	//logFmt = 'format:{\\"commit\\":\\""%H"\\",' + '\\"date\\":\\"%ad\\",\\"message\\":\\"%s\\"},';
 }
 
@@ -81,7 +81,7 @@ router.get('/', function (req, res, next) {
 	
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
-    return res.render('eng', { hostname: hostname, isMobile: isMobile(req)});
+    return res.render('eng', { hostname: hostname, isMobile: isMobile(req) });
 });
 
 router.get('/blog', function (req, res, next) {
@@ -237,8 +237,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					}
 					
 					if (err) {
-						console.log("Error:");
-						console.log(err);
+						//This happens often when there is a file name change
 						
 						return processOrNext();
 					}

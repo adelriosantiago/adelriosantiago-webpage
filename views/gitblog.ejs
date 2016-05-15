@@ -40,6 +40,7 @@
 		#gitslider-front, #commit-info {
 			visibility: <%= hasTimeline ? 'visible' : 'hidden' %>;
 			margin-top: 20px;
+			color: gray;
 		}
 	</style>
 	
@@ -96,11 +97,16 @@
 						<div class="gitarticle markdown-body">
 							<div id="commit-info" class="text-right">
 								<small>
-									<div><strong>GitBlog</strong></div>
-									<div class="hash" style="display: none;"><%= gitBlogData[key].hash %></div>
+									<!-- <div><strong>GitBlog</strong></div> -->
+									<a href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>" target='_blank'><%= gitBlogData[key].hash.substr(gitBlogData[key].hash.length - 7) %></a>
 									<div class="date"><%= gitBlogData[key].date %></div>
 									<div class="message"><%= gitBlogData[key].message %></div>
-									<a href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>" target='_blank'><i class="fa fa-2x fa-code-fork"></i></a>
+
+									<div class="hash" style="display: none;"><%= gitBlogData[key].hash.substr(gitBlogData[key].hash.length - 7) %></div>
+									<div style="display: none;">
+										<!-- Currently disabled -->
+										<a href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>" target='_blank'><i class="fa fa-2x fa-code-fork"></i></a>
+									</div>
 									<!-- Add a button to show/hide hidden messages in the commits -->
 								</small>
 							</div>
