@@ -150,7 +150,10 @@ a:hover { text-decoration: underline; }
 	-o-transform: scale(1.05);
 	transform: scale(1.05);
 }
-    .fa.hoves.fa-twitter:hover {
+    .fa.hoves.fa-home:hover {
+        color: #0274b3;
+    }
+	.fa.hoves.fa-twitter:hover {
         color: #2aaae0;
     }
     .fa.hoves.fa-linkedin:hover {
