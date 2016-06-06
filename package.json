@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "forever --verbose --watch --watchDirectory ./routes ./bin/www"
+	"start": "forever --verbose \"adelriosantiago-webpage\" --watch --watchDirectory ./routes ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
