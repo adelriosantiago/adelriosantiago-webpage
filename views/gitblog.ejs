@@ -129,17 +129,9 @@
 		var gitSlider;
 		$(document).ready(function() {
 			gitSlider = $('#gitslider-back').slider();
-			
 			gitSlider.on('change', function(ev){
 				updateGitText(ev.value.newValue)
 			});
-			
-			setSliderPosition(parseInt($('#gitslider-back').attr("data-slider-max"))); //Always go to the last commit
-			
-			function setSliderPosition(newPosition) {
-				$('#gitslider-back').slider('setValue', newPosition);
-				updateGitText(newPosition);
-			}
 			
 			function updateGitText(newValue) {
 				$('#slider_value').html(newValue);
@@ -147,10 +139,18 @@
 				//Update the text content
 				$('div#filtered').children().removeClass('active');
 				$("div#filtered div:nth-child(" + (newValue + 1) +")").addClass("active");
-				//TODO: Update the commit message
-				
-				//$('#commit_message').html(data[2][ev.value.newValue]);
-				//TODO: Update the commit date
+			}
+			
+			function setSliderPosition(newPosition) {
+				$('#gitslider-back').slider('setValue', newPosition);
+				updateGitText(newPosition);
+			}
+			
+			var hash = window.location.hash.slice(1);
+			if (hash != "") {
+				setSliderPosition(parseInt(hash)); //Go to the desired commit
+			} else {
+				setSliderPosition(parseInt($('#gitslider-back').attr("data-slider-max"))); //Always go to the last commit
 			}
 		});
 	</script>
