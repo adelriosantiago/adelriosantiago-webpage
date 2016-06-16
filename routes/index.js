@@ -256,6 +256,8 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						monthName = allMonths[month],
 						sortedData;
 					
+					//TODO: Remove unused data that is still sent
+					
 					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
 					
 					return processOrNext();
