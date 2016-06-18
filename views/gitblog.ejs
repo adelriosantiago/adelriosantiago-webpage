@@ -130,7 +130,8 @@
 		$(document).ready(function() {
 			gitSlider = $('#gitslider-back').slider();
 			gitSlider.on('change', function(ev){
-				updateGitText(ev.value.newValue)
+				updateGitText(ev.value.newValue);
+				window.location.hash = ev.value.newValue;
 			});
 			
 			function updateGitText(newValue) {
