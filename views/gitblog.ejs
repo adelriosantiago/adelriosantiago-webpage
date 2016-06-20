@@ -83,10 +83,9 @@
 		<div class="large-9 columns">
 			<div id="gitslider">
 				<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-			</div>
-			<div id="filtered">
-				<% Object.keys(gitBlogData).forEach(function(key){ %>
-					<div class="gitarticle markdown-body">
+				
+				<div class="filtered">
+					<% Object.keys(gitBlogData).forEach(function(key){ %>
 						<div id="commit-info" class="text-right">
 							<small>
 								<!-- <div><strong>GitBlog</strong></div> -->
@@ -102,7 +101,13 @@
 								<!-- Add a button to show/hide hidden messages in the commits -->
 							</small>
 						</div>
-						
+					<% }); %>
+				</div>
+					
+			</div>
+			<div class="filtered">
+				<% Object.keys(gitBlogData).forEach(function(key){ %>
+					<div class="gitarticle markdown-body">
 						<div id='<%- gitBlogData[key].slug %>' class="bb-item">
 							<div class="content">
 								<div class="scroller">
@@ -136,8 +141,8 @@
 				$('#slider_value').html(newValue);
 				
 				//Update the text content
-				$('div#filtered').children().removeClass('active');
-				$("div#filtered div:nth-child(" + (newValue + 1) +")").addClass("active");
+				$('div.filtered').children().removeClass('active');
+				$("div.filtered div:nth-child(" + (newValue + 1) +")").addClass("active");
 			}
 			
 			function setSliderPosition(newPosition) {
