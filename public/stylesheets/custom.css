@@ -246,10 +246,16 @@ a:hover { text-decoration: underline; }
     }
 
 /* Gitblog */
-#filtered .gitarticle {
+#article-filter .gitarticle {
 	display: none;
 }
-#filtered .gitarticle.active {
+#article-filter .gitarticle.active {
+	display: block;
+}
+#slider-filter .commit-info {
+	display: none;
+}
+#slider-filter .commit-info.active {
 	display: block;
 }
 #gitslider {
