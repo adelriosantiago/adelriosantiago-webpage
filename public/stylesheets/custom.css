@@ -253,10 +253,10 @@ a:hover { text-decoration: underline; }
 	display: block;
 }
 #slider-filter .commit-info {
-	display: none;
+	display: none; /* TO-DO: Optimize this part */
 }
 #slider-filter .commit-info.active {
-	display: block;
+	display: block;  /* TO-DO: Optimize this part */
 }
 #gitslider {
 	margin: 10px 5px;
@@ -502,9 +502,11 @@ hidden {
 .container-border {
     overflow-x: hidden;
 }
+
 article {} article#me header h1 {
     line-height: 1em;
 }
+
 .markdown-body {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -526,8 +528,7 @@ article {} article#me header h1 {
     .markdown-body a {
         background: transparent;
     }
-    .markdown-body a:active,
-    .markdown-body a:hover {
+    .markdown-body a:active, .markdown-body a:hover {
         outline: 0;
     }
     /* Tooltips */
@@ -550,17 +551,15 @@ article {} article#me header h1 {
         width: 500px;
         overflow: hidden;
     }
-    .markdown-body a.mintip:hover span{
+    .markdown-body a.mintip:hover span {
         display: inline;
         position: absolute; 
         border: 2px solid #EAEAEA;
         color: #EEE;
         background: #FFF;
-        
     }
 
-    .markdown-body a.mintip span
-    {
+    .markdown-body a.mintip span {
         border-radius: 2px;        
         box-shadow: 0px 0px 8px 4px #EAEAEA;
         /*opacity: 0.8;*/
@@ -888,8 +887,7 @@ article {} article#me header h1 {
     .markdown-body table th {
         font-weight: bold;
     }
-    .markdown-body table th,
-    .markdown-body table td {
+    .markdown-body table th, .markdown-body table td {
         padding: 6px 13px;
         border: 1px solid #ddd;
     }
@@ -933,8 +931,7 @@ article {} article#me header h1 {
     .markdown-body .highlight {
         margin-bottom: 16px;
     }
-    .markdown-body .highlight pre,
-    .markdown-body pre {
+    .markdown-body .highlight pre, .markdown-body pre {
         padding: 16px;
         overflow: auto;
         font-size: 85%;
@@ -960,8 +957,7 @@ article {} article#me header h1 {
         background-color: transparent;
         border: 0;
     }
-    .markdown-body pre code:before,
-    .markdown-body pre code:after {
+    .markdown-body pre code:before, .markdown-body pre code:after {
         content: normal;
     }
     .markdown-body kbd {
@@ -980,16 +976,13 @@ article {} article#me header h1 {
     .markdown-body .pl-c {
         color: #969896;
     }
-    .markdown-body .pl-c1,
-    .markdown-body .pl-s .pl-v {
+    .markdown-body .pl-c1, .markdown-body .pl-s .pl-v {
         color: #0086b3;
     }
-    .markdown-body .pl-e,
-    .markdown-body .pl-en {
+    .markdown-body .pl-e, .markdown-body .pl-en {
         color: #795da3;
     }
-    .markdown-body .pl-s .pl-s1,
-    .markdown-body .pl-smi {
+    .markdown-body .pl-s .pl-s1, .markdown-body .pl-smi {
         color: #333;
     }
     .markdown-body .pl-ent {
@@ -1024,9 +1017,7 @@ article {} article#me header h1 {
     .markdown-body .pl-ml {
         color: #693a17;
     }
-    .markdown-body .pl-mh,
-    .markdown-body .pl-mh .pl-en,
-    .markdown-body .pl-ms {
+    .markdown-body .pl-mh, .markdown-body .pl-mh .pl-en, .markdown-body .pl-ms {
         color: #1d3e81;
         font-weight: bold;
     }
