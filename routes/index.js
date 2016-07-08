@@ -287,6 +287,7 @@ router.get('/gitblog', function (req, res, next) {
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
     'use strict';
+    
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     return  res.render('spa', { hostname: hostname }); //This is the second version
