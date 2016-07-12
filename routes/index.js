@@ -7,6 +7,7 @@ var util = require('util');
 var router = express.Router();
 var slug = require('slug');
 var git_wrapper = require('git-wrapper');
+var cache = require('memory-cache'); //The article cache
 var _ = require('lodash');
 
 var trueHostname = 'http://www.adelriosantiago.com/';
@@ -199,6 +200,16 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		return res.redirect('gitblog/all/index');
 	}
 	
+	//Restore the cache data and determine if we can skip the following git log function
+	
+	var cachedArticle = cache.get(articlePath);
+	if (cachedArticle) {
+		console.log('Using cache for ' + articlePath);
+		return res.render('gitblog', JSON.parse(cachedArticle));
+	}
+
+	console.log('Not using cache for ' + articlePath);
+	
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
 		var file_commits,
 			gitBlogData,
@@ -261,6 +272,10 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						
 			getCommitContent(i, function() {
 				var range = _.range(Object.keys(gitBlogData).length);
+				
+				//Save rendered data into the cache
+				cache.put(articlePath, JSON.stringify({ gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline }), 1000 * 60 * 60 * 24);
+				console.log("Saved cache for " +  articlePath);
 				
 				return res.render('gitblog', { gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline }); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
