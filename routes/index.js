@@ -200,20 +200,23 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 	}
 	
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
-		console.log(err);
-		
-		var file_commits;
+		var file_commits,
+			gitBlogData,
+			hashes,
+			dates,
+			messages,
+			hasTimeline;
 		
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
 		file_commits = JSON.parse(file_commits);
 		file_commits = file_commits.reverse();
 		
-		var gitBlogData = {};
-		var hashes = _.map(file_commits, 'commit');
-		var dates = _.map(file_commits, 'date');
-		var messages = _.map(file_commits, 'message');
-		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
+		gitBlogData = {};
+		hashes = _.map(file_commits, 'commit');
+		dates = _.map(file_commits, 'date');
+		messages = _.map(file_commits, 'message');
+		hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
 		//Git timeline will be always enabled for now
 		/*if (articlePath == "index") {
@@ -221,7 +224,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		}*/
 		
 		//TODO: If the requested file is the index then only get the last hash???
-				
 		for (var i = 0; i < hashes.length; i++) {
 			var processed = hashes.length;
 			
@@ -231,16 +233,10 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
 					function processOrNext() {
 						processed--;
-						if (processed <= 0) { next(); }
-					
-						return;
+						if (processed <= 0) return next();
 					}
 					
-					if (err) {
-						//This happens often when there is a file name change
-						
-						return processOrNext();
-					}
+					if (err) return processOrNext(); //This happens often when there is a file name change
 					
 					var rendered = md.render(msg),
 						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
@@ -265,7 +261,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 			}
 						
 			getCommitContent(i, function() {
-				var range = _.range(Object.keys(gitBlogData).length);				
+				var range = _.range(Object.keys(gitBlogData).length);
 				
 				return res.render('gitblog', {gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
