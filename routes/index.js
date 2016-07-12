@@ -205,7 +205,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 			hashes,
 			dates,
 			messages,
-			hasTimeline;
+			hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
@@ -216,7 +216,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		hashes = _.map(file_commits, 'commit');
 		dates = _.map(file_commits, 'date');
 		messages = _.map(file_commits, 'message');
-		hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
 		//Git timeline will be always enabled for now
 		/*if (articlePath == "index") {
@@ -236,7 +235,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 						if (processed <= 0) return next();
 					}
 					
-					if (err) return processOrNext(); //This happens often when there is a file name change
+					if (err) return processOrNext(); //An err will usually happen when there is a file name change
 					
 					var rendered = md.render(msg),
 						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
@@ -254,7 +253,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					
 					//TODO: Remove unused data that is still sent
 					
-					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
+					gitBlogData[index] = { title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
 					
 					return processOrNext();
 				});
@@ -263,7 +262,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 			getCommitContent(i, function() {
 				var range = _.range(Object.keys(gitBlogData).length);
 				
-				return res.render('gitblog', {gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+				return res.render('gitblog', { gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline }); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});
