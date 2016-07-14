@@ -1,6 +1,6 @@
 {
-  "name": "resumev4",
-  "version": "0.0.0",
+  "name": "adelriosantiago-webpage",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
 	"start": "forever --verbose --uid \"adelriosantiago-webpage\" --watch --watchDirectory ./routes ./bin/www"
