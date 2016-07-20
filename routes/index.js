@@ -7,6 +7,7 @@ var util = require('util');
 var router = express.Router();
 var slug = require('slug');
 var git_wrapper = require('git-wrapper');
+var cache = require('memory-cache'); //The article cache
 var _ = require('lodash');
 
 var trueHostname = 'http://www.adelriosantiago.com/';
@@ -79,7 +80,7 @@ function sanitizeParam(input, len) {
 router.get('/', function (req, res, next) {
     'use strict';
 	
-    var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
+	var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;    
 
     return res.render('eng', { hostname: hostname, isMobile: isMobile(req) });
 });
@@ -199,21 +200,33 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		return res.redirect('gitblog/all/index');
 	}
 	
+	//Restore the cache data and determine if we can skip the following git log function
+	
+	var cachedArticle = cache.get(articlePath);
+	if (cachedArticle) {
+		console.log('Using cache for ' + articlePath);
+		return res.render('gitblog', JSON.parse(cachedArticle));
+	}
+
+	console.log('Not using cache for ' + articlePath);
+	
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
-		console.log(err);
-		
-		var file_commits;
+		var file_commits,
+			gitBlogData,
+			hashes,
+			dates,
+			messages,
+			hasTimeline = true; //Assume that every rendered thing will have a timeline on it
 		
 		file_commits = msg.substring(0, msg.length - 1);
 		file_commits = "[" + file_commits + "]";
 		file_commits = JSON.parse(file_commits);
 		file_commits = file_commits.reverse();
 		
-		var gitBlogData = {};
-		var hashes = _.map(file_commits, 'commit');
-		var dates = _.map(file_commits, 'date');
-		var messages = _.map(file_commits, 'message');
-		var hasTimeline = true; //Assume that every rendered thing will have a timeline on it
+		gitBlogData = {};
+		hashes = _.map(file_commits, 'commit');
+		dates = _.map(file_commits, 'date');
+		messages = _.map(file_commits, 'message');
 		
 		//Git timeline will be always enabled for now
 		/*if (articlePath == "index") {
@@ -221,7 +234,6 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		}*/
 		
 		//TODO: If the requested file is the index then only get the last hash???
-				
 		for (var i = 0; i < hashes.length; i++) {
 			var processed = hashes.length;
 			
@@ -231,16 +243,10 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 				git.exec('show', [hashes[index] + ":" + current_file], function(err, msg) {
 					function processOrNext() {
 						processed--;
-						if (processed <= 0) { next(); }
-					
-						return;
+						if (processed <= 0) return next();
 					}
 					
-					if (err) {
-						//This happens often when there is a file name change
-						
-						return processOrNext();
-					}
+					if (err) return processOrNext(); //An err will usually happen when there is a file name change
 					
 					var rendered = md.render(msg),
 						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
@@ -258,16 +264,20 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					
 					//TODO: Remove unused data that is still sent
 					
-					gitBlogData[index] = {title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
+					gitBlogData[index] = { title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
 					
 					return processOrNext();
 				});
 			}
 						
 			getCommitContent(i, function() {
-				var range = _.range(Object.keys(gitBlogData).length);				
+				var range = _.range(Object.keys(gitBlogData).length);
 				
-				return res.render('gitblog', {gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline}); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
+				//Save rendered data into the cache
+				cache.put(articlePath, JSON.stringify({ gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline }), 1000 * 60 * 60 * 24);
+				console.log("Saved cache for " +  articlePath);
+				
+				return res.render('gitblog', { gitBlogData : gitBlogData, range : range, hasTimeline : hasTimeline }); //TODO: Implement a way to save the last result in a cache, and only perform the git call every 1/100 times
 			})
 		}
 	});
@@ -287,6 +297,7 @@ router.get('/gitblog', function (req, res, next) {
 
 router.get('/spa', function (req, res, next) { //Temporal debug route
     'use strict';
+    
     var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;
 
     return  res.render('spa', { hostname: hostname }); //This is the second version

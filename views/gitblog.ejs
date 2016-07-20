@@ -116,13 +116,14 @@
 											<!-- Currently hidden, do we need this anyway now that this is GIT powered? -->
 											<div class='write_date'><%- gitBlogData[key].month %>, <%- gitBlogData[key].year %></div>
 										</div>
-										<div class="fb-comments" data-href="" data-width="500px" data-numposts="10"></div>
+										<!-- <div class="fb-comments" data-href="" data-width="500px" data-numposts="10"></div> -->
 									</div>
 								</div>
 							</div>
 						</div>
 				   </div>
 				<% }); %>
+                <div id="disqus_thread"></div>
 			</div>
 		</div>
 	</div>
@@ -161,8 +162,31 @@
 		});
 	</script>
 	
-	<!-- Load the Facebook SDK -->
-	<script>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
+        /*
+        var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() {  // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            
+            s.src = '//adelriosantiago.disqus.com/embed.js';
+            
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+	<!-- Load the Facebook SDK. No longer used (too slow) -->
+	<!-- <script>
 		$(".fb-comments").attr("data-href", window.location.href);
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -171,6 +195,6 @@
 			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1096286213717702";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-	</script>
+	</script> -->
 </body>
 </html>
