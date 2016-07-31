@@ -134,7 +134,16 @@
 			gitSlider = $('#gitslider-back').slider();
 			gitSlider.on('change', function(ev){
 				updateGitText(ev.value.newValue);
-				window.location.hash = ev.value.newValue;
+                
+                if (ev.value.newValue == parseInt($('#gitslider-back').attr("data-slider-max"))) {
+                    //window.location.hash = "#"; //This saves the hash into the history (not recommended for now), this is not tested also
+                    //location.replace("#"); //This does not removes the #...
+                    history.replaceState("", document.title, window.location.pathname + window.location.search); //Remove # without causing refresh
+                } else {
+                    //window.location.hash = ev.value.newValue; //This saves the hash into the history (not recommended for now)
+                    location.replace("#" + ev.value.newValue);
+                }
+                
 			});
 			
 			function updateGitText(newValue) {
@@ -183,7 +192,6 @@
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
 
 	<!-- Load the Facebook SDK. No longer used (too slow) -->
 	<!-- <script>
