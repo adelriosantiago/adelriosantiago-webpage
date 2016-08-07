@@ -12,6 +12,8 @@
 	<meta name="description" content="Alejandro del Río Santiago entrepreneur and engineer profile page and blog" />
 	<meta name="keywords" content="Alejandro del Río Santiago, adelriosantiago" />
 
+	<!-- TODO: Change all externals files, or CDN's into localfiles for offline testing -->
+    
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -61,6 +63,7 @@
 			<div id="leftside-bio">
 				<div>
 					<!-- <a href="http://www.adelriosantiago.com" target='_blank'><i class="fa fa-4x fa-home"></i></a> -->
+					<!-- TODO: Fix image losing aspect ratio on some screens -->
 					<a href="http://www.adelriosantiago.com"><img class='round-image' src="/images/squared-profile-small.jpg"></a>
 					<!-- FIXME: Check if mobile (http://detectmobilebrowsers.com/) then show a box image -->
 					<!-- <h5 class='index_legend'>Alejandro del Río</h5> -->
@@ -124,6 +127,9 @@
 				   </div>
 				<% }); %>
                 <div id="disqus_thread"></div>
+                <div class="text-center margin-top-med margin-bottom-med">
+                    <a href="/gitblog"><i class="fa fa-3x hoves fa-chevron-circle-left"></i></a>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -176,6 +182,7 @@
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
          */
+        /* TODO: Replace variables */
         /*
         var disqus_config = function () {
             this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable

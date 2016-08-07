@@ -37,7 +37,7 @@ h6 {
 .no-top-padding { padding-top: 0; }
 .no-bottom-padding { padding-bottom: 0; }
 
-/* Top/bottom common margings */
+/* Top and bottom common margings */
 .margin-top-small { margin-top: 10px; }
 .margin-bottom-small { margin-bottom: 10px; }
 .margin-top-med { margin-top: 25px; }
