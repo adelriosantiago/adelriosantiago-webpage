@@ -3,69 +3,60 @@
   border: 1px solid red;
 }*/
 
-/* latin-ext */
 @font-face {
   font-family: 'Rambla';
-  font-style: normal;
   font-weight: 400;
-  src: local('Rambla'), local('Rambla-Regular'), url(http://fonts.gstatic.com/s/rambla/v4/RdAtQKqB_37Xb5Wjf2ote_esZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Rambla';
   font-style: normal;
-  font-weight: 400;
-  src: local('Rambla'), local('Rambla-Regular'), url(http://fonts.gstatic.com/s/rambla/v4/0AvXfVhsw8_c6r3onmlo7g.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  src: url('/fonts/Rambla-regular/Rambla-regular.eot');
+  src: url('/fonts/Rambla-regular/Rambla-regular.eot?#iefix') format('embedded-opentype'),
+       local('Rambla'),
+       local('Rambla-regular'),
+       url('/fonts/Rambla-regular/Rambla-regular.woff2') format('woff2'),
+       url('/fonts/Rambla-regular/Rambla-regular.woff') format('woff'),
+       url('/fonts/Rambla-regular/Rambla-regular.ttf') format('truetype'),
+       url('/fonts/Rambla-regular/Rambla-regular.svg#Rambla') format('svg');
 }
-/* latin-ext */
+
 @font-face {
   font-family: 'Rambla';
+  font-weight: 700;
   font-style: normal;
-  font-weight: 700;
-  src: local('Rambla Bold'), local('Rambla-Bold'), url(http://fonts.gstatic.com/s/rambla/v4/8PjSUB1DvWzD2BgWUNjrfxJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+  src: url('/fonts/Rambla-700/Rambla-700.eot');
+  src: url('/fonts/Rambla-700/Rambla-700.eot?#iefix') format('embedded-opentype'),
+       local('Rambla Bold'),
+       local('Rambla-700'),
+       url('/fonts/Rambla-700/Rambla-700.woff2') format('woff2'),
+       url('/fonts/Rambla-700/Rambla-700.woff') format('woff'),
+       url('/fonts/Rambla-700/Rambla-700.ttf') format('truetype'),
+       url('/fonts/Rambla-700/Rambla-700.svg#Rambla') format('svg');
 }
-/* latin */
+
 @font-face {
   font-family: 'Rambla';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Rambla Bold'), local('Rambla-Bold'), url(http://fonts.gstatic.com/s/rambla/v4/kIZPeiOLKnKdd6L5mB1Cn1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Rambla';
-  font-style: italic;
   font-weight: 400;
-  src: local('Rambla Italic'), local('Rambla-Italic'), url(http://fonts.gstatic.com/s/rambla/v4/xL5942BQu7mk-c7a2ZgjnhTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+  font-style: italic;
+  src: url('/fonts/Rambla-italic/Rambla-italic.eot');
+  src: url('/fonts/Rambla-italic/Rambla-italic.eot?#iefix') format('embedded-opentype'),
+       local('Rambla Italic'),
+       local('Rambla-italic'),
+       url('/fonts/Rambla-italic/Rambla-italic.woff2') format('woff2'),
+       url('/fonts/Rambla-italic/Rambla-italic.woff') format('woff'),
+       url('/fonts/Rambla-italic/Rambla-italic.ttf') format('truetype'),
+       url('/fonts/Rambla-italic/Rambla-italic.svg#Rambla') format('svg');
 }
-/* latin */
+
 @font-face {
   font-family: 'Rambla';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Rambla Italic'), local('Rambla-Italic'), url(http://fonts.gstatic.com/s/rambla/v4/r3VXjBdh0p0biokix2OuYPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Rambla';
-  font-style: italic;
   font-weight: 700;
-  src: local('Rambla Bold Italic'), local('Rambla-BoldItalic'), url(http://fonts.gstatic.com/s/rambla/v4/cAnhlVAMYLVLtj8sDuifHyYE0-AqJ3nfInTTiDXDjU4.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Rambla';
   font-style: italic;
-  font-weight: 700;
-  src: local('Rambla Bold Italic'), local('Rambla-BoldItalic'), url(http://fonts.gstatic.com/s/rambla/v4/cAnhlVAMYLVLtj8sDuifH44P5ICox8Kq3LLUNMylGO4.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  src: url('/fonts/Rambla-700italic/Rambla-700italic.eot');
+  src: url('/fonts/Rambla-700italic/Rambla-700italic.eot?#iefix') format('embedded-opentype'),
+       local('Rambla Bold Italic'),
+       local('Rambla-700italic'),
+       url('/fonts/Rambla-700italic/Rambla-700italic.woff2') format('woff2'),
+       url('/fonts/Rambla-700italic/Rambla-700italic.woff') format('woff'),
+       url('/fonts/Rambla-700italic/Rambla-700italic.ttf') format('truetype'),
+       url('/fonts/Rambla-700italic/Rambla-700italic.svg#Rambla') format('svg');
 }
 
 @font-face {
