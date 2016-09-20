@@ -206,7 +206,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 		console.log('Using cache for ' + articlePath);
 		return res.render('gitblog', JSON.parse(cachedArticle));
 	}
-
+	
 	console.log('Not using cache for ' + articlePath);
 	
 	git.exec('log', {"follow" : true, 'pretty' : logFmt}, ["-- " + articlePath], function(err, msg) {
