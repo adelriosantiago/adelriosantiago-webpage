@@ -104,8 +104,8 @@ h6 {
 .margin-bottom-35 { margin-bottom: 35%; } /* For the articles */
 
 /* Void margins and paddings */
-.no-margin { margin: none; }
-.no-padding { padding: none; }
+.no-margin { margin: 0px; }
+.no-padding { padding: 0px; }
 
 /* Default colors */
 .color-gray { color: rgb(130, 130, 130); }
