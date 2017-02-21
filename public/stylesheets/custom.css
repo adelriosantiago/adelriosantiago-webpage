@@ -103,6 +103,10 @@ h6 {
 .margin-top-35 { margin-top: 35%; } /* For the articles */
 .margin-bottom-35 { margin-bottom: 35%; } /* For the articles */
 
+/* Force void margins and paddings */
+.no-margin { margin: 0px !important; }
+.no-padding { padding: 0px !important; }
+
 /* Default colors */
 .color-gray { color: rgb(130, 130, 130); }
 /*color-red { color: rgb(130, 130, 130); }*/
