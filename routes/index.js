@@ -118,7 +118,7 @@ router.get('/blog/:article', function (req, res, next) {
 		if (files.length != 0) {
 			var c = 0;
 			var cUnskipped = 0;
-			var hasChapters = false;			
+			var hasChapters = false;
 			//if (files.length > 1) { hasChapters = true; }
 
 			console.log("chapters: " + files);
@@ -268,7 +268,7 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					return processOrNext();
 				});
 			}
-						
+			
 			getCommitContent(i, function() {
 				var range = _.range(Object.keys(gitBlogData).length);
 				
