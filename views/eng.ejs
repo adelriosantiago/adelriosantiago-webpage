@@ -26,8 +26,8 @@
 		<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700,500' rel='stylesheet' type='text/css'/>
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet"/> -->
 		
-		<!-- Local font currently disabled, we will be using MaxCDN -->
-		<!-- <link rel="stylesheet" href="stylesheets/font-awesome.min.css"/> -->
+		<!-- <link rel="stylesheet" href="fonts/fontawesome-5.0.6/css/fontawesome.min.css"/> -->
+		<!-- Old working CDN icon set -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 		
 		<style>
@@ -97,6 +97,7 @@
 										<!-- <a href="https://pinterest.com/adelriosantiago/" target='_blank'><i class="fa hoves fa-3x fa-pinterest"></i></a> -->
 										<!-- <a href="https://en.wikipedia.org/wiki/User:Adelriosantiago" target='_blank'><i class="fa hoves fa-3x fa-wikipedia-w"></i></a> --> <!-- TODO: Fix the sizing of this, look at https://github.com/FortAwesome/Font-Awesome/issues/8221 -->
 										<a class="easy-modal-open" href="#" data-reveal-id="skype" target='_blank'><i class="fa hoves fa-3x fa-skype"></i></a>
+										<a class="easy-modal-open" href="#" data-reveal-id="bitcoin" target='_blank'><i class="fa hoves fa-3x fa-bitcoin"></i></a>
 										<!-- <a class="easy-modal-open" href="#" data-reveal-id="snapchat" target='_blank'><i class="fa hoves fa-3x fa-snapchat"></i></a> -->
 										<!-- <a class="easy-modal-open" href="#" data-reveal-id="mail" target='_blank'><i class="fa hoves fa-3x fa-envelope-o"></i></a> -->
 										<a class="relative" href="<%= hostname %>gitblog">
@@ -130,7 +131,14 @@
 			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 			<br/>
 		</div>
-
+		<div id='bitcoin' class="reveal-modal small" data-reveal aria-hidden="true" role="dialog">
+			<br/>
+			<h5 class='text-center'>Bitcoin address:</h5>
+			<img src='images/bitcoin-address.jpg' style="display: block; margin: auto;"/>
+			<h5 class='text-center'>1Nbhqpi2CWu8a6WPyVajUxoXRNyN53dEzX</h5>
+			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+			<br/>
+		</div>
 		<div id='mail' class="reveal-modal small" data-reveal role="dialog">
 			<br/>
 			<h5 class='text-center'>Address: adelriosantiago@gmail.com</h5>
