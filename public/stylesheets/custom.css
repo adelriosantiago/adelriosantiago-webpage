@@ -386,6 +386,7 @@ section.fullpage {
 		#section_main #name #first {
 			font-size: 5.5em;
 			font-weight: bold;
+			text-align: center;
 			line-height: 0.8em;
 			overflow: initial;
 		}
