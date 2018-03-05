@@ -231,6 +231,9 @@ a:hover { text-decoration: underline; }
 	.fa.hoves.fa-github:hover {
 		color: #000;
 	}
+  .fa.hoves.fa-bitcoin:hover {
+		color: #f7931a;
+	}
 	.fa.hoves.fa-steam:hover {
 		color: #000;
 	}
