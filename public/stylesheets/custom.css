@@ -243,6 +243,9 @@ a:hover { text-decoration: underline; }
 	.fa.hoves.fa-skype:hover {
 		color: #00adf3;
 	}
+  .fa.hoves.fa-whatsapp:hover {
+		color: #25d366;
+	}
 	.fa.hoves.fa-pinterest:hover {
 		color: #bd081c;
 	}
