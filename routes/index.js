@@ -10,7 +10,7 @@ var git_wrapper = require('git-wrapper');
 var cache = require('memory-cache'); //The article cache
 var _ = require('lodash');
 
-var trueHostname = 'http://www.adelriosantiago.com/';
+var trueHostname = 'http://www.adelriosantiago.com/'; //Add as an .env var
 var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var allLanguages = {eng: 'English', spa: 'Español', ita: 'Italiano'};
 var excludedFiles = ['.git', 'LICENSE', 'README.md', 'images'];
@@ -80,9 +80,7 @@ function sanitizeParam(input, len) {
 router.get('/', function (req, res, next) {
 	'use strict';
 	
-	var hostname = req.protocol + '://' + req.get('host') + req.originalUrl;	
-
-	return res.render('eng', { hostname: hostname, isMobile: isMobile(req) });
+	return res.render('eng', { hostname: trueHostname, isMobile: isMobile(req) });
 });
 
 router.get('/blog', function (req, res, next) {
