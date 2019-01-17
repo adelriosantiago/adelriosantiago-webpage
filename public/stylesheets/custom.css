@@ -225,6 +225,9 @@ a:hover { text-decoration: underline; }
 	.fab.hoves.fa-linkedin:hover {
 		color: #0274b3;
 	}
+	.fab.hoves.fa-instagram:hover {
+		color: #4D5ED7;
+	}
 	.fab.hoves.fa-stack-overflow:hover {
 		color: #ffa500;
 	}
