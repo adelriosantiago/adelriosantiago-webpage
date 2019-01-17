@@ -198,7 +198,7 @@ a:hover { text-decoration: underline; }
 }
 
 /* Icons */
-.fa {
+.fab, .fas, .far, .fal {
 	color: gray;
 	margin: 10px;
 	text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.35);
@@ -209,56 +209,59 @@ a:hover { text-decoration: underline; }
 	transition: all 0.3s ease-out;
 }
 
-.fa.hoves:hover {
+.fab.hoves:hover {
 	-webkit-transform: scale(1.05);
 	-moz-transform: scale(1.05);
 	-ms-transform: scale(1.05);
 	-o-transform: scale(1.05);
 	transform: scale(1.05);
 }
-	.fa.hoves.fa-home:hover {
+	.fab.hoves.fa-home:hover {
 		color: #0274b3;
 	}
-	.fa.hoves.fa-twitter:hover {
+	.fab.hoves.fa-twitter:hover {
 		color: #2aaae0;
 	}
-	.fa.hoves.fa-linkedin:hover {
+	.fab.hoves.fa-linkedin:hover {
 		color: #0274b3;
 	}
-	.fa.hoves.fa-stack-overflow:hover {
+	.fab.hoves.fa-stack-overflow:hover {
 		color: #ffa500;
 	}
-	.fa.hoves.fa-github:hover {
+	.fab.hoves.fa-github:hover {
 		color: #000;
 	}
-  .fa.hoves.fa-bitcoin:hover {
+  .fab.hoves.fa-bitcoin:hover {
 		color: #f7931a;
 	}
-	.fa.hoves.fa-steam:hover {
+	.fab.hoves.fa-steam:hover {
 		color: #000;
 	}
-	.fa.hoves.fa-stumbleupon:hover {
+	.fab.hoves.fa-stumbleupon:hover {
 		color: #f04e23;
 	}
-	.fa.hoves.fa-skype:hover {
+	.fab.hoves.fa-skype:hover {
 		color: #00adf3;
 	}
-  .fa.hoves.fa-whatsapp:hover {
+  .fab.hoves.fa-whatsapp:hover {
 		color: #25d366;
 	}
-	.fa.hoves.fa-pinterest:hover {
+	.fab.hoves.fa-telegram:hover {
+		color: #20A0E1;
+	}
+	.fab.hoves.fa-pinterest:hover {
 		color: #bd081c;
 	}
-	.fa.hoves.fa-envelope-o:hover {
+	.fab.hoves.fa-envelope-o:hover {
 		color: #f8b049;
 	}
-	.fa.hoves.fa-book:hover {
+	.fas.hoves.fa-newspaper:hover {
 		color: #1d98b7;
 	}
-	.fa.hoves.fa-info-circle:hover {
+	.fab.hoves.fa-info-circle:hover {
 		color: #1d98b7;
 	}
-	.fa.hoves.fa-bars:hover {
+	.fab.hoves.fa-bars:hover {
 		color: #1d98b7;
 	}
 
@@ -371,7 +374,7 @@ section.fullpage {
 
 		#section_main .blog-legend {
 			font-size: 10px;
-			left: 15px;
+			left: 30px;
 		}
 
 		#section_main #langbar {
