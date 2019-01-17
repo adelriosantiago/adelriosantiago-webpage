@@ -558,6 +558,17 @@ section.fullpage {
   color: #999;
 }
 
+/* Main page */
+div#centerDiv {
+  width: 100%;
+  text-align: center;
+}
+div.socialFooter {
+  margin: 2px auto;
+  line-height: 1.4;
+  padding-left: 0;
+}
+
 /* Articles */
 hidden {
 	display: none;
