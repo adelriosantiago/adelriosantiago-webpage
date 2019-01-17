@@ -370,11 +370,8 @@ section.fullpage {
 	}
 
 		#section_main .blog-legend {
-			margin-bottom: 0px;
-			font-size: 0.7em;
-			top: -30%;
-			right: -15px;
-			color: gray;
+			font-size: 10px;
+			left: 15px;
 		}
 
 		#section_main #langbar {
