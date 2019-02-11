@@ -248,20 +248,14 @@ router.get('/gitblog/:lang?/:article', function (req, res, next) {
 					var rendered = md.render(msg),
 						regexTitle = /<h1.*>(.*?)<\/h1>/i, //Regex to extract titles
 						regexPermalink = /<permalink.*>(.*?)<\/permalink>/i, //Regex to extract titles
-						regexDateMonth = /<month.*>(.*?)<\/month>/i, //Regex to extract the order of the articles
-						regexDateYear = /<year.*>(.*?)<\/year>/i, //Regex to extract the order of the articles
 						header = rendered.match(regexTitle),
 						permalink = rendered.match(regexPermalink),
 						lang = allLanguages[permalink[1]],
-						month = Number(rendered.match(regexDateMonth)[1]),
-						year = Number(rendered.match(regexDateYear)[1]),
-						order = year + (month / 100.0),
-						monthName = allMonths[month],
 						sortedData;
 					
 					//TODO: Remove unused data that is still sent
 					
-					gitBlogData[index] = { title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, year: year, month: monthName, order: order, hash : hashes[index], message : messages[index], date : dates[index] };
+					gitBlogData[index] = { title: header[1], slug: slug(permalink[1]), lang: lang, content: rendered, hash : hashes[index], message : messages[index], date : dates[index] };
 					
 					return processOrNext();
 				});
