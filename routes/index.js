@@ -1,5 +1,3 @@
-//TODO: Lint this please
-
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
