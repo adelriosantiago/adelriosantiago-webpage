@@ -5,6 +5,14 @@
 }*/
 
 @font-face {
+    font-family: 'Kenyan Coffee Rg';
+    src: url('/fonts/keynan-coffee/KenyanCoffeeRg-Regular.woff2') format('woff2'),
+        url('/fonts/keynan-coffee/KenyanCoffeeRg-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
 	font-family: 'Rambla';
 	font-weight: 400;
 	font-style: normal;
@@ -53,6 +61,7 @@ span,
 blockquote {
 	font-family: 'Rambla', Helvetica, Arial, sans-serif;
 }
+
 
 
 /* Positions */
@@ -577,6 +586,18 @@ section.blue {
 	#section_main #name #sur {
 		font-size: 1.0em;
 	}
+}
+
+#section_main #name h1, #section_main #name span {
+	font-family: "Kenyan Coffee Rg";
+}
+
+#section_main #name h1.name-under-logo {
+	font-size: 3em;
+}
+
+#section_main #name h1.name-under-logo .grayed {
+	color: #AFAFAF;
 }
 
 #section_social {}
