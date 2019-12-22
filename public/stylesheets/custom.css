@@ -375,6 +375,10 @@ a:hover {
 	color: #00adf3;
 }
 
+.fas.hoves.fa-phone-square-alt:hover {
+	color: #000;
+}
+
 .fab.hoves.fa-whatsapp:hover {
 	color: #25d366;
 }

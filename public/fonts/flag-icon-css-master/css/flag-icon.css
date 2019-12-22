@@ -30,3 +30,9 @@
 .flag-icon-mx.flag-icon-squared {
   background-image: url(../flags/1x1/mx.svg);
 }
+.flag-icon-us {
+  background-image: url(../flags/4x3/us.svg);
+}
+.flag-icon-us.flag-icon-squared {
+  background-image: url(../flags/1x1/us.svg);
+}
