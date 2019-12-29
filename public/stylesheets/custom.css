@@ -327,7 +327,10 @@ a:hover {
 	transition: all 0.3s ease-out;
 }
 
-.fab.hoves:hover {
+.fab.hoves:hover,
+.fas.hoves:hover,
+.far.hoves:hover,
+.fal.hoves:hover {
 	-webkit-transform: scale(1.05);
 	-moz-transform: scale(1.05);
 	-ms-transform: scale(1.05);
@@ -385,6 +388,10 @@ a:hover {
 
 .fab.hoves.fa-telegram:hover {
 	color: #20A0E1;
+}
+
+.fas.hoves.fa-comment-dollar:hover {
+	color: #58BA57;
 }
 
 .fab.hoves.fa-pinterest:hover {
@@ -766,11 +773,11 @@ div#centerDiv {
 }
 
 div.socialFooter {
+	width: 80%;
 	margin: 2px auto;
 	line-height: 1.4;
 	padding-left: 0;
 }
-
 
 /* Articles */
 
