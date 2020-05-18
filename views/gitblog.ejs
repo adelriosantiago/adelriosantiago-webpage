@@ -67,27 +67,27 @@
   <body>
     <!-- Load analytics -->
     <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
+      ;(function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r
+        ;(i[r] =
           i[r] ||
           function () {
-            (i[r].q = i[r].q || []).push(arguments);
+            ;(i[r].q = i[r].q || []).push(arguments)
           }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
+          (i[r].l = 1 * new Date())
+        ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+        a.async = 1
+        a.src = g
+        m.parentNode.insertBefore(a, m)
       })(
         window,
         document,
         "script",
         "//www.google-analytics.com/analytics.js",
         "ga"
-      );
-      ga("create", "UA-43591418-3", "auto");
-      ga("send", "pageview");
+      )
+      ga("create", "UA-43591418-3", "auto")
+      ga("send", "pageview")
     </script>
 
     <div id="fb-root"><!-- Needed for the comments plugin --></div>
@@ -199,11 +199,11 @@
     </div>
 
     <script>
-      var gitSlider;
+      var gitSlider
       $(document).ready(function () {
-        gitSlider = $("#gitslider-back").slider();
+        gitSlider = $("#gitslider-back").slider()
         gitSlider.on("change", function (ev) {
-          updateGitText(ev.value.newValue);
+          updateGitText(ev.value.newValue)
 
           if (
             ev.value.newValue ==
@@ -215,42 +215,42 @@
               "",
               document.title,
               window.location.pathname + window.location.search
-            ); //Remove # without causing refresh
+            ) //Remove # without causing refresh
           } else {
             //window.location.hash = ev.value.newValue; //This saves the hash into the history (not recommended for now)
-            location.replace("#" + ev.value.newValue);
+            location.replace("#" + ev.value.newValue)
           }
-        });
+        })
 
         function updateGitText(newValue) {
-          $("#slider_value").html(newValue);
+          $("#slider_value").html(newValue)
 
           //Update the text content
-          $("div#article-filter").children().removeClass("active");
+          $("div#article-filter").children().removeClass("active")
           $(
             "div#article-filter div:nth-child(" + (newValue + 1) + ")"
-          ).addClass("active");
+          ).addClass("active")
 
-          $("div#slider-filter").children().removeClass("active");
+          $("div#slider-filter").children().removeClass("active")
           $("div#slider-filter div:nth-child(" + (newValue + 1) + ")").addClass(
             "active"
-          );
+          )
         }
 
         function setSliderPosition(newPosition) {
-          $("#gitslider-back").slider("setValue", newPosition);
-          updateGitText(newPosition);
+          $("#gitslider-back").slider("setValue", newPosition)
+          updateGitText(newPosition)
         }
 
-        var hash = window.location.hash.slice(1);
+        var hash = window.location.hash.slice(1)
         if (hash != "") {
-          setSliderPosition(parseInt(hash)); //Go to the desired commit
+          setSliderPosition(parseInt(hash)) //Go to the desired commit
         } else {
           setSliderPosition(
             parseInt($("#gitslider-back").attr("data-slider-max"))
-          ); //Always go to the last commit
+          ) //Always go to the last commit
         }
-      });
+      })
     </script>
 
     <script>
@@ -265,16 +265,16 @@
             this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         */
-      (function () {
+      ;(function () {
         // DON'T EDIT BELOW THIS LINE
         var d = document,
-          s = d.createElement("script");
+          s = d.createElement("script")
 
-        s.src = "//adelriosantiago.disqus.com/embed.js";
+        s.src = "//adelriosantiago.disqus.com/embed.js"
 
-        s.setAttribute("data-timestamp", +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
+        s.setAttribute("data-timestamp", +new Date())
+        ;(d.head || d.body).appendChild(s)
+      })()
     </script>
     <noscript
       >Please enable JavaScript to view the
