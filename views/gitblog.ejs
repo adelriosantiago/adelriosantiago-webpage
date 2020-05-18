@@ -1,202 +1,290 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
-	<title>Alejandro del Río Santiago - Entrepreneur and engineer</title>
-	<meta content="Alejandro del Río Santiago (@adelriosantiago) is an entrepreneur and programmer from Guadalajara, México. He codes, writes and designs." name="description">
-	<meta content="adelriosantiago, @adelriosantiago, visualization, interaction, design, interface, startup, entrepreneur, engineer, git, blog, git-blog, gitblog" name="keywords">
-	<meta content="Alejandro del Río Santiago (@adelriosantiago)" name="author">
-	<meta content="width=device-width" name="viewport">
-	<meta content="index, follow" name="robots">
-	<meta name="description" content="Alejandro del Río Santiago entrepreneur and engineer profile page and blog" />
-	<meta name="keywords" content="Alejandro del Río Santiago, adelriosantiago" />
+    <title>Alejandro del Río Santiago - Entrepreneur and engineer</title>
+    <meta
+      content="Alejandro del Río Santiago (@adelriosantiago) is an entrepreneur and programmer from Guadalajara, México. He codes, writes and designs."
+      name="description"
+    />
+    <meta
+      content="adelriosantiago, @adelriosantiago, visualization, interaction, design, interface, startup, entrepreneur, engineer, git, blog, git-blog, gitblog"
+      name="keywords"
+    />
+    <meta
+      content="Alejandro del Río Santiago (@adelriosantiago)"
+      name="author"
+    />
+    <meta content="width=device-width" name="viewport" />
+    <meta content="index, follow" name="robots" />
+    <meta
+      name="description"
+      content="Alejandro del Río Santiago entrepreneur and engineer profile page and blog"
+    />
+    <meta
+      name="keywords"
+      content="Alejandro del Río Santiago, adelriosantiago"
+    />
 
-	<!-- TODO: Change all externals files, or CDN's into localfiles for offline testing -->
-    
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+    <!-- TODO: Change all externals files, or CDN's into localfiles for offline testing -->
 
-	<!-- CSS's -->
-	<link href="/stylesheets/foundation.css" rel="stylesheet" />
-	<link href="/stylesheets/custom.css" rel="stylesheet"/>
-	
-	<!-- include the jQuery and jQuery UI scripts -->
-	<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-	<script src="/javascripts/bootslider.js"></script>
-	<link href="/stylesheets/bootslider.css" rel="stylesheet" />	
-	
-	<!-- Fonts -->
+    <!-- CSS's -->
+    <link href="/stylesheets/foundation.css" rel="stylesheet" />
+    <link href="/stylesheets/custom.css" rel="stylesheet" />
+
+    <!-- include the jQuery and jQuery UI scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
+    <script src="/javascripts/bootslider.js"></script>
+    <link href="/stylesheets/bootslider.css" rel="stylesheet" />
+
+    <!-- Fonts -->
     <!-- <link href='http://fonts.googleapis.com/css?family=Rambla:400,700,400italic,700italic' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600,700,500' rel='stylesheet' type='text/css'/>
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400" rel="stylesheet"/> -->
-	
-	<!-- Local font currently disabled, we will be using MaxCDN -->
-	<!-- <link rel="stylesheet" href="stylesheets/font-awesome.min.css"/> -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-	
-	<!-- TODO: Move into a separate file, this is the timeline visibility classes -->
-	<style>
-		#gitslider-front, .commit-info {
-			visibility: <%= hasTimeline ? 'visible' : 'hidden' %>;
-			margin-top: 20px;
-			color: gray;
-		}
-	</style>
-</head>
-<body>
-	<!-- Load analytics -->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-43591418-3', 'auto');
-		ga('send', 'pageview');
-	</script>
-		
-	<div id="fb-root"><!-- Needed for the comments plugin --></div>
-	<div class="row blogRow">
-		<div class="large-2 columns">
-			<div id="leftside-bio">
-				<div>
-					<!-- <a href="http://www.adelriosantiago.com" target='_blank'><i class="fa fa-4x fa-home"></i></a> -->
-					<!-- TODO: Fix image losing aspect ratio on some screens -->
-					<a href="http://www.adelriosantiago.com"><img class='round-image blog-face' src="/images/me2-gray.jpg"></a>
-					<!-- FIXME: Check if mobile (http://detectmobilebrowsers.com/) then show a box image -->
-					<!-- <h5 class='index_legend'>Alejandro del Río</h5> -->
-					<!-- <p>Alejandro del Río is a mexican entrepreneur and engineer.</p> -->
-					<!-- TODO: Add shadow to sidebar -->
-					<p id="bio-description">Welcome to my blog! My name is <strong>Alejandro</strong> and I am an engineer & entrepreneur.<br/><br/>This is my git blog where I rant about technology, startups and code.</p>
-				</div>
-				<!-- TODO: Fix the next section, why it doesn't appear? -->
-				<div class='row'>
-					<div class='large-6 columns'>
-						<a href="http://www.adelriosantiago.com/"><i class="fa fa-3x hoves fa-home"></i></a>
-					</div>
-					<div class='large-6 columns'>
-						<a href="https://twitter.com/adelriosantiago" target='_blank'><i class="fa fa-3x hoves fa-twitter"></i></a>
-					</div>
-				</div>
-            </div>
-		</div>
-		<div class="large-1 columns"><!-- --></div>
-		<div class="large-9 columns">
-			<div id="gitslider">
-				<input id="gitslider-back" type="text" data-provide="slider" data-slider-id="gitslider-front" data-slider-ticks="<%- JSON.stringify(range) %>" data-slider-ticks-labels='<%- JSON.stringify(range) %>' data-slider-min="0" data-slider-max="<%- JSON.stringify(range.length - 1) %>" data-slider-step="1" data-slider-value="0" data-slider-tooltip="hide" />
-				
-				<div id="slider-filter">
-					<% Object.keys(gitBlogData).forEach(function(key){ %>
-						<div class="commit-info" class="text-right">
-							<small>
-								<!-- <div><strong>GitBlog</strong></div> -->
-								<a href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>" target='_blank'><%= gitBlogData[key].hash.substr(gitBlogData[key].hash.length - 7) %></a>
-								<div class="date"><%= gitBlogData[key].date %></div>
-								<div class="message"><%= gitBlogData[key].message %></div>
 
-								<div class="hash" style="display: none;"><%= gitBlogData[key].hash.substr(gitBlogData[key].hash.length - 7) %></div>
-								<div style="display: none;">
-									<!-- Currently disabled -->
-									<a href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>" target='_blank'><i class="fa fa-2x fa-code-fork"></i></a>
-								</div>
-								<!-- Add a button to show/hide hidden messages in the commits -->
-							</small>
-						</div>
-					<% }); %>
-				</div>
-			</div>
-			<div id="article-filter">
-				<% Object.keys(gitBlogData).forEach(function(key){ %>
-					<div class="gitarticle markdown-body">
-						<div id='<%- gitBlogData[key].slug %>' class="bb-item">
-							<div class="content">
-								<div class="scroller">
-									<div class='blog_article markdown-body'>
-										<%- gitBlogData[key].content %>
-									</div>
-								</div>
-							</div>
-						</div>
-				   </div>
-				<% }); %>
-                <div id="disqus_thread"></div>
-                <div class="text-center margin-top-med margin-bottom-med">
-                    <a href="/gitblog"><i class="fa fa-3x hoves fa-chevron-circle-left"></i></a>
-                </div>
-			</div>
-		</div>
-	</div>
+    <!-- Local font currently disabled, we will be using MaxCDN -->
+    <!-- <link rel="stylesheet" href="stylesheets/font-awesome.min.css"/> -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css"
+    />
 
-	<script>
-		var gitSlider;
-		$(document).ready(function() {
-			gitSlider = $('#gitslider-back').slider();
-			gitSlider.on('change', function(ev){
-				updateGitText(ev.value.newValue);
-                
-                if (ev.value.newValue == parseInt($('#gitslider-back').attr("data-slider-max"))) {
-                    //window.location.hash = "#"; //This saves the hash into the history (not recommended for now), this is not tested also
-                    //location.replace("#"); //This does not removes the #...
-                    history.replaceState("", document.title, window.location.pathname + window.location.search); //Remove # without causing refresh
-                } else {
-                    //window.location.hash = ev.value.newValue; //This saves the hash into the history (not recommended for now)
-                    location.replace("#" + ev.value.newValue);
-                }
-                
-			});
-			
-			function updateGitText(newValue) {
-				$('#slider_value').html(newValue);
-				
-				//Update the text content
-				$('div#article-filter').children().removeClass('active');
-				$("div#article-filter div:nth-child(" + (newValue + 1) +")").addClass("active");
-				
-				$('div#slider-filter').children().removeClass('active');
-				$("div#slider-filter div:nth-child(" + (newValue + 1) +")").addClass("active");
-			}
-			
-			function setSliderPosition(newPosition) {
-				$('#gitslider-back').slider('setValue', newPosition);
-				updateGitText(newPosition);
-			}
-			
-			var hash = window.location.hash.slice(1);
-			if (hash != "") {
-				setSliderPosition(parseInt(hash)); //Go to the desired commit
-			} else {
-				setSliderPosition(parseInt($('#gitslider-back').attr("data-slider-max"))); //Always go to the last commit
-			}
-		});
-	</script>
-	
+    <!-- TODO: Move into a separate file, this is the timeline visibility classes -->
+    <style>
+      #gitslider-front, .commit-info {
+      	visibility: <%= hasTimeline ? 'visible' : 'hidden' %>;
+      	margin-top: 20px;
+      	color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Load analytics -->
     <script>
-        /**
-         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-         */
-        /* TODO: Replace variables */
-        /*
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
+      ga("create", "UA-43591418-3", "auto");
+      ga("send", "pageview");
+    </script>
+
+    <div id="fb-root"><!-- Needed for the comments plugin --></div>
+    <div class="row blogRow">
+      <div class="large-2 columns">
+        <div id="leftside-bio">
+          <div>
+            <!-- <a href="http://www.adelriosantiago.com" target='_blank'><i class="fa fa-4x fa-home"></i></a> -->
+            <!-- TODO: Fix image losing aspect ratio on some screens -->
+            <a href="http://www.adelriosantiago.com"
+              ><img class="round-image blog-face" src="/images/me2-gray.jpg"
+            /></a>
+            <!-- FIXME: Check if mobile (http://detectmobilebrowsers.com/) then show a box image -->
+            <!-- <h5 class='index_legend'>Alejandro del Río</h5> -->
+            <!-- <p>Alejandro del Río is a mexican entrepreneur and engineer.</p> -->
+            <!-- TODO: Add shadow to sidebar -->
+            <p id="bio-description">
+              Welcome to my blog! My name is <strong>Alejandro</strong> and I am
+              an engineer & entrepreneur.<br /><br />This is my git blog where I
+              rant about technology, startups and code.
+            </p>
+          </div>
+          <!-- TODO: Fix the next section, why it doesn't appear? -->
+          <div class="row">
+            <div class="large-6 columns">
+              <a href="http://www.adelriosantiago.com/"
+                ><i class="fa fa-3x hoves fa-home"></i
+              ></a>
+            </div>
+            <div class="large-6 columns">
+              <a href="https://twitter.com/adelriosantiago" target="_blank"
+                ><i class="fa fa-3x hoves fa-twitter"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="large-1 columns"><!-- --></div>
+      <div class="large-9 columns">
+        <div id="gitslider">
+          <input
+            id="gitslider-back"
+            type="text"
+            data-provide="slider"
+            data-slider-id="gitslider-front"
+            data-slider-ticks="<%- JSON.stringify(range) %>"
+            data-slider-ticks-labels="<%- JSON.stringify(range) %>"
+            data-slider-min="0"
+            data-slider-max="<%- JSON.stringify(range.length - 1) %>"
+            data-slider-step="1"
+            data-slider-value="0"
+            data-slider-tooltip="hide"
+          />
+
+          <div id="slider-filter">
+            <% Object.keys(gitBlogData).forEach(function(key){ %>
+            <div class="commit-info" class="text-right">
+              <small>
+                <!-- <div><strong>GitBlog</strong></div> -->
+                <a
+                  href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>"
+                  target="_blank"
+                  ><%= gitBlogData[key].hash.substr(gitBlogData[key].hash.length
+                  - 7) %></a
+                >
+                <div class="date"><%= gitBlogData[key].date %></div>
+                <div class="message"><%= gitBlogData[key].message %></div>
+
+                <div class="hash" style="display: none;">
+                  <%= gitBlogData[key].hash.substr(gitBlogData[key].hash.length
+                  - 7) %>
+                </div>
+                <div style="display: none;">
+                  <!-- Currently disabled -->
+                  <a
+                    href="https://github.com/adelriosantiago/adelriosantiago-blog/commit/<%= gitBlogData[key].hash %>"
+                    target="_blank"
+                    ><i class="fa fa-2x fa-code-fork"></i
+                  ></a>
+                </div>
+                <!-- Add a button to show/hide hidden messages in the commits -->
+              </small>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+        <div id="article-filter">
+          <% Object.keys(gitBlogData).forEach(function(key){ %>
+          <div class="gitarticle markdown-body">
+            <div id="<%- gitBlogData[key].slug %>" class="bb-item">
+              <div class="content">
+                <div class="scroller">
+                  <div class="blog_article markdown-body">
+                    <%- gitBlogData[key].content %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }); %>
+          <div id="disqus_thread"></div>
+          <div class="text-center margin-top-med margin-bottom-med">
+            <a href="/gitblog"
+              ><i class="fa fa-3x hoves fa-chevron-circle-left"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var gitSlider;
+      $(document).ready(function () {
+        gitSlider = $("#gitslider-back").slider();
+        gitSlider.on("change", function (ev) {
+          updateGitText(ev.value.newValue);
+
+          if (
+            ev.value.newValue ==
+            parseInt($("#gitslider-back").attr("data-slider-max"))
+          ) {
+            //window.location.hash = "#"; //This saves the hash into the history (not recommended for now), this is not tested also
+            //location.replace("#"); //This does not removes the #...
+            history.replaceState(
+              "",
+              document.title,
+              window.location.pathname + window.location.search
+            ); //Remove # without causing refresh
+          } else {
+            //window.location.hash = ev.value.newValue; //This saves the hash into the history (not recommended for now)
+            location.replace("#" + ev.value.newValue);
+          }
+        });
+
+        function updateGitText(newValue) {
+          $("#slider_value").html(newValue);
+
+          //Update the text content
+          $("div#article-filter").children().removeClass("active");
+          $(
+            "div#article-filter div:nth-child(" + (newValue + 1) + ")"
+          ).addClass("active");
+
+          $("div#slider-filter").children().removeClass("active");
+          $("div#slider-filter div:nth-child(" + (newValue + 1) + ")").addClass(
+            "active"
+          );
+        }
+
+        function setSliderPosition(newPosition) {
+          $("#gitslider-back").slider("setValue", newPosition);
+          updateGitText(newPosition);
+        }
+
+        var hash = window.location.hash.slice(1);
+        if (hash != "") {
+          setSliderPosition(parseInt(hash)); //Go to the desired commit
+        } else {
+          setSliderPosition(
+            parseInt($("#gitslider-back").attr("data-slider-max"))
+          ); //Always go to the last commit
+        }
+      });
+    </script>
+
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+      /* TODO: Replace variables */
+      /*
         var disqus_config = function () {
             this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
             this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         */
-        (function() {  // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            
-            s.src = '//adelriosantiago.disqus.com/embed.js';
-            
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+      (function () {
+        // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement("script");
 
-	<!-- Load the Facebook SDK. No longer used (too slow) -->
-	<!-- <script>
+        s.src = "//adelriosantiago.disqus.com/embed.js";
+
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript
+      >Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow"
+        >comments powered by Disqus.</a
+      ></noscript
+    >
+
+    <!-- Load the Facebook SDK. No longer used (too slow) -->
+    <!-- <script>
 		$(".fb-comments").attr("data-href", window.location.href);
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -206,5 +294,5 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script> -->
-</body>
+  </body>
 </html>
