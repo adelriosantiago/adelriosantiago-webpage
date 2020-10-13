@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "forever --verbose --uid \"adelriosantiago-webpage\" --watch --watchDirectory ./routes ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.18.3",
@@ -24,5 +25,8 @@
     "npm": "^6.14.6",
     "serve-favicon": "~2.5.0",
     "slug": "^0.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
