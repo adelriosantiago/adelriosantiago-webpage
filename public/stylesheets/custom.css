@@ -366,6 +366,18 @@ a:hover {
   color: #000;
 }
 
+.fab.hoves.fa-pinterest:hover {
+  color: #bd081c;
+}
+
+.fas.hoves.fa-atlas:hover {
+  color: #7ebc6f;
+}
+
+.fab.hoves.fa-snapchat:hover {
+  color: #fffc00;
+}
+
 .fab.hoves.fa-bitcoin:hover {
   color: #f7931a;
 }
@@ -396,10 +408,6 @@ a:hover {
 
 .fas.hoves.fa-comment-dollar:hover {
   color: #58ba57;
-}
-
-.fab.hoves.fa-pinterest:hover {
-  color: #bd081c;
 }
 
 .far.hoves.fa-envelope:hover {
