@@ -1,0 +1,6 @@
+{
+  "printWidth": 120,
+  "proseWrap": "never",
+  "semi": false,
+  "trailingComma": "es5"
+}
