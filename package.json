@@ -15,7 +15,7 @@
     "git-wrapper": "^0.1.1",
     "i": "^0.3.3",
     "lodash": "^4.17.19",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^12.3.2",
     "markdown-it-mark": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
