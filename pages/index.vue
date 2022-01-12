@@ -37,7 +37,7 @@ export default {
   },
   computed: {},
   created() {
-    this.S.article = "index/all"
+    this.S.article = "index"
   },
   mounted() {},
   methods: {},

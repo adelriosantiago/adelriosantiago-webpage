@@ -3,10 +3,9 @@
     <div>
       <div id="home-button">
         <a href="/">
-          <i class="fas fa-home"></i>
+          <i class="fas fa-2x fa-home"></i>
         </a>
       </div>
-      S.article: {{ S.article }}
       <div id="navbar-nav-header">
         <h5 class="text-center">Viewing version {{ S.range.selected }}</h5>
         <input

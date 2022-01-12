@@ -2,58 +2,57 @@
   <footer class="mastfoot mb-3 bg-white py-4 border-top">
     <div class="inner container">
       <div class="row">
-        <div class="col-md-12 d-flex align-items-center justify-content-center">
-          <p class="mb-0">&copy; {{ new Date().getUTCFullYear() }} Alejandro del Río Santiago</p>
-        </div>
-
         <div class="col-md-12">
           <nav class="nav nav-mastfoot justify-content-center">
             <a class="nav-link" href="https://twitter.com/adelriosantiago">
-              <i class="fab fa-twitter"></i>
+              <i class="fab fa-2x fa-twitter"></i>
             </a>
             <a class="nav-link" href="https://www.instagram.com/a.delrio.santiago/">
-              <i class="fab fa-instagram"></i>
+              <i class="fab fa-2x fa-instagram"></i>
             </a>
             <a class="nav-link" href="http://stackoverflow.com/users/1996066/adelriosantiago">
-              <i class="fab fa-stack-overflow"></i>
+              <i class="fab fa-2x fa-stack-overflow"></i>
             </a>
             <a class="nav-link" href="https://github.com/adelriosantiago">
-              <i class="fab fa-github"></i>
+              <i class="fab fa-2x fa-github"></i>
             </a>
             <a class="nav-link" href="https://pinterest.com/adelriosantiago/">
-              <i class="fab fa-pinterest-p"></i>
+              <i class="fab fa-2x fa-pinterest-p"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="fab fa-snapchat-ghost"></i>
+              <i class="fab fa-2x fa-snapchat-ghost"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="fab fa-skype"></i>
+              <i class="fab fa-2x fa-skype"></i>
             </a>
             <a class="nav-link" href="https://www.openstreetmap.org/user/adelriosantiago">
-              <i class="fas fa-map-marked-alt"></i>
+              <i class="fas fa-2x fa-map-marked-alt"></i>
             </a>
             <a class="nav-link" href="https://www.tradingview.com/u/adelriosantiago">
-              <i class="fas fa-comment-dollar"></i>
+              <i class="fas fa-2x fa-comment-dollar"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="fab fa-bitcoin"></i>
+              <i class="fab fa-2x fa-bitcoin"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="fab fa-whatsapp"></i>
+              <i class="fab fa-2x fa-whatsapp"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="fab fa-telegram-plane"></i>
+              <i class="fab fa-2x fa-telegram-plane"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="fas fa-phone-square"></i>
+              <i class="fas fa-2x fa-phone-square"></i>
             </a>
             <a class="nav-link" href="#">
-              <i class="far fa-envelope"></i>
+              <i class="far fa-2x fa-envelope"></i>
             </a>
             <a class="nav-link" href="http://www.adelriosantiago.com/gitblog">
-              <i class="fas fa-book"></i>
+              <i class="fas fa-2x fa-book"></i>
             </a>
           </nav>
+        </div>
+        <div class="col-md-12 d-flex align-items-center justify-content-center">
+          <p class="mb-0">&copy; {{ new Date().getUTCFullYear() }} Alejandro del Río Santiago</p>
         </div>
       </div>
     </div>
