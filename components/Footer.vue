@@ -46,12 +46,9 @@
             <a class="nav-link" href="#">
               <i class="far fa-2x fa-envelope"></i>
             </a>
-            <a class="nav-link" href="http://www.adelriosantiago.com/gitblog">
-              <i class="fas fa-2x fa-book"></i>
-            </a>
           </nav>
         </div>
-        <div class="col-md-12 d-flex align-items-center justify-content-center">
+        <div v-if="false" class="col-md-12 d-flex align-items-center justify-content-center">
           <p class="mb-0">&copy; {{ new Date().getUTCFullYear() }} Alejandro del Río Santiago</p>
         </div>
       </div>
