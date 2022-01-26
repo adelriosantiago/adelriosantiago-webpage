@@ -32,4 +32,7 @@ img {
   display: block;
   margin: 0 auto;
 }
+hidden {
+  display: none;
+}
 </style>
