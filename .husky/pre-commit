@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# npm run prettier:fix # Doesn't work, TODO: Fix
 npx --no-install lint-staged

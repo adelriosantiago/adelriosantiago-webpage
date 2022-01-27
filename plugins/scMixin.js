@@ -1,5 +1,5 @@
 import Vue from "vue"
-import { S, C } from "@/store.js"
+import { S } from "@/store.js"
 
 if (!Vue.scMixin) {
   Vue.scMixin = true
