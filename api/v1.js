@@ -1,15 +1,24 @@
 const bodyParser = require("body-parser")
 const app = require("express")()
-const git = new (require("git-wrapper"))({ "git-dir": "./articles/.git" })
+const git = new (require("git-wrapper"))({ "git-dir": "./static/blog/.git", "work-tree": "./static/blog" })
+const pathEngine = require("./pathEngine")
+const fs = require("fs").promises
 
+const { sanitizePath } = require("./utils")
+const WRITE_KEY = process.env.WRITE_KEY
+
+let incorrectKeyTimeout = false
+
+pathEngine.calcURLS()
 app.use(bodyParser.json())
 
 app.post("/", async (req, res) => {
   return res.json({ ok: true })
 })
 
+// Get all article versions
 app.post("/getVersions", async (req, res) => {
-  const article = req.body.article
+  const article = pathEngine.getURL(req.body.article)
 
   // Note: To obtain all hashes of a particular file this can be used: git log --pretty=format:"%H|||%an|||%ad" --follow sample-article.md
   git.exec("log", { pretty: 'format:"%H|||%an|||%ad"', follow: true }, [`-- ${article}.md`], (err, msg) => {
@@ -23,13 +32,80 @@ app.post("/getVersions", async (req, res) => {
     )
   })
 })
+
+// Get article at a point in time
 app.post("/getArticle", async (req, res) => {
-  const article = req.body.article
+  const article = pathEngine.getURL(req.body.article)
   const hash = req.body.hash
 
   git.exec("show", [`${hash}:${article}.md`], (err, text) => {
     if (err) return res.json(`Error loading article. Please try again later. ${err}`)
     return res.json(text)
+  })
+
+  pathEngine.calcURLS()
+})
+
+// Load file (editor mode)
+app.post("/loadFile", async (req, res) => {
+  const article = sanitizePath(req.body.article)
+  if (article.err) return res.json(article) // Return error from sanitizePath
+
+  let data
+  try {
+    data = await fs.readFile(`./static/blog/${article}.md`, "UTF8")
+  } catch (e) {
+    return res.json({ err: "File not found." })
+  }
+
+  return res.json(data)
+})
+
+// Save file (editor mode)
+app.post("/saveFile", async (req, res) => {
+  if (incorrectKeyTimeout)
+    return res.json({ err: "Saving is locked, please check your Write key and try again in 10 seconds." })
+
+  if (!WRITE_KEY) return res.json({ err: "No Write key found. Saving is disabled." })
+
+  const writeKey = req.body.writeKey
+  if (!writeKey) return res.json({ err: "No Write key provided, please provide a key to enable saving." })
+
+  if (writeKey !== WRITE_KEY) {
+    incorrectKeyTimeout = true
+    setTimeout(() => {
+      incorrectKeyTimeout = false
+    }, 10000)
+    return res.json({ err: "Saving is locked, please check your Write key and try again in 10 seconds." })
+  }
+
+  const article = sanitizePath(req.body.article)
+  if (article.err) return res.json(article)
+
+  const text = req.body.text
+  await fs.writeFile(`./static/blog/${article}.md`, text)
+
+  git.exec("status", (err, status) => {
+    if (err) {
+      console.error(`Error loading article: ${err}`)
+      return res.json({ err: "Error loading article. Please try again later or check the server's console." })
+    }
+    if (status.match(/^nothing to commit, working tree clean$/gim)) return res.json(true)
+
+    git.exec("add", ["."], (err) => {
+      if (err) {
+        console.error(`Error adding files to commit. ${err}`)
+        return res.json({ err: "Couldn't add files to commit. Please try again later or check the server's console." })
+      }
+      git.exec("commit", { m: `Auto-commit: ${new Date().toISOString()}` }, [], (err) => {
+        if (err) {
+          console.error(`Error commiting files. ${err}`)
+          return res.json({ err: "Error commiting files. Please try again later or check the server's console." })
+        }
+
+        return res.json(true)
+      })
+    })
   })
 })
 
