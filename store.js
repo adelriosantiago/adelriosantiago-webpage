@@ -6,6 +6,13 @@ export const S = Vue.observable({
     raw: undefined,
     md: undefined,
   },
+  editing: {
+    file: "index",
+    writeKey: "",
+    log: { ts: new Date().toISOString(), text: "Ready to edit" },
+    saveLock: false,
+    code: "",
+  },
   displayRaw: false,
   versions: [],
   range: {
@@ -14,5 +21,3 @@ export const S = Vue.observable({
     selected: 0,
   },
 })
-
-export const C = {}
