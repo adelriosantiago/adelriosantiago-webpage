@@ -6,7 +6,7 @@ let urls = { index: "index", undefined: "index", "": "index" }
 module.exports = {
   async calcURLS() {
     urls = await new Promise((res, rej) => {
-      glob("./articles/**/*.md", async (err, files) => {
+      glob("./static/blog/**/*.md", async (err, files) => {
         if (err) return urls
 
         const calculatedPaths = await files.reduce(async (acc, cur) => {
@@ -17,12 +17,12 @@ module.exports = {
           const aliasLineMatch = new RegExp("\\$URLS=(.+)", "gm").exec(articleText)
           let aliasArray = aliasLineMatch && aliasLineMatch[1] ? aliasLineMatch[1].split(",") : []
 
-          let filename = new RegExp("\\./articles/(.+)\\.md$").exec(cur)
+          let filename = new RegExp("\\./static/blog/(.+)\\.md$").exec(cur)
           if (!filename) {
-            console.log("Error: Couldn't grab article filename.")
+            console.error("Error: Couldn't grab article filename.")
             return acc
           }
-          aliasArray.forEach((alias) => (acc = { ...acc, ...{ [alias]: filename } }))
+          aliasArray.forEach((alias) => (acc = { ...acc, ...{ [alias]: filename[1] } }))
 
           return acc
         }, urls)
