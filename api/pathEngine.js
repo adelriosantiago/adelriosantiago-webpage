@@ -1,15 +1,16 @@
 const glob = require("glob")
 const fs = require("fs").promises
+const { blogLocation } = require("./utils")
 
-let urls = { index: "index", undefined: "index", "": "index" }
+let urls = { index: "index" }
 
 module.exports = {
   async calcURLS() {
     urls = await new Promise((res, rej) => {
-      glob("./static/blog/**/*.md", async (err, files) => {
+      glob(`./${blogLocation}/**/ *.md`, async (err, files) => {
         if (err) return urls
 
-        const calculatedPaths = await files.reduce(async (acc, cur) => {
+        const calculatedPaths = files.reduce(async (acc, cur) => {
           acc = await acc
 
           // Grab article aliases
@@ -17,7 +18,7 @@ module.exports = {
           const aliasLineMatch = new RegExp("\\$URLS=(.+)", "gm").exec(articleText)
           let aliasArray = aliasLineMatch && aliasLineMatch[1] ? aliasLineMatch[1].split(",") : []
 
-          let filename = new RegExp("\\./static/blog/(.+)\\.md$").exec(cur)
+          const filename = new RegExp(`\\./${blogLocation}/(.+)\\.md$`).exec(cur)
           if (!filename) {
             console.error("Error: Couldn't grab article filename.")
             return acc
@@ -31,7 +32,7 @@ module.exports = {
       })
     })
   },
-  getURL(path) {
-    return urls[path] || "index"
+  getArticleFilename(path) {
+    return urls[path]
   },
 }

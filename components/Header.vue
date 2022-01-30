@@ -74,6 +74,11 @@ export default {
 
     // Article slider
     this.S.versions = (await this.$axios.post("/getVersions", { article: this.S.article })).data
+    if (this.S.versions.length === 0) {
+      this.$router.push("/")
+      return
+    }
+
     this.S.range.max = this.S.versions.length - 1
     this.S.range.selected = this.S.range.max
     console.log("ABOUT TO LOAD", this.S.versions)

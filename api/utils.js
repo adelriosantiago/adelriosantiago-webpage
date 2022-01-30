@@ -1,6 +1,7 @@
 const unsafeChars = [".", "\\", "0x", "?", "<", ">", ":", "*", "|", '"', "~", "@", "$", "&"]
 
 module.exports = {
+  blogLocation: "static/blog",
   sanitizePath(s) {
     s = s.trim()
 

@@ -1,15 +1,15 @@
 const bodyParser = require("body-parser")
 const app = require("express")()
-const git = new (require("git-wrapper"))({ "git-dir": "./static/blog/.git", "work-tree": "./static/blog" })
-const pathEngine = require("./pathEngine")
+const { blogLocation } = require("./utils")
+const git = new (require("git-wrapper"))({ "git-dir": `./${blogLocation}/.git`, "work-tree": `./${blogLocation}` })
+const { calcURLS, getArticleFilename } = require("./pathEngine")
 const fs = require("fs").promises
-
 const { sanitizePath } = require("./utils")
 const WRITE_KEY = process.env.WRITE_KEY
 
 let incorrectKeyTimeout = false
 
-pathEngine.calcURLS()
+calcURLS()
 app.use(bodyParser.json())
 
 app.post("/", async (req, res) => {
@@ -18,7 +18,8 @@ app.post("/", async (req, res) => {
 
 // Get all article versions
 app.post("/getVersions", async (req, res) => {
-  const article = pathEngine.getURL(req.body.article)
+  const article = getArticleFilename(req.body.article)
+  if (!article) return res.json([])
 
   // Note: To obtain all hashes of a particular file this can be used: git log --pretty=format:"%H|||%an|||%ad" --follow sample-article.md
   git.exec("log", { pretty: 'format:"%H|||%an|||%ad"', follow: true }, [`-- ${article}.md`], (err, msg) => {
@@ -35,7 +36,7 @@ app.post("/getVersions", async (req, res) => {
 
 // Get article at a point in time
 app.post("/getArticle", async (req, res) => {
-  const article = pathEngine.getURL(req.body.article)
+  const article = getArticleFilename(req.body.article)
   const hash = req.body.hash
 
   git.exec("show", [`${hash}:${article}.md`], (err, text) => {
@@ -43,7 +44,7 @@ app.post("/getArticle", async (req, res) => {
     return res.json(text)
   })
 
-  pathEngine.calcURLS()
+  calcURLS()
 })
 
 // Load file (editor mode)
@@ -53,7 +54,7 @@ app.post("/loadFile", async (req, res) => {
 
   let data
   try {
-    data = await fs.readFile(`./static/blog/${article}.md`, "UTF8")
+    data = await fs.readFile(`./${blogLocation}/${article}.md`, "UTF8")
   } catch (e) {
     return res.json({ err: "File not found." })
   }
@@ -83,7 +84,7 @@ app.post("/saveFile", async (req, res) => {
   if (article.err) return res.json(article)
 
   const text = req.body.text
-  await fs.writeFile(`./static/blog/${article}.md`, text)
+  await fs.writeFile(`./${blogLocation}/${article}.md`, text)
 
   git.exec("status", (err, status) => {
     if (err) {
