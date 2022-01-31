@@ -9,10 +9,5 @@ if (!Vue.scMixin) {
         S,
       }
     },
-    computed: {
-      C() {
-        return C
-      },
-    },
   })
 }
