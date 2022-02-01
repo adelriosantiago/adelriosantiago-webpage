@@ -1,5 +1,9 @@
 # adelriosantiago-blogpage
 
+This is my git powered blog where everything I type is recorded forever. Feel free to fork and adapt for your own needs.
+
+![image](https://user-images.githubusercontent.com/5462382/151891567-b129683e-180d-4517-b3d3-f42c89c9649e.png)
+
 ## Build Setup
 
 ```bash
@@ -22,12 +26,6 @@ For detailed explanation on how things work, check out the [documentation](https
 ## Special Directories
 
 You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
 
 ### `components`
 
@@ -60,9 +58,3 @@ This directory contains your static files. Each file inside this directory is ma
 Example: `/static/robots.txt` is mapped as `/robots.txt`.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
