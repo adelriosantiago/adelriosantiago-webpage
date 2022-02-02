@@ -10,7 +10,7 @@ try {
     blogLocation = "blog" // Update blog as it is dev
   }
 } catch (e) {
-  throw new Error('Unable to check if blog exists.');;;
+  throw new Error("Unable to check if blog exists.");;;;;;;;
 }
 if (!blogLocation) throw new Error("Blog path not found, './static/blog/.git' or './blog/.git' should exist.")
 
