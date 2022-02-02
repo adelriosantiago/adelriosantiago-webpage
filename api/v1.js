@@ -67,7 +67,10 @@ app.post("/saveFile", async (req, res) => {
   if (incorrectKeyTimeout)
     return res.json({ err: "Saving is locked, please check your Write key and try again in 10 seconds." })
 
-  if (!WRITE_KEY || WRITE_KEY.length < 10) return res.json({ err: "No Write key found or key is not long enough. Saving is disabled. Please provide a +10 chars Write key." })
+  if (!WRITE_KEY || WRITE_KEY.length < 10)
+    return res.json({
+      err: "No Write key found or key is not long enough. Saving is disabled. Please provide a +10 chars Write key.",
+    })
 
   const writeKey = req.body.writeKey
   if (!writeKey) return res.json({ err: "No Write key provided, please provide a key to enable saving." })
