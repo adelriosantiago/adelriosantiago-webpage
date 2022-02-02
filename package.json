@@ -7,12 +7,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write --list-different .",
+    "prettier": "prettier --write --list-different .",
     "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
     "@nuxt/content": "^1.15.1",
@@ -40,7 +36,6 @@
     "eslint-plugin-nuxt": "^3.1.0",
     "eslint-plugin-vue": "^8.2.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.1.2",
     "node-sass": "^5.0.0",
     "postcss": "^8.4.4",
     "prettier": "^2.5.1"
