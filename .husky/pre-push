@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run prettier:fix
-npm run prettier:check # Must be after fix
+npm run prettier
