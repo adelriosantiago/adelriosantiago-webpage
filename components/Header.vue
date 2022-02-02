@@ -81,7 +81,6 @@ export default {
 
     this.S.range.max = this.S.versions.length - 1
     this.S.range.selected = this.S.range.max
-    console.log("ABOUT TO LOAD", this.S.versions)
     this.getArticle()
   },
   methods: {
