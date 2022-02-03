@@ -3,14 +3,17 @@
 
 diff=$(npm run prettier)
 
+allOk='All matched files use Prettier code style!'
+
 echo "sss"
 echo $diff
 echo "eee"
 
-if [ -z "$diff" ]
+if [[ "$diff" == *"$allOk"* ]]
 then
-   exit 0
+    echo "All ok"
+    exit 0
 else
-   echo "Please commit prettified files and try to push again."
-   exit 1
+    echo "Please commit prettified files and try to push again."
+    exit 1
 fi
