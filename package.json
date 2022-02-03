@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "prettier": "prettier --write --list-different .",
+    "prettier": "prettier --write --check .",
     "prepare": "husky install"
   },
   "dependencies": {
