@@ -1,4 +1,16 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run prettier
+diff=$(npm run prettier)
+
+echo "sss"
+echo $diff
+echo "eee"
+
+if [ -z "$diff" ]
+then
+   exit 0
+else
+   echo "Please commit prettified files and try to push again."
+   exit 1
+fi
