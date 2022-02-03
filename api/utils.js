@@ -12,7 +12,7 @@ try {
 } catch (e) {
   throw new Error("Unable to check if blog exists.")
 }
-if (!blogLocation) throw new Error("Blog path not found, './static/blog/.git' or './blog/.git' should exist.");;;;;
+if (!blogLocation) throw new Error("Blog path not found, './static/blog/.git' or './blog/.git' should exist.")
 
 module.exports = {
   blogLocation,
