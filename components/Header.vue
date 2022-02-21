@@ -85,6 +85,14 @@ export default {
 
       this.S.content.raw = (await this.$axios.post("/getArticle", { article, hash })).data.replace(/\n\n$/gm, "\n ")
       this.S.content.md = md.render(this.S.content.raw) // TODO: Make a MD render toggle buttons
+
+      const scrollHash = this.$route.hash
+      if (scrollHash) {
+        const elem = $(scrollHash)[0]
+        if (!elem) return
+        const articleLocation = Math.round(elem.offsetTop)
+        window.scrollTo({ left: 0, top: articleLocation, behavior: "instant" })
+      }
     },
   },
 }

@@ -4,6 +4,7 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
+            <p class="text-center">Editing ./blog/ <input v-model="S.editing.file" />.md article</p>
             <div class="row">
               <div class="col-6">
                 <p>Write key: <input v-model="S.editing.writeKey" /></p>
@@ -60,28 +61,26 @@ export default {
   mounted() {},
   methods: {
     async onCmCodeChange(newText) {
-      if (this.S.editing.saveLock) {
-        this.S.editing.log = { ts: new Date().toISOString(), text: "Save lock is on, skipping saving." }
-        return //TODO: Fix the fact that this may make the very last character be unsaved if it was locked
-      }
+      await this.S.editing.saveLock
 
-      this.code = newText
+      this.S.editing.saveLock = new Promise(async (res, rej) => {
+        this.code = newText
 
-      this.S.editing.saveLock = true
-      const saveResult = await (
-        await this.$axios.post("/saveFile", {
-          article: this.S.editing.file,
-          writeKey: this.S.editing.writeKey,
-          text: this.S.editing.code,
-        })
-      ).data
-      this.S.editing.saveLock = false
+        const saveResult = await (
+          await this.$axios.post("/saveFile", {
+            article: this.S.editing.file,
+            writeKey: this.S.editing.writeKey,
+            text: this.S.editing.code,
+          })
+        ).data
 
-      if (saveResult.err) {
-        this.S.editing.log = { ts: new Date().toISOString(), text: saveResult.err }
-        return
-      }
-      this.S.editing.log = { ts: new Date().toISOString(), text: "File saved and commited." }
+        if (saveResult.err) {
+          this.S.editing.log = { ts: new Date().toISOString(), text: saveResult.err }
+          return res()
+        }
+        this.S.editing.log = { ts: new Date().toISOString(), text: "File saved and commited." }
+        res()
+      })
     },
   },
 }
