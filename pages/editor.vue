@@ -4,9 +4,6 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
-            <p class="text-center">
-              Editing ./blog/ <input v-model="S.editing.file" @input="onFileChange" />.md article
-            </p>
             <div class="row">
               <div class="col-6">
                 <p>Write key: <input v-model="S.editing.writeKey" /></p>
@@ -49,23 +46,19 @@ export default {
     }
   },
   computed: {},
-  created() {
-    this.S.editing.file = "index"
-    this.onFileChange()
+  async created() {
+    const fileData = (await this.$axios.post("/loadFile", { article: "index" })).data
+    if (fileData.err) {
+      this.S.editing.code = ""
+      this.S.editing.log = { ts: new Date().toISOString(), text: fileData.err }
+      return
+    }
+
+    this.S.editing.code = fileData
+    this.S.editing.log = { ts: new Date().toISOString(), text: "File loaded." }
   },
   mounted() {},
   methods: {
-    async onFileChange() {
-      const fileData = (await this.$axios.post("/loadFile", { article: this.S.editing.file })).data
-      if (fileData.err) {
-        this.S.editing.code = ""
-        this.S.editing.log = { ts: new Date().toISOString(), text: fileData.err }
-        return
-      }
-
-      this.S.editing.code = fileData
-      this.S.editing.log = { ts: new Date().toISOString(), text: "File loaded." }
-    },
     async onCmCodeChange(newText) {
       if (this.S.editing.saveLock) {
         this.S.editing.log = { ts: new Date().toISOString(), text: "Save lock is on, skipping saving." }
