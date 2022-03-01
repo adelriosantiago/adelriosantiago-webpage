@@ -4,10 +4,12 @@ const unsafeChars = [".", "\\", "0x", "?", "<", ">", ":", "*", "|", '"', "~", "@
 // Get blog location
 let blogLocation
 try {
-  if (fs.existsSync("./static/blog/.git")) {
-    blogLocation = "static/blog" // Update blog as it is dev
-  } else if (fs.existsSync("./blog/.git")) {
+  if (fs.existsSync("./blog/.git")) {
     blogLocation = "blog" // Update blog as it is dev
+  } else if (fs.existsSync("./static/blog/.git")) {
+    blogLocation = "static/blog" // Update blog as it is dev
+  } else {
+    throw new Error("No blog repository found. Create a init a .git repository inside `./static/blog`. This is where the blog content will live.")
   }
 } catch (e) {
   throw new Error("Unable to check if blog exists.")
