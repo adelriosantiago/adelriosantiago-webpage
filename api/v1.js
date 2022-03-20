@@ -6,7 +6,7 @@ const { calcURLS, getArticleFilename } = require("./path-engine")
 const fs = require("fs").promises
 const { sanitizePath } = require("./utils")
 const WRITE_KEY = process.env.WRITE_KEY
-const logStyle = new RegExp("^HASH=([a-f0-9]+) AUTHOR=(.+) DATE=(.+)$")
+const logStyle = new RegExp("^HASH=([a-f0-9]+)AUTHOR=(.+)DATE=(.+)$")
 
 let incorrectKeyTimeout = false
 
@@ -25,7 +25,7 @@ app.post("/getVersions", async (req, res) => {
   // Note: To obtain all hashes of a particular file this can be used: git log --pretty=format:"%H|||%an|||%ad" --follow sample-article.md
   git.exec(
     "log",
-    { pretty: "format:HASH=%H AUTHOR=%an DATE=%ad", follow: true },
+    { pretty: "format:HASH=%HAUTHOR=%anDATE=%ad", follow: true },
     ["--", `${article}.md`],
     (err, msg) => {
       if (err) return res.json([["Error loading hash", "Error loading author", "Error loading date"]])
