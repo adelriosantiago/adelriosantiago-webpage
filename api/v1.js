@@ -23,24 +23,19 @@ app.post("/getVersions", async (req, res) => {
   if (!article) return res.json([])
 
   // Note: To obtain all hashes of a particular file this can be used: git log --pretty=format:"%H|||%an|||%ad" --follow sample-article.md
-  git.exec(
-    "log",
-    { pretty: "format:HASH=%HAUTHOR=%anDATE=%ad", follow: true },
-    ["--", `${article}.md`],
-    (err, msg) => {
-      if (err) return res.json([["Error loading hash", "Error loading author", "Error loading date"]])
+  git.exec("log", { pretty: "format:HASH=%HAUTHOR=%anDATE=%ad", follow: true }, ["--", `${article}.md`], (err, msg) => {
+    if (err) return res.json([["Error loading hash", "Error loading author", "Error loading date"]])
 
-      return res.json(
-        msg
-          .split("\n")
-          .reverse()
-          .map((l) => {
-            const match = logStyle.exec(l)
-            return [match[1], match[2], match[3]]
-          })
-      )
-    }
-  )
+    return res.json(
+      msg
+        .split("\n")
+        .reverse()
+        .map((l) => {
+          const match = logStyle.exec(l)
+          return [match[1], match[2], match[3]]
+        })
+    )
+  })
 })
 
 // Get article at a point in time
