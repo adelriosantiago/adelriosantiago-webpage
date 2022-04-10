@@ -1,11 +1,6 @@
 <template>
-  <nav id="gtco-header-navbar">
+  <nav id="gtco-header-navbar" v-show="S.showBlog">
     <div>
-      <div id="home-button">
-        <a href="/">
-          <i class="fas fa-2x fa-home"></i>
-        </a>
-      </div>
       <div id="navbar-nav-header">
         <h5 class="text-center">Viewing version {{ S.range.selected }}</h5>
         <input

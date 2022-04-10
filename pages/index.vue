@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <section id="gtco-section-featurettes" class="featurettes bg-white">
+    <section id="gtco-section-featurettes" class="featurettes bg-white" v-show="S.showBlog">
       <div class="container">
         <div class="section-content">
           <div class="row">
@@ -45,8 +45,8 @@ export default {
 </script>
 
 <style>
-.page-wrapper {
-  padding-top: 110px;
+.jumbotron {
+  padding: 100px 0px;
 }
 
 .round-image {
