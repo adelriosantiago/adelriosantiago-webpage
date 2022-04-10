@@ -13,6 +13,7 @@ export const S = Vue.observable({
     saveLock: false,
     code: "",
   },
+  showBlog: false,
   displayRaw: false,
   versions: [],
   range: {

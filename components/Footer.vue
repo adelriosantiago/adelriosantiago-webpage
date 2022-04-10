@@ -74,7 +74,7 @@
 
         <!-- Modals -->
         <div id="mod-snapchat" style="display: none">
-          <img src="/images/snap.jpeg" />
+          <img src="/img/snap.jpeg" />
         </div>
 
         <div id="mod-skype" style="display: none">
@@ -83,33 +83,31 @@
 
         <div id="mod-bitcoin" style="display: none">
           <h5 class="text-center">Bitcoin address:</h5>
-          <img src="images/bitcoin-address.jpg" style="display: block; margin: auto" />
+          <img src="/img/bitcoin-address.jpg" style="display: block; margin: auto" />
           <h5 class="text-center">1Nbhqpi2CWu8a6WPyVajUxoXRNyN53dEzX</h5>
         </div>
 
         <div id="mod-whatsapp" style="display: none">
           <h5 class="text-center">
-            <span class="flag-icon flag-icon-mx"></span> Whatsapp: <em>+52</em>&nbsp;&nbsp;&nbsp;33 1471 5215<br /><br />
+            <span class="fi fi-mx"></span> Whatsapp: <em>+52</em>&nbsp;&nbsp;&nbsp;33 1471 5215<br /><br />
             <small><p>Whatsapp calls and text only.</p></small>
           </h5>
         </div>
 
         <div id="mod-telegram" style="display: none">
           <h5 class="text-center">
-            <span class="flag-icon flag-icon-ch"></span> Telegram: <em class="mr-5">+41</em>&nbsp;&nbsp;&nbsp;79 456 81
-            46 (@adelriosantiago) <br /><br />
+            <span class="fi fi-ch"></span> Telegram: <em class="mr-5">+41</em>&nbsp;&nbsp;&nbsp;79 456 81 46
+            (@adelriosantiago) <br /><br />
             <small><p>Telegram only.</p></small>
           </h5>
         </div>
 
         <div id="mod-phone" style="display: none">
-          <h5 class="text-center">
-            <span class="flag-icon flag-icon-us"></span> Phone: <em>+1</em>&nbsp;&nbsp;&nbsp;484 862 9092
-          </h5>
+          <h5 class="text-center"><span class="fi fi-us"></span> Phone: <em>+1</em>&nbsp;&nbsp;&nbsp;484 862 9092</h5>
         </div>
 
         <div id="mod-mail" style="display: none">
-          <h5 class="text-center">Address:<br /><br />adelriosantiago@gmail.com</h5>
+          <h5 class="text-center">Address:<br /><br />hey@adelriosantiago.com</h5>
         </div>
       </div>
     </div>
@@ -137,4 +135,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.nav-mastfoot .nav-link {
+  text-align: center;
+}
+.nav-mastfoot .nav-link small {
+  font-size: 10px;
+  text-align: center;
+}
+</style>
