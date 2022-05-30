@@ -2,16 +2,21 @@
   <div class="page-wrapper">
     <div class="jumbotron d-flex align-items-center" style="background-image: url(/img/hero-2.jpg)">
       <div class="container text-center">
-        <img class="round-image" src="/img/me.jpg" />
+        <img class="round-image" src="/img/me2.jpeg" />
         <h1 class="text-center">ALEJANDRO</h1>
         <h1 class="text-center lastname">DEL RIO SANTIAGO</h1>
         <div class="row justify-content-center">
           <div class="col-md-6">
             <p>
-              Hi! I'm Alex! B.Sc. in Electronics and Computer Science Engineering. I am a software developer &
-              consultant. I specialize in Javascript and data visualization.
+              Hi! I'm Alejandro! B.Sc. in Electronics and Computer Science Engineering and MBA graduate candidate at
+              UofL, KY.<br /><br />
+              I am an IT consultant and I do data visualization.
+              <br /><br />
+              <em
+                >#DataScience #DataViz #ChartJs #Javascript #ML #AI #DataAnalytics #MachineLearning
+                #ArtificialIntelligence #BusinessIntelligence</em
+              >
             </p>
-            <p>This is where I write. Every hit and every mistake recorded as I type.</p>
           </div>
         </div>
       </div>
