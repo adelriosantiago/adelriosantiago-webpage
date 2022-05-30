@@ -6,55 +6,55 @@
           <nav class="nav nav-mastfoot justify-content-center">
             <a class="nav-link" href="https://twitter.com/adelriosantiago">
               <i class="fab fa-2x fa-twitter"></i><br />
-              <small>Rant</small>
+              <small>Twitter</small>
             </a>
             <a class="nav-link" href="https://www.instagram.com/a.delrio.santiago/">
               <i class="fab fa-2x fa-instagram"></i><br />
-              <small>Pics</small>
+              <small>Instagram</small>
             </a>
             <a class="nav-link" href="http://stackoverflow.com/users/1996066/adelriosantiago">
               <i class="fab fa-2x fa-stack-overflow"></i><br />
-              <small>Copy/Paste</small>
+              <small>StackOverflow</small>
             </a>
             <a class="nav-link" href="https://github.com/adelriosantiago">
               <i class="fab fa-2x fa-github"></i><br />
-              <small>Code</small>
+              <small>Github</small>
             </a>
             <a class="nav-link" href="https://pinterest.com/adelriosantiago/">
               <i class="fab fa-2x fa-pinterest-p"></i><br />
-              <small>Ideas</small>
+              <small>Pinterest</small>
             </a>
             <a class="nav-link" @click="openModal('snapchat')">
               <i class="fab fa-2x fa-snapchat-ghost"></i><br />
-              <small>???</small>
+              <small>Snapchat</small>
             </a>
             <a class="nav-link" @click="openModal('skype')">
               <i class="fab fa-2x fa-skype"></i><br />
-              <small>Talk</small>
+              <small>Skype</small>
             </a>
             <a class="nav-link" href="https://www.openstreetmap.org/user/adelriosantiago">
               <i class="fas fa-2x fa-map-marked-alt"></i><br />
-              <small>Mapping</small>
+              <small>OpenMaps</small>
             </a>
             <a class="nav-link" href="https://www.tradingview.com/u/adelriosantiago">
               <i class="fas fa-2x fa-comment-dollar"></i><br />
-              <small>Finance</small>
+              <small>TradingView</small>
             </a>
             <a class="nav-link" @click="openModal('bitcoin')">
               <i class="fab fa-2x fa-bitcoin"></i><br />
-              <small>Mining</small>
+              <small>Payments</small>
             </a>
             <a class="nav-link" @click="openModal('whatsapp')">
               <i class="fab fa-2x fa-whatsapp"></i><br />
-              <small>Chat</small>
+              <small>Whatsapp</small>
             </a>
             <a class="nav-link" @click="openModal('telegram')">
               <i class="fab fa-2x fa-telegram-plane"></i><br />
-              <small>Text</small>
+              <small>Telegram</small>
             </a>
             <a class="nav-link" @click="openModal('phone')">
               <i class="fas fa-2x fa-phone-square"></i><br />
-              <small>Call</small>
+              <small>Phone</small>
             </a>
             <a class="nav-link" @click="openModal('mail')">
               <i class="far fa-2x fa-envelope"></i><br />
