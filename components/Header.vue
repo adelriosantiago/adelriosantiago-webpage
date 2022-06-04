@@ -89,9 +89,15 @@ export default {
       const scrollHash = this.$route.hash
       if (scrollHash) {
         const elem = $(scrollHash)[0]
-        if (!elem) return
-        const articleLocation = Math.round(elem.offsetTop)
-        window.scrollTo({ left: 0, top: articleLocation, behavior: "instant" })
+        if (!elem) {
+          window.scrollTo({
+            left: 0,
+            top: Math.round($("#gtco-section-featurettes")[0].offsetTop),
+            behavior: "instant",
+          })
+          return
+        }
+        window.scrollTo({ left: 0, top: Math.round(elem.offsetTop) - 100, behavior: "instant" })
       }
     },
   },
