@@ -3,6 +3,7 @@
 html {
   font-size: 62.5%;
   overflow-x: hidden;
+  scroll-behavior: unset !important;
 }
 
 body {
@@ -15,6 +16,7 @@ body {
   font-weight: 300;
   font-size: 1.6rem;
 }
+
 body:after {
   position: absolute;
   content: "";
@@ -43,6 +45,7 @@ body:after {
   .boxed-page {
     width: 1024px;
   }
+
   .boxed-page .container {
     max-width: 1080px;
     padding-left: 30px;
@@ -174,6 +177,7 @@ a:hover {
 .btn-link {
   color: #4183c4;
 }
+
 .btn-link:hover {
   text-decoration: none;
 }
@@ -251,6 +255,7 @@ a {
 .navbar-nav:hover li a {
   opacity: 0.5;
 }
+
 .navbar-nav:hover li a:hover {
   opacity: 1;
 }
@@ -284,14 +289,17 @@ a {
   overflow: hidden;
   min-height: 500px;
 }
+
 @media (min-width: 1024px) {
   .jumbotron {
     min-height: 80vh;
   }
 }
+
 .jumbotron .container {
   position: relative;
 }
+
 .jumbotron:before {
   position: absolute;
   display: block;
@@ -307,6 +315,7 @@ a {
 .filter-button-group {
   margin-bottom: 15px;
 }
+
 .filter-button-group a {
   margin: 5px;
   cursor: pointer;
@@ -336,6 +345,7 @@ a {
   border-radius: 5px;
   overflow: hidden;
 }
+
 .grid-item:hover .grid-info {
   top: 50%;
   opacity: 1;
@@ -382,6 +392,7 @@ a {
   border-radius: 3px;
   overflow: hidden;
 }
+
 .blog-item:hover {
   box-shadow: 0 5px 15px -5px #333;
   transform: translateY(-6px);
@@ -424,10 +435,12 @@ a {
 .blog-meta {
   color: #939393;
 }
+
 .blog-meta p {
   display: inline-block;
   font-size: 14px;
 }
+
 .blog-meta a {
   color: #939393;
 }
@@ -436,6 +449,7 @@ a {
   display: inline-block;
   color: #939393;
 }
+
 .blog-author p {
   font-size: 14px;
   margin-bottom: 0;
@@ -446,6 +460,7 @@ a {
   display: inline-block;
   margin: 0 -5px;
 }
+
 .blog-share-wrapper .blog-share {
   padding: 0 5px;
   cursor: pointer;
@@ -460,15 +475,18 @@ a {
   z-index: 1;
   color: #fff;
 }
+
 .counter-item > i {
   display: block;
   font-size: 40px;
 }
+
 .counter-item .number {
   font-size: 60px;
   font-weight: 400;
   display: block;
 }
+
 .counter-item h4 {
   display: block;
   text-transform: uppercase;
@@ -484,12 +502,15 @@ a {
 .price-box {
   border: none;
 }
+
 .price-box .card-header {
   background-color: transparent;
 }
+
 .price-box small {
   font-size: 60%;
 }
+
 .price-box .price-box-list {
   min-height: 150px;
 }
@@ -505,6 +526,7 @@ footer {
   height: 38px;
   font-weight: 300;
 }
+
 .form-control:focus {
   border-color: #4183c4;
   box-shadow: 0 0 0 0.2rem rgba(253, 101, 90, 0.25);
@@ -558,6 +580,7 @@ footer {
     margin-right: 30px;
     margin-left: 30px;
   }
+
   .not-on-top #gtco-header-navbar {
     margin-right: 30px;
     margin-left: 30px;
@@ -568,6 +591,7 @@ footer {
   #navbar-nav-header .navbar-nav {
     margin-top: 15px;
   }
+
   #gtco-header-navbar {
     padding-left: 15px;
     background-color: #fff;
@@ -578,23 +602,29 @@ footer {
   .boxed-page {
     margin: 4rem 15px;
   }
+
   .not-on-top #gtco-header-navbar {
     margin-right: 15px;
     margin-left: 15px;
   }
+
   .counter-item {
     margin-bottom: 40px;
   }
+
   .counter-item:last-child {
     margin-bottom: 0;
   }
+
   .section-title br,
   .section-sub-title br {
     display: none;
   }
+
   .grid-item {
     width: 100%;
   }
+
   .card-deck {
     flex-direction: column;
   }

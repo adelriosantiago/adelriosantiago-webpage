@@ -28,9 +28,9 @@
               </p>
             </div>
             <div class="col-md-4">
-              <p id="displayRaw">
-                <input type="checkbox" name="scales" v-model="S.displayRaw" checked />
-                <label for="scales">Display raw</label>
+              <p id="checkboxOptions">
+                <input type="checkbox" name="keystrokes" v-model="S.followKeystrokes" checked />
+                <label for="keystrokes">Follow keystrokes</label>
               </p>
             </div>
           </div>
@@ -49,13 +49,18 @@ const md = require("markdown-it")({
   typographer: true,
 })
 
+let previousHTML = undefined // Preview html for keystroke follower
+
 const hashtagOffset = 100
 
 let h1Positions = [] // Contains all blog article start positions
+let updateNeeded = true
 const updateBlogH1Positions = () => {
   h1Positions = $("#gtco-section-featurettes h1[id]")
     .toArray()
     .map((e) => [e.id, e.offsetTop - hashtagOffset - 50])
+
+  updateNeeded = false
 }
 
 const goToBlogStart = () => {
@@ -76,23 +81,32 @@ export default {
   async mounted() {
     $(document).ready(() => {
       $(window).scroll((q, w, e, r) => {
+        // GIT header settings
         if ($(window).scrollTop() > 150) {
           $("body").addClass("not-on-top")
         } else {
           $("body").removeClass("not-on-top")
         }
 
-        updateBlogH1Positions()
-
-        let scrollToAddToUrl = ""
-        for (let i = 0; i < h1Positions.length; i++) {
-          if (h1Positions[i][1] >= scrollY) {
-            scrollToAddToUrl = h1Positions[i][0]
-            history.pushState({}, "", "#" + scrollToAddToUrl)
-            break
+        if (this.S.showBlog) {
+          h1Positions = h1Positions.filter((p) => p[1] > 0)
+          // Smart scrolling settings
+          if (updateNeeded || !h1Positions.length) updateBlogH1Positions()
+          let scrollToAddToUrl = ""
+          for (let i = 0; i < h1Positions.length; i++) {
+            if (h1Positions[i][1] >= scrollY) {
+              scrollToAddToUrl = h1Positions[i][0]
+              history.pushState({}, "", "#" + scrollToAddToUrl)
+              break
+            }
           }
         }
       })
+
+      // Open article (when opening a shared link)
+      if (window.location.hash) {
+        this.S.showBlog = true
+      }
     })
 
     // Article slider
@@ -111,14 +125,32 @@ export default {
       const article = this.S.article
       const hash = this.S.versions[this.S.range.selected][0]
 
-      this.S.content.raw = (await this.$axios.post("/getArticle", { article, hash })).data.replace(/\n\n$/gm, "\n ")
-      this.S.content.md = md.render(this.S.content.raw) // TODO: Make a MD render toggle buttons
+      await this.S.content.pending
+      this.S.content.pending = new Promise(async (res, rej) => {
+        previousHTML = $("#md-content").clone().children().toArray()
+        this.S.content.md.current = md.render(
+          (await this.$axios.post("/getArticle", { article, hash })).data.replace(/\n\n$/gm, "\n ")
+        )
+        await this.$nextTick()
+        return res()
+      })
+
+      const newHTML = $("#md-content").children().toArray()
+
+      let diffFoundAt = undefined
+      for (let i = 0; i < newHTML.length; i++) {
+        if (!newHTML[i] || !previousHTML[i] || newHTML[i].outerHTML !== previousHTML[i].outerHTML) {
+          diffFoundAt = i
+          break
+        }
+      }
 
       // Update all h1 hashtag positions
+      updateNeeded = true
       updateBlogH1Positions()
 
       // Scroll if needed
-      const hashURL = this.$route.hash.substr(1)
+      const hashURL = window.location.hash.substr(1)
       if (!hashURL) return
 
       const m = hashURL.match(/%|\//gi) || [] // Cleanup invalid hashtags
@@ -165,7 +197,7 @@ export default {
     float: left;
   }
 
-  #displayRaw {
+  #checkboxOptions {
     float: right;
   }
 }

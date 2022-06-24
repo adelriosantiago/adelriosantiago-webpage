@@ -3,8 +3,11 @@ import Vue from "vue"
 export const S = Vue.observable({
   article: "index",
   content: {
-    raw: undefined,
-    md: undefined,
+    pending: undefined,
+    md: {
+      current: undefined,
+      preview: undefined,
+    },
   },
   editing: {
     file: "index",
@@ -14,7 +17,7 @@ export const S = Vue.observable({
     code: "",
   },
   showBlog: false,
-  displayRaw: false,
+  followKeystrokes: false,
   versions: [],
   range: {
     min: 0,

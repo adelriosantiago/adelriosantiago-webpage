@@ -60,7 +60,7 @@
               <i class="far fa-2x fa-envelope"></i><br />
               <small>Mail</small>
             </a>
-            <a class="nav-link" @click="S.showBlog = !S.showBlog">
+            <a class="nav-link" @click="toggleBlog">
               <i class="fas fa-2x fa-book"></i><br />
               <small>Blog</small>
               <i class="fas fa-arrow-up" v-show="S.showBlog"></i>
@@ -130,6 +130,15 @@ export default {
     openModal(type) {
       modal.setContent(document.getElementById(`mod-${type}`).innerHTML)
       modal.open()
+    },
+    toggleBlog() {
+      if (this.S.showBlog) {
+        this.S.showBlog = false
+        window.location.hash = ""
+      } else {
+        this.S.showBlog = true
+        if (!window.location.hash) window.location.hash = "#"
+      }
     },
   },
 }

@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div v-if="S.displayRaw === true">
-      <pre v-if="S.content.raw" v-html="S.content.raw"></pre>
-    </div>
-    <div v-else>
-      <div v-if="S.content.md" v-html="S.content.md"></div>
-    </div>
+    <div id="md-content" v-if="S.content.md.current" v-html="S.content.md.current"></div>
   </div>
 </template>
 

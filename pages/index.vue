@@ -8,10 +8,10 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <p>
-              Hi! I'm Alejandro! B.Sc. in Electronics and Computer Science Engineering and MBA graduate candidate at
-              UofL, KY.<br /><br />
-              I am an IT consultant and I do data visualization.
-              <br /><br />
+              Hi! I'm Alejandro! I am an MBA graduate candidate at
+              <a href="https://business.louisville.edu/learnmore/professionalmba/">UofL</a>, KY,<br />
+              and B.Sc. in Computer Science Engineering by <a href="https://tec.mx/en">ITESM</a>.<br />I am a data
+              science consultant. <br /><br />
               <em
                 >#DataScience #DataViz #ChartJs #Javascript #ML #AI #DataAnalytics #MachineLearning
                 #ArtificialIntelligence #BusinessIntelligence</em

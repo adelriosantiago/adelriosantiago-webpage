@@ -2,7 +2,6 @@ const bodyParser = require("body-parser")
 const app = require("express")()
 const { blogLocation } = require("./utils")
 const git = new (require("git-wrapper"))({ "git-dir": `./${blogLocation}/.git`, "work-tree": `./${blogLocation}` })
-const { calcURLS, getArticleFilename } = require("./path-engine")
 const fs = require("fs").promises
 const { sanitizePath } = require("./utils")
 const WRITE_KEY = process.env.WRITE_KEY
@@ -10,7 +9,6 @@ const logStyle = new RegExp("^HASH=([a-f0-9]+)AUTHOR=(.+)DATE=(.+)$")
 
 let incorrectKeyTimeout = false
 
-calcURLS()
 app.use(bodyParser.json())
 
 app.post("/", async (req, res) => {
@@ -19,11 +17,8 @@ app.post("/", async (req, res) => {
 
 // Get all article versions
 app.post("/getVersions", async (req, res) => {
-  const article = getArticleFilename(req.body.article)
-  if (!article) return res.json([])
-
   // Note: To obtain all hashes of a particular file this can be used: git log --pretty=format:"%H|||%an|||%ad" --follow sample-article.md
-  git.exec("log", { pretty: "format:HASH=%HAUTHOR=%anDATE=%ad", follow: true }, ["--", `${article}.md`], (err, msg) => {
+  git.exec("log", { pretty: "format:HASH=%HAUTHOR=%anDATE=%ad", follow: true }, ["--", 'index.md'], (err, msg) => {
     if (err) return res.json([["Error loading hash", "Error loading author", "Error loading date"]])
 
     return res.json(
@@ -40,15 +35,14 @@ app.post("/getVersions", async (req, res) => {
 
 // Get article at a point in time
 app.post("/getArticle", async (req, res) => {
-  const article = getArticleFilename(req.body.article)
   const hash = req.body.hash
 
-  git.exec("show", [`${hash}:${article}.md`], (err, text) => {
-    if (err) return res.json(`Error loading article. Please try again later. ${err}`)
-    return res.json(text)
+  return await new Promise((resolve, reject) => {
+    git.exec("show", [`${hash}:index.md`], (err, text) => {
+      if (err) return resolve(res.json(`Error loading article. Please try again later. ${err}`))
+      return res.json(text)
+    })
   })
-
-  calcURLS()
 })
 
 // Load file (editor mode)
