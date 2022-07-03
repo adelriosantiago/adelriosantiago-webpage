@@ -10,8 +10,8 @@
             <p>
               Hi! I'm Alejandro! I am an MBA graduate candidate at
               <a href="https://business.louisville.edu/learnmore/professionalmba/">UofL</a>, KY,<br />
-              and B.Sc. in Computer Science Engineering by <a href="https://tec.mx/en">ITESM</a>.<br />I am a data
-              science consultant. <br /><br />
+              and B.Sc. in Computer Science Engineering by <a href="https://tec.mx/en">Tec de Monterrey</a>.<br />I am a
+              data science consultant. <br /><br />
               <em
                 >#DataScience #DataViz #ChartJs #Javascript #ML #AI #DataAnalytics #MachineLearning
                 #ArtificialIntelligence #BusinessIntelligence</em

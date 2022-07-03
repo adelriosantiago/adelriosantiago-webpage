@@ -54,13 +54,11 @@ let previousHTML = undefined // Preview html for keystroke follower
 const hashtagOffset = 100
 
 let h1Positions = [] // Contains all blog article start positions
-let updateNeeded = true
 const updateBlogH1Positions = () => {
   h1Positions = $("#gtco-section-featurettes h1[id]")
     .toArray()
     .map((e) => [e.id, e.offsetTop - hashtagOffset - 50])
-
-  updateNeeded = false
+    .filter((p) => p[1] > 0)
 }
 
 const goToBlogStart = () => {
@@ -79,33 +77,21 @@ export default {
   computed: {},
   created() {},
   async mounted() {
-    $(document).ready(() => {
-      $(window).scroll((q, w, e, r) => {
-        // GIT header settings
-        if ($(window).scrollTop() > 150) {
-          $("body").addClass("not-on-top")
-        } else {
-          $("body").removeClass("not-on-top")
-        }
+    $(window).scroll((q, w, e, r) => {
+      // GIT header settings
+      if ($(window).scrollTop() > 150) {
+        $("body").addClass("not-on-top")
+      } else {
+        $("body").removeClass("not-on-top")
+      }
 
-        if (this.S.showBlog) {
-          h1Positions = h1Positions.filter((p) => p[1] > 0)
-          // Smart scrolling settings
-          if (updateNeeded || !h1Positions.length) updateBlogH1Positions()
-          let scrollToAddToUrl = ""
-          for (let i = 0; i < h1Positions.length; i++) {
-            if (h1Positions[i][1] >= scrollY) {
-              scrollToAddToUrl = h1Positions[i][0]
-              history.pushState({}, "", "#" + scrollToAddToUrl)
-              break
-            }
-          }
+      // Scroll to hashtag
+      if (!this.S.showBlog) return
+      for (let i = 0; i < h1Positions.length; i++) {
+        if (h1Positions[i][1] >= scrollY) {
+          history.pushState({}, "", "#" + h1Positions[i][0])
+          break
         }
-      })
-
-      // Open article (when opening a shared link)
-      if (window.location.hash) {
-        this.S.showBlog = true
       }
     })
 
@@ -115,9 +101,11 @@ export default {
       this.$router.push("/")
       return
     }
-
     this.S.range.max = this.S.versions.length - 1
     this.S.range.selected = this.S.range.max
+
+    // Get latest article
+    if (window.location.hash) this.S.showBlog = true
     this.getArticle()
   },
   methods: {
@@ -125,28 +113,27 @@ export default {
       const article = this.S.article
       const hash = this.S.versions[this.S.range.selected][0]
 
-      await this.S.content.pending
-      this.S.content.pending = new Promise(async (res, rej) => {
+      this.S.content.pending = await new Promise(async (res, rej) => {
         previousHTML = $("#md-content").clone().children().toArray()
-        this.S.content.md.current = md.render(
+        this.S.content.md.current = await md.render(
           (await this.$axios.post("/getArticle", { article, hash })).data.replace(/\n\n$/gm, "\n ")
         )
-        await this.$nextTick()
+        //await this.$nextTick() // Note: Next tick not really waiting for the content to be rendered
+        await new Promise((resolve) => setTimeout(resolve, 1000))
         return res()
       })
 
+      /* TODO: Implement follow keystrokes
       const newHTML = $("#md-content").children().toArray()
-
       let diffFoundAt = undefined
       for (let i = 0; i < newHTML.length; i++) {
         if (!newHTML[i] || !previousHTML[i] || newHTML[i].outerHTML !== previousHTML[i].outerHTML) {
           diffFoundAt = i
           break
         }
-      }
+      }*/
 
       // Update all h1 hashtag positions
-      updateNeeded = true
       updateBlogH1Positions()
 
       // Scroll if needed
