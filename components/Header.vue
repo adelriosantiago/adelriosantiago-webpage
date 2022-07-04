@@ -51,16 +51,6 @@ const md = require("markdown-it")({
 
 let previousHTML = undefined // Preview html for keystroke follower
 
-const hashtagOffset = 100
-
-let h1Positions = [] // Contains all blog article start positions
-const updateBlogH1Positions = () => {
-  h1Positions = $("#gtco-section-featurettes h1[id]")
-    .toArray()
-    .map((e) => [e.id, e.offsetTop - hashtagOffset - 50])
-    .filter((p) => p[1] > 0)
-}
-
 const goToBlogStart = () => {
   window.scrollTo({
     left: 0,
@@ -87,9 +77,10 @@ export default {
 
       // Scroll to hashtag
       if (!this.S.showBlog) return
-      for (let i = 0; i < h1Positions.length; i++) {
-        if (h1Positions[i][1] >= scrollY) {
-          history.pushState({}, "", "#" + h1Positions[i][0])
+      const h1Pos = this.h1Positions()
+      for (let i = 0; i < h1Pos.length; i++) {
+        if (h1Pos[i][1] >= scrollY) {
+          history.pushState({}, "", "#" + h1Pos[i][0])
           break
         }
       }
@@ -133,9 +124,6 @@ export default {
         }
       }*/
 
-      // Update all h1 hashtag positions
-      updateBlogH1Positions()
-
       // Scroll if needed
       const hashURL = window.location.hash.substr(1)
       if (!hashURL) return
@@ -143,19 +131,20 @@ export default {
       const m = hashURL.match(/%|\//gi) || [] // Cleanup invalid hashtags
       if (m.length) return (window.location.hash = "")
 
-      const hashFound = h1Positions.filter((e) => e[0] === hashURL)
+      const h1Pos = this.h1Positions()
+      const hashFound = h1Pos.filter((e) => e[0] === hashURL)
       if (!hashFound) return goToBlogStart() // If no hashtag is found in current version then go top the blog
 
       // Check if the scroll is between any of these positions
       const currentPosition = window.scrollY
-      for (let i = 0; i < h1Positions.length; i++) {
-        if (h1Positions[i][0] === hashURL) {
+      for (let i = 0; i < h1Pos.length; i++) {
+        if (h1Pos[i][0] === hashURL) {
           try {
             if (
-              currentPosition <= h1Positions[i][1] - Math.round(window.innerHeight / 2) ||
-              currentPosition >= h1Positions[i + 1][1]
+              currentPosition <= h1Pos[i][1] - Math.round(window.innerHeight / 2) ||
+              currentPosition >= h1Pos[i + 1][1]
             ) {
-              window.scrollTo({ left: 0, top: h1Positions[i][1], behavior: "instant" })
+              window.scrollTo({ left: 0, top: h1Pos[i][1], behavior: "instant" })
             }
           } catch (e) {
             console.info("Ignored scroll", e) // If an error happened just don't scroll
