@@ -2,29 +2,30 @@
   <nav id="gtco-header-navbar" v-show="S.showBlog">
     <div>
       <div id="navbar-nav-header">
-        <h5 class="text-center">Viewing version {{ S.range.selected }}</h5>
+        <h5 class="text-center">Viewing version {{ S.content.viewing }}</h5>
         <input
           type="range"
           class="form-range"
-          :min="S.range.min"
-          :max="S.range.max"
+          min="0"
+          :max="S.content.versions.length - 1"
           step="1"
-          v-model="S.range.selected"
+          v-model="S.content.viewing"
           @input="getArticle"
         />
-        <div v-if="S.versions && S.versions[S.range.selected]" class="commit-data">
+        <div v-if="S.content.versions && S.content.versions[S.content.viewing]" class="commit-data">
           <div class="row">
             <div class="col-md-8">
               <p>
                 Hash
                 <a
                   :href="
-                    'https://github.com/adelriosantiago/adelriosantiago-blog/commit/' + S.versions[S.range.selected][0]
+                    'https://github.com/adelriosantiago/adelriosantiago-blog/commit/' +
+                    S.content.versions[S.content.viewing][0]
                   "
-                  >{{ S.versions[S.range.selected][0] | shorten }}</a
+                  >{{ S.content.versions[S.content.viewing][0] | shorten }}</a
                 >
                 as of
-                {{ S.versions[S.range.selected][2] }}
+                {{ S.content.versions[S.content.viewing][2] }}
               </p>
             </div>
             <div class="col-md-4">
@@ -87,13 +88,12 @@ export default {
     })
 
     // Article slider
-    this.S.versions = (await this.$axios.post("/getVersions", { article: this.S.article })).data
-    if (this.S.versions.length === 0) {
+    this.S.content.versions = (await this.$axios.post("/getVersions", { article: this.S.article })).data
+    if (this.S.content.versions.length === 0) {
       this.$router.push("/")
       return
     }
-    this.S.range.max = this.S.versions.length - 1
-    this.S.range.selected = this.S.range.max
+    this.S.content.viewing = this.S.content.versions.length - 1
 
     // Get latest article
     if (window.location.hash) this.S.showBlog = true
@@ -102,7 +102,7 @@ export default {
   methods: {
     async getArticle() {
       const article = this.S.article
-      const hash = this.S.versions[this.S.range.selected][0]
+      const hash = this.S.content.versions[this.S.content.viewing][0]
 
       this.S.content.pending = await new Promise(async (res, rej) => {
         previousHTML = $("#md-content").clone().children().toArray()

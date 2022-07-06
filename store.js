@@ -7,6 +7,8 @@ let h1Positions = []
 export const S = Vue.observable({
   article: "index",
   content: {
+    versions: [],
+    viewing: 0,
     pending: undefined,
     md: {
       current: undefined,
@@ -22,12 +24,6 @@ export const S = Vue.observable({
   },
   showBlog: false,
   followKeystrokes: false,
-  versions: [],
-  range: {
-    min: 0,
-    max: 1,
-    selected: 0,
-  },
 })
 
 export const C = {}
