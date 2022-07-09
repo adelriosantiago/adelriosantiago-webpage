@@ -2,7 +2,13 @@
   <nav id="gtco-header-navbar" v-show="S.showBlog">
     <div>
       <div id="navbar-nav-header">
-        <h5 class="text-center">Viewing version {{ S.content.viewing }}</h5>
+        <h5 class="text-center">
+          {{
+            parseInt(S.content.viewing) === S.content.versions.length - 1
+              ? "Viewing latest version"
+              : `Viewing version ${S.content.viewing}`
+          }}
+        </h5>
         <input
           type="range"
           class="form-range"
@@ -68,6 +74,9 @@ export default {
   computed: {},
   created() {},
   async mounted() {
+    console.log("Vue", this)
+    if (this.$route.hash) this.S.showBlog = true
+
     $(window).scroll((q, w, e, r) => {
       // GIT header settings
       if ($(window).scrollTop() > 150) {
@@ -76,15 +85,8 @@ export default {
         $("body").removeClass("not-on-top")
       }
 
-      // Scroll to hashtag
-      if (!this.S.showBlog) return
-      const h1Pos = this.h1Positions()
-      for (let i = 0; i < h1Pos.length; i++) {
-        if (h1Pos[i][1] >= scrollY) {
-          history.pushState({}, "", "#" + h1Pos[i][0])
-          break
-        }
-      }
+      // Add the correct hashtag in the URL
+      this.processHashtag()
     })
 
     // Article slider
@@ -96,7 +98,6 @@ export default {
     this.S.content.viewing = this.S.content.versions.length - 1
 
     // Get latest article
-    if (window.location.hash) this.S.showBlog = true
     this.getArticle()
   },
   methods: {
@@ -109,8 +110,8 @@ export default {
         this.S.content.md.current = await md.render(
           (await this.$axios.post("/getArticle", { article, hash })).data.replace(/\n\n$/gm, "\n ")
         )
-        //await this.$nextTick() // Note: Next tick not really waiting for the content to be rendered
-        await new Promise((resolve) => setTimeout(resolve, 1000))
+        //await this.$nextTick()
+        await new Promise((resolve) => setTimeout(resolve, 5)) // NOTE:  for some reason nextTick will not wait the content to be rendered, this timeout is needed
         return res()
       })
 
@@ -124,12 +125,22 @@ export default {
         }
       }*/
 
-      // Scroll if needed
-      const hashURL = window.location.hash.substr(1)
+      /*const verNum = parseInt(this.S.content.viewing)
+      if (verNum === this.S.content.versions.length - 1) {
+        this.$router.replace({ query: { version: undefined } })
+      } else {
+        if (verNum !== this.$route.query.version) this.$router.replace({ query: { version: this.S.content.viewing } }) // CONTINUE HERE
+      }*/
+
+      this.processHashtag()
+
+      // TODO: Fix scroll to position when opening article
+      /*// Scroll if needed
+      const hashURL = this.$route.hash.substr(1)
       if (!hashURL) return
 
       const m = hashURL.match(/%|\//gi) || [] // Cleanup invalid hashtags
-      if (m.length) return (window.location.hash = "")
+      if (m.length) this.$router.replace({ hash: "" })
 
       const h1Pos = this.h1Positions()
       const hashFound = h1Pos.filter((e) => e[0] === hashURL)
@@ -149,6 +160,18 @@ export default {
           } catch (e) {
             console.info("Ignored scroll", e) // If an error happened just don't scroll
           }
+          break
+        }
+      }*/
+    },
+    async processHashtag() {
+      if (!this.S.showBlog) return
+      const h1Pos = this.h1Positions()
+      for (let i = 0; i < h1Pos.length; i++) {
+        if (h1Pos[i][1] >= scrollY) {
+          const currentHash = this.$route.hash.substr(1)
+          if (currentHash !== h1Pos[i][0])
+            this.$router.replace({ hash: "#" + h1Pos[i][0], params: { savePosition: true } })
           break
         }
       }
