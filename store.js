@@ -41,7 +41,7 @@ export const M = {
     lastContentHash = S.content.md.current.length
     h1Positions = $("#gtco-section-featurettes h1[id]")
       .toArray()
-      .filter(e => e.id.match(/[ <>/]/gi)?.length ? false : e.id)
+      .filter((e) => (e.id.match(/[ <>/]/gi)?.length ? false : e.id))
       .map((e) => [e.id, e.offsetTop - hashtagOffset - 50])
       .filter((p) => p[1] > 0)
 
@@ -53,7 +53,8 @@ export const M = {
     for (let i = 0; i < h1Pos.length; i++) {
       if (h1Pos[i][1] >= scrollY) {
         const currentHash = this.$route.hash.substr(1)
-        if (currentHash !== h1Pos[i][0]) history.replaceState(null, null, `?version=${S.content.viewing}#${h1Pos[i][0]}`)
+        if (currentHash !== h1Pos[i][0])
+          history.replaceState(null, null, `?version=${S.content.viewing}#${h1Pos[i][0]}`)
         break
       }
     }
