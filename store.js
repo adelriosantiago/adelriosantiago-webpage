@@ -13,7 +13,6 @@ const md = require("markdown-it")({
 })
 
 export const S = Vue.observable({
-  article: "index",
   content: {
     versions: [],
     viewing: 0,
@@ -60,16 +59,15 @@ export const M = {
     }
   },
   async getArticle() {
-    const article = S.article
     const hash = S.content.versions[S.content.viewing][0]
 
     await new Promise(async (res, rej) => {
       S.content.md.previous = $("#md-content").clone().children().toArray()
       S.content.md.current = await md.render(
-        (await this.$axios.post("/getArticle", { article, hash })).data.replace(/\n\n$/gm, "\n ")
+        (await this.$axios.post("/getArticle", { article: "index", hash })).data.replace(/\n\n$/gm, "\n ")
       )
       //await this.$nextTick() // NOTE: nextTick will not wait the content to be rendered, the timeout below is needed
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      await new Promise((resolve) => setTimeout(resolve, 10))
       return res()
     })
 

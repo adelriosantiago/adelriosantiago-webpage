@@ -137,8 +137,6 @@ export default {
         history.replaceState(null, null, "/")
       } else {
         // Article slider
-        this.S.content.versions = (await this.$axios.post("/getVersions", { article: this.S.article })).data
-        if (this.S.content.versions.length === 0) return (window.location.href = "/")
         this.S.content.viewing = this.S.content.versions.length - 1
         await this.getArticle() // Get latest article
         this.S.showBlog = true

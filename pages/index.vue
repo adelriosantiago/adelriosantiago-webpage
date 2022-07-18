@@ -41,8 +41,9 @@ export default {
     return {}
   },
   computed: {},
-  created() {
-    this.S.article = "index"
+  async created() {
+    this.S.content.versions = (await this.$axios.post("/getVersions", { article: "index" })).data
+    if (this.S.content.versions.length === 0) throw "No blog index.md found. The blog won't work."
   },
   mounted() {},
   methods: {},
