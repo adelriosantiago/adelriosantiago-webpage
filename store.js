@@ -1,7 +1,6 @@
 import Vue from "vue"
 
 const hashtagOffset = 100
-let lastContentHash = 0
 let h1Positions = []
 
 const md = require("markdown-it")({
@@ -16,6 +15,7 @@ export const S = Vue.observable({
   content: {
     versions: [],
     viewing: 0,
+    hash: "",
     md: {
       previous: undefined,
       current: undefined,
@@ -34,10 +34,11 @@ export const S = Vue.observable({
 
 export const C = {}
 
+let lastContentChecksum = 0
 export const M = {
   h1Positions() {
-    if (lastContentHash === S.content.md.current.length) return h1Positions
-    lastContentHash = S.content.md.current.length
+    if (lastContentChecksum === S.content.md.current.length) return h1Positions
+    lastContentChecksum = S.content.md.current.length
     h1Positions = $("#gtco-section-featurettes h1[id]")
       .toArray()
       .filter((e) => (e.id.match(/[ <>/]/gi)?.length ? false : e.id))
@@ -46,14 +47,12 @@ export const M = {
 
     return h1Positions
   },
-  async updateUrl() {
+  async updateViewingHash() {
     if (!S.showBlog) return
     const h1Pos = this.h1Positions()
     for (let i = 0; i < h1Pos.length; i++) {
       if (h1Pos[i][1] >= scrollY) {
-        const currentHash = this.$route.hash.substr(1)
-        if (currentHash !== h1Pos[i][0])
-          history.replaceState(null, null, `?version=${S.content.viewing}#${h1Pos[i][0]}`)
+        if (S.content.hash !== h1Pos[i][0]) S.content.hash = h1Pos[i][0]
         break
       }
     }
@@ -89,7 +88,7 @@ export const M = {
       if (verNum !== this.$route.query.version) this.$router.replace({ query: { version: this.S.content.viewing } }) // CONTINUE HERE
     }*/
 
-    this.updateUrl() // Update hash
+    this.updateViewingHash() // Update hash
 
     // TODO: Fix scroll to position when opening article
     /*// Scroll if needed

@@ -63,22 +63,7 @@ export default {
   },
   computed: {},
   created() {},
-  async mounted() {
-    console.log("Vue", this)
-    if (this.$route.hash) this.S.showBlog = true
-
-    $(window).scroll((q, w, e, r) => {
-      // GIT header settings
-      if ($(window).scrollTop() > 150) {
-        $("body").addClass("not-on-top")
-      } else {
-        $("body").removeClass("not-on-top")
-      }
-
-      // Add the correct hashtag in the URL
-      this.updateUrl()
-    })
-  },
+  mounted() {},
   methods: {},
 }
 </script>

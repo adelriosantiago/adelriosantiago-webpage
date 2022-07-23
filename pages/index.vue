@@ -41,12 +41,42 @@ export default {
     return {}
   },
   computed: {},
+  watch: {
+    "S.content.viewing"() {
+      this.updateBrowserUrl()
+    },
+    "S.content.hash"() {
+      this.updateBrowserUrl()
+    },
+  },
   async created() {
-    this.S.content.versions = (await this.$axios.post("/getVersions", { article: "index" })).data
+    try {
+      this.S.content.versions = (await this.$axios.post("/getVersions", { article: "index" })).data
+    } catch (e) {
+      throw "Error fetching index.md found. The blog won't work."
+    }
     if (this.S.content.versions.length === 0) throw "No blog index.md found. The blog won't work."
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    console.log("Vue", this)
+
+    $(window).scroll((q, w, e, r) => {
+      // GIT header settings
+      if ($(window).scrollTop() > 150) {
+        $("body").addClass("not-on-top")
+      } else {
+        $("body").removeClass("not-on-top")
+      }
+
+      // Calculate the correct hashtag in the URL
+      this.updateViewingHash()
+    })
+  },
+  methods: {
+    updateBrowserUrl() {
+      history.replaceState(null, null, `?version=${this.S.content.viewing}#${this.S.content.hash}`)
+    },
+  },
 }
 </script>
 
