@@ -60,6 +60,10 @@ export default {
   mounted() {
     console.log("Vue", this)
 
+    // Update version and hash if this is a shared link
+    this.S.content.viewing = this.$route.query.version
+    this.S.content.hash = this.$route.hash.substr(1)
+
     $(window).scroll((q, w, e, r) => {
       // GIT header settings
       if ($(window).scrollTop() > 150) {
@@ -69,8 +73,16 @@ export default {
       }
 
       // Calculate the correct hashtag in the URL
+      console.log("scroll")
       this.updateViewingHash()
     })
+
+    if (this.S.content.viewing && this.S.content.hash) {
+      setTimeout(() => {
+        console.log("---load", this.S.content.viewing, this.S.content.hash)
+        this.toggleBlog(true)
+      }, 1000)
+    }
   },
   methods: {
     updateBrowserUrl() {

@@ -131,17 +131,6 @@ export default {
       modal.setContent(document.getElementById(`mod-${type}`).innerHTML)
       modal.open()
     },
-    async toggleBlog() {
-      if (this.S.showBlog) {
-        this.S.showBlog = false
-        history.replaceState(null, null, "/")
-      } else {
-        // Article slider
-        this.S.content.viewing = this.S.content.versions.length - 1
-        await this.getArticle() // Get latest article
-        this.S.showBlog = true
-      }
-    },
   },
 }
 </script>

@@ -14,7 +14,7 @@ const md = require("markdown-it")({
 export const S = Vue.observable({
   content: {
     versions: [],
-    viewing: 0,
+    viewing: undefined,
     hash: "",
     md: {
       previous: undefined,
@@ -36,6 +36,18 @@ export const C = {}
 
 let lastContentChecksum = 0
 export const M = {
+  async toggleBlog(newState) {
+    if (newState === false || S.showBlog) {
+      S.showBlog = false
+      history.replaceState(null, null, "/")
+    } else if (newState === true || !S.showBlog) {
+      // Article slider
+      console.log("current viewing::::", S.content.viewing)
+      if (S.content.viewing === undefined) S.content.viewing = S.content.versions.length - 1 // Set the latest version only when there is version in the URL (when it is not a shared link)
+      await this.getArticle() // Get latest article
+      S.showBlog = true
+    }
+  },
   h1Positions() {
     if (lastContentChecksum === S.content.md.current.length) return h1Positions
     lastContentChecksum = S.content.md.current.length
@@ -88,7 +100,7 @@ export const M = {
       if (verNum !== this.$route.query.version) this.$router.replace({ query: { version: this.S.content.viewing } }) // CONTINUE HERE
     }*/
 
-    this.updateViewingHash() // Update hash
+    //this.updateViewingHash() // Update hash
 
     // TODO: Fix scroll to position when opening article
     /*// Scroll if needed
