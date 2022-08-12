@@ -60,7 +60,7 @@
               <i class="far fa-2x fa-envelope"></i><br />
               <small>Mail</small>
             </a>
-            <a class="nav-link" @click="toggleBlog">
+            <a class="nav-link" @click="toggleBlog" v-if="false">
               <i class="fas fa-2x fa-book"></i><br />
               <small>Blog</small>
               <i class="fas fa-arrow-up" v-show="S.showBlog"></i>

@@ -49,14 +49,7 @@ export default {
       this.updateBrowserUrl()
     },
   },
-  async created() {
-    try {
-      this.S.content.versions = (await this.$axios.post("/getVersions", { article: "index" })).data
-    } catch (e) {
-      throw "Error fetching index.md found. The blog won't work."
-    }
-    if (this.S.content.versions.length === 0) throw "No blog index.md found. The blog won't work."
-  },
+  async created() {},
   mounted() {
     console.log("Vue", this)
 
@@ -73,13 +66,11 @@ export default {
       }
 
       // Calculate the correct hashtag in the URL
-      console.log("scroll")
       this.updateViewingHash()
     })
 
     if (this.S.content.viewing && this.S.content.hash) {
       setTimeout(() => {
-        console.log("---load", this.S.content.viewing, this.S.content.hash)
         this.toggleBlog(true)
       }, 1000)
     }
