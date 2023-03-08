@@ -142,12 +142,12 @@ a:hover {
   color: #d05165;
 }
 
-.btn-group-lg>.btn,
+.btn-group-lg > .btn,
 .btn-lg {
   padding: 1rem;
 }
 
-.btn-group-sm>.btn,
+.btn-group-sm > .btn,
 .btn-sm {
   padding: 0.5rem;
 }
@@ -476,7 +476,7 @@ a {
   color: #fff;
 }
 
-.counter-item>i {
+.counter-item > i {
   display: block;
   font-size: 40px;
 }
