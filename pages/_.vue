@@ -1,7 +1,5 @@
 <template>
-  <div class="boxed-page">
-    <Nuxt />
-  </div>
+  <div>qwe</div>
 </template>
 
 <script>
@@ -11,10 +9,14 @@ export default {
     return {}
   },
   computed: {},
-  created() {},
+  watch: {},
+  async created() {
+    this.$router.push("/")
+  },
   mounted() {},
   methods: {},
 }
 </script>
 
-<style></style>
+<style>
+</style>

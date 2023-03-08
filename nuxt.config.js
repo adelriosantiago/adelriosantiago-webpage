@@ -23,7 +23,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~/plugins/scMixin.js", "~/plugins/filters.js"],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -34,7 +34,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [["@nuxtjs/axios", { baseURL: "/api" }], "@nuxtjs/axios"],
+  modules: [],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -47,5 +47,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  serverMiddleware: [{ path: "/api", handler: "~/api/v1.js" }],
+  serverMiddleware: [],
 }

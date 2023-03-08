@@ -1,6 +1,5 @@
 <template>
   <div class="boxed-page">
-    <Header />
     <Nuxt />
     <Footer />
   </div>

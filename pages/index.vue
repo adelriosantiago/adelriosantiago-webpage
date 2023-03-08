@@ -5,13 +5,13 @@
         <img class="round-image" src="/img/me2.jpeg" />
         <h1 class="text-center">ALEJANDRO</h1>
         <h1 class="text-center lastname">DEL RIO SANTIAGO</h1>
+        <br />
         <div class="row justify-content-center">
           <div class="col-md-6">
             <p>
-              Hi! I'm Alejandro! I am an MBA graduate candidate at
-              <a href="https://business.louisville.edu/learnmore/professionalmba/">UofL</a>, KY,<br />
-              and B.Sc. in Computer Science Engineering by <a href="https://tec.mx/en">Tec de Monterrey</a>.<br />I am a
-              data science consultant. <br /><br />
+              Hi! I'm Alejandro! I am an MBA graduate candidate at <em>UofL</em>, KY,<br />
+              and B.Sc. in Computer Science Engineering by <em>Tec de Monterrey</em>.<br />I am a data science
+              consultant.<br /><br />
               <em
                 >#DataScience #DataViz #ChartJs #Javascript #ML #AI #DataAnalytics #MachineLearning
                 #ArtificialIntelligence #BusinessIntelligence</em
@@ -21,16 +21,6 @@
         </div>
       </div>
     </div>
-
-    <section id="gtco-section-featurettes" class="featurettes bg-white" v-show="S.showBlog">
-      <div class="container">
-        <div class="section-content">
-          <div class="row">
-            <Content />
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -41,45 +31,10 @@ export default {
     return {}
   },
   computed: {},
-  watch: {
-    "S.content.viewing"() {
-      this.updateBrowserUrl()
-    },
-    "S.content.hash"() {
-      this.updateBrowserUrl()
-    },
-  },
+  watch: {},
   async created() {},
-  mounted() {
-    console.log("Vue", this)
-
-    // Update version and hash if this is a shared link
-    this.S.content.viewing = this.$route.query.version
-    this.S.content.hash = this.$route.hash.substr(1)
-
-    $(window).scroll((q, w, e, r) => {
-      // GIT header settings
-      if ($(window).scrollTop() > 150) {
-        $("body").addClass("not-on-top")
-      } else {
-        $("body").removeClass("not-on-top")
-      }
-
-      // Calculate the correct hashtag in the URL
-      this.updateViewingHash()
-    })
-
-    if (this.S.content.viewing && this.S.content.hash) {
-      setTimeout(() => {
-        this.toggleBlog(true)
-      }, 1000)
-    }
-  },
-  methods: {
-    updateBrowserUrl() {
-      history.replaceState(null, null, `?version=${this.S.content.viewing}#${this.S.content.hash}`)
-    },
-  },
+  mounted() {},
+  methods: {},
 }
 </script>
 

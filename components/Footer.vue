@@ -60,12 +60,6 @@
               <i class="far fa-2x fa-envelope"></i><br />
               <small>Mail</small>
             </a>
-            <a class="nav-link" @click="toggleBlog" v-if="false">
-              <i class="fas fa-2x fa-book"></i><br />
-              <small>Blog</small>
-              <i class="fas fa-arrow-up" v-show="S.showBlog"></i>
-              <i class="fas fa-arrow-down" v-show="!S.showBlog"></i>
-            </a>
           </nav>
         </div>
         <div v-if="false" class="col-md-12 d-flex align-items-center justify-content-center">
@@ -107,7 +101,7 @@
         </div>
 
         <div id="mod-mail" style="display: none">
-          <h5 class="text-center">Address:<br /><br />hey@adelriosantiago.com</h5>
+          <h5 class="text-center">Address:<br /><br />adelriosantiago@gmail.com</h5>
         </div>
       </div>
     </div>
