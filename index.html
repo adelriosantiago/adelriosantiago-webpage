@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Alejandro del Río Santiago - Personal Webpage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="Personal website and blog" />
+
+    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400|Work+Sans:300,400,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/flag-icons.min.css" />
+    <link rel="stylesheet" href="./vendor/tingle/tingle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+    <style>
+      .jumbotron {
+        padding: 100px 0px;
+      }
+
+      .round-image {
+        display: block;
+        margin: auto;
+        margin-bottom: 30px;
+        width: 20rem;
+        height: 20rem;
+        border: 2px solid rgba(234, 97, 83, 0.1);
+        border-radius: 50%;
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+      }
+
+      .lastname {
+        font-size: 1.9em;
+      }
+
+      .nav-mastfoot .nav-link {
+        text-align: center;
+      }
+      .nav-mastfoot .nav-link small {
+        font-size: 10px;
+        text-align: center;
+      }
+
+      .flex-centered {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body
+    data-spy="scroll"
+    data-target="#navbar-nav-header"
+    class="static-layout"
+  >
+    <div id="app">
+      <div class="boxed-page">
+        <div class="page-wrapper">
+          <div
+            class="jumbotron d-flex align-items-center"
+            style="background-image: url(./img/hero-2.jpg)"
+          >
+            <div class="container text-center">
+              <img class="round-image" src="./img/me2.jpeg" />
+              <h1 class="text-center">ALEJANDRO</h1>
+              <h1 class="text-center lastname">DEL RIO SANTIAGO</h1>
+              <br />
+              <div class="row justify-content-center">
+                <div class="col-md-6">
+                  <p>
+                    Hi! I'm Alejandro! I am an MBA graduate candidate at
+                    <em>UofL</em>, KY,<br />
+                    and B.Sc. in Computer Science Engineering by
+                    <em>Tec de Monterrey</em>.<br />I am a data science
+                    consultant.<br /><br />
+                    <em
+                      >#DataScience #DataViz #ChartJs #Javascript #ML #AI
+                      #DataAnalytics #MachineLearning #ArtificialIntelligence
+                      #BusinessIntelligence</em
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="mastfoot mb-3 bg-white py-4 border-top">
+          <div class="inner container">
+            <div class="row">
+              <div class="col-md-12">
+                <nav class="nav nav-mastfoot justify-content-center">
+                  <a
+                    class="nav-link"
+                    href="https://twitter.com/adelriosantiago"
+                  >
+                    <i class="fab fa-2x fa-twitter"></i><br />
+                    <small>Twitter</small>
+                  </a>
+                  <a
+                    class="nav-link"
+                    href="https://www.instagram.com/a.delrio.santiago/"
+                  >
+                    <i class="fab fa-2x fa-instagram"></i><br />
+                    <small>Instagram</small>
+                  </a>
+                  <a
+                    class="nav-link"
+                    href="http://stackoverflow.com/users/1996066/adelriosantiago"
+                  >
+                    <i class="fab fa-2x fa-stack-overflow"></i><br />
+                    <small>StackOverflow</small>
+                  </a>
+                  <a class="nav-link" href="https://github.com/adelriosantiago">
+                    <i class="fab fa-2x fa-github"></i><br />
+                    <small>Github</small>
+                  </a>
+                  <a
+                    class="nav-link"
+                    href="https://pinterest.com/adelriosantiago/"
+                  >
+                    <i class="fab fa-2x fa-pinterest-p"></i><br />
+                    <small>Pinterest</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('snapchat')">
+                    <i class="fab fa-2x fa-snapchat-ghost"></i><br />
+                    <small>Snapchat</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('skype')">
+                    <i class="fab fa-2x fa-skype"></i><br />
+                    <small>Skype</small>
+                  </a>
+                  <a
+                    class="nav-link"
+                    href="https://www.openstreetmap.org/user/adelriosantiago"
+                  >
+                    <i class="fas fa-2x fa-map-marked-alt"></i><br />
+                    <small>OpenMaps</small>
+                  </a>
+                  <a
+                    class="nav-link"
+                    href="https://www.tradingview.com/u/adelriosantiago"
+                  >
+                    <i class="fas fa-2x fa-comment-dollar"></i><br />
+                    <small>TradingView</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('bitcoin')">
+                    <i class="fab fa-2x fa-bitcoin"></i><br />
+                    <small>Bitcoin</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('whatsapp')">
+                    <i class="fab fa-2x fa-whatsapp"></i><br />
+                    <small>Whatsapp</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('telegram')">
+                    <i class="fab fa-2x fa-telegram-plane"></i><br />
+                    <small>Telegram</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('phone')">
+                    <i class="fas fa-2x fa-phone-square"></i><br />
+                    <small>Phone</small>
+                  </a>
+                  <a class="nav-link" @click="openModal('mail')">
+                    <i class="far fa-2x fa-envelope"></i><br />
+                    <small>Mail</small>
+                  </a>
+                </nav>
+              </div>
+              <div
+                v-if="false"
+                class="col-md-12 d-flex align-items-center justify-content-center"
+              >
+                <p class="mb-0">
+                  &copy; {{ new Date().getUTCFullYear() }} Alejandro del Río
+                  Santiago
+                </p>
+              </div>
+
+              <!-- Modals -->
+              <div id="mod-snapchat" style="display: none">
+                <div class="flex-centered">
+                  <img src="./img/snap.jpeg" />
+                </div>
+              </div>
+
+              <div id="mod-skype" style="display: none">
+                <h5 class="text-center">Skype ID: adelriosantiago</h5>
+              </div>
+
+              <div id="mod-bitcoin" style="display: none">
+                <h5 class="text-center">Bitcoin address:</h5>
+                <img
+                  src="./img/bitcoin-address.jpg"
+                  style="display: block; margin: auto"
+                />
+                <h5 class="text-center">1Nbhqpi2CWu8a6WPyVajUxoXRNyN53dEzX</h5>
+              </div>
+
+              <div id="mod-whatsapp" style="display: none">
+                <h5 class="text-center">
+                  <span class="fi fi-mx"></span> Whatsapp:
+                  <em>+52</em>&nbsp;&nbsp;&nbsp;33 1471 5215<br /><br />
+                  <small><p>Whatsapp calls and text only.</p></small>
+                </h5>
+              </div>
+
+              <div id="mod-telegram" style="display: none">
+                <h5 class="text-center">
+                  <span class="fi fi-ch"></span> Telegram:
+                  <em class="mr-5">+41</em>&nbsp;&nbsp;&nbsp;79 456 81 46
+                  (@adelriosantiago) <br /><br />
+                  <small><p>Telegram only.</p></small>
+                </h5>
+              </div>
+
+              <div id="mod-phone" style="display: none">
+                <h5 class="text-center">
+                  <span class="fi fi-us"></span> Phone:
+                  <em>+1</em>&nbsp;&nbsp;&nbsp;484 862 9092
+                </h5>
+              </div>
+
+              <div id="mod-mail" style="display: none">
+                <h5 class="text-center">
+                  Address:<br /><br />adelriosantiago@gmail.com
+                </h5>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"
+    ></script>
+    <script src="./vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="./vendor/tingle/tingle.min.js"></script>
+    <script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>
+
+    <script>
+      let modal;
+
+      new Vue({
+        el: "#app",
+        data: {},
+        computed: {},
+        created() {},
+        mounted() {
+          modal = new tingle.modal();
+        },
+        methods: {
+          openModal(type) {
+            modal.setContent(document.getElementById(`mod-${type}`).innerHTML);
+            modal.open();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
