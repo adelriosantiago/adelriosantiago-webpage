@@ -41,18 +41,6 @@ body:after {
   border-radius: 5px;
 }
 
-@media (min-width: 1200px) {
-  .boxed-page {
-    width: 1024px;
-  }
-
-  .boxed-page .container {
-    max-width: 1080px;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-}
-
 h1 {
   font-size: 4.8rem;
 }
@@ -264,14 +252,17 @@ a {
   font-size: 3rem;
 }
 
-.not-on-top #gtco-header-navbar {
+#gtco-header-navbar {
+  background-color: #fff;
+  padding: 10px;
   position: fixed;
+  z-index: 999;
   max-width: 1024px;
   margin: 0 auto;
   left: 0;
   right: 0;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 15px 0px;
-  border-radius: 0;
+  border-radius: 5px;
 }
 
 .jumbotron {
@@ -288,12 +279,6 @@ a {
   margin-bottom: 0;
   overflow: hidden;
   min-height: 500px;
-}
-
-@media (min-width: 1024px) {
-  /*.jumbotron {
-    min-height: 80vh;
-  }*/
 }
 
 .jumbotron .container {
@@ -575,37 +560,28 @@ footer {
   margin: 15px 0 15px 15px;
 }
 
+@media (min-width: 1200px) {
+  .boxed-page {
+    width: 1024px;
+  }
+
+  .boxed-page .container {
+    max-width: 1080px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1200px) {
   .boxed-page {
     margin-right: 30px;
     margin-left: 30px;
   }
-
-  .not-on-top #gtco-header-navbar {
-    margin-right: 30px;
-    margin-left: 30px;
-  }
 }
 
-@media (max-width: 992px) {
-  #navbar-nav-header .navbar-nav {
-    margin-top: 15px;
-  }
-
-  #gtco-header-navbar {
-    padding-left: 15px;
-    background-color: #fff;
-  }
-}
-
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .boxed-page {
     margin: 4rem 15px;
-  }
-
-  .not-on-top #gtco-header-navbar {
-    margin-right: 15px;
-    margin-left: 15px;
   }
 
   .counter-item {
