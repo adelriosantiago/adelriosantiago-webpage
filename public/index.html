@@ -147,6 +147,17 @@
                     <i class="fab fa-2x fa-snapchat-ghost"></i><br />
                     <small>Snapchat</small>
                   </a>
+                  <a
+                    class="nav-link"
+                    href="https://www.duolingo.com/profile/adelriosantiago"
+                    @mouseenter="duoHover = true"
+                    @mouseleave="duoHover = false"
+                  >
+                    <img src="./assets/img/duolingo-normal.png" alt="duolingo" width="38" v-if="!duoHover" />
+                    <img src="./assets/img/duolingo-hover.png" alt="duolingo" width="38" v-else />
+                    <br />
+                    <small>Duolingo</small>
+                  </a>
                   <a class="nav-link" @click="openModal('skype')">
                     <i class="fab fa-2x fa-skype"></i><br />
                     <small>Skype</small>
@@ -244,7 +255,9 @@
 
       new Vue({
         el: "#app",
-        data: {},
+        data: {
+          duoHover: false,
+        },
         computed: {},
         created() {},
         mounted() {
