@@ -11,23 +11,21 @@ def getVersion(data):
 
     return 'getVersion'
 
-routes = {
-    'blog': {
-        'getLog': getLog,
-        'getVersion': getVersion,
-    },
+functions = {
+    'getLog': getLog,
+    'getVersion': getVersion,
 }
 
 async def echo(websocket, path):
     async for message in websocket:
-        # Messages are in the format [route]>[function]>[data]
+        # Messages are in the format [function]>[data]
         
         split = message.split('>')
-        route = split[0]
-        function = split[1]
+        function = split[0]
+        data = split[1]
         
         # Call route
-        res = routes[route][function](split[2])
+        res = functions[function](data)
 
         await websocket.send(res)
 
