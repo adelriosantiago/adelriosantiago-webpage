@@ -58,7 +58,10 @@
       .jumbotron {
         padding: 100px 0px;
       }
-
+      .blog-container {
+        padding: 100px 20px;
+        background-color: ghostwhite;
+      }
       .round-image {
         display: block;
         object-fit: cover;
@@ -70,11 +73,9 @@
         border-radius: 50%;
         box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
       }
-
       .lastname {
         font-size: 1.9em;
       }
-
       .nav-mastfoot .nav-link {
         text-align: center;
       }
@@ -82,7 +83,6 @@
         font-size: 10px;
         text-align: center;
       }
-
       .flex-centered {
         display: flex;
         align-items: center;
@@ -91,11 +91,15 @@
     </style>
   </head>
 
-  <body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout">
+  <body data-spy="scroll" class="static-layout">
     <div id="app">
       <div class="boxed-page">
         <div class="page-wrapper">
-          <div class="jumbotron d-flex align-items-center" style="background-image: url(./assets/img/hero-2.jpg)">
+          <div
+            class="jumbotron d-flex align-items-center"
+            style="background-image: url(./assets/img/hero-2.jpg)"
+            v-if="!showBlog"
+          >
             <div class="container text-center">
               <img class="round-image" src="./assets/img/me6.jpg" />
               <h1 class="text-center">ALEJANDRO</h1>
@@ -116,6 +120,15 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="blog-container" v-else>
+            <h2>header</h2>
+
+            <p>zcxv</p>
+            blog<br />
+            blog<br />
+            blog<br />
+            blog<br />
           </div>
         </div>
         <footer class="mastfoot mb-3 bg-white py-4 border-top">
@@ -190,6 +203,12 @@
                     <i class="far fa-2x fa-envelope"></i><br />
                     <small>Mail</small>
                   </a>
+                  <a class="nav-link" @click="toggleBlog" v-if="wsReady">
+                    <i class="fas fa-2x fa-book"></i><br />
+                    <small>Blog</small>
+                    <i class="fas fa-arrow-up" v-show="showBlog"></i>
+                    <i class="fas fa-arrow-down" v-show="!showBlog"></i>
+                  </a>
                 </nav>
               </div>
               <div v-if="false" class="col-md-12 d-flex align-items-center justify-content-center">
@@ -251,19 +270,43 @@
     ></script>
 
     <script>
+      const ws = new WebSocket("ws://localhost:8765")
       let modal
 
       new Vue({
         el: "#app",
         data: {
+          showBlog: false,
+          wsReady: false,
+          // Hovers for non-standard icons
           duoHover: false,
         },
         computed: {},
-        created() {},
+        async created() {
+          // Wait for the connection to be established
+          ws.onopen = async () => {
+            this.wsReady = true
+            console.log("WS Ready")
+
+            this.content.versions = await this.tx("getVersions")
+          }
+          ws.onmessage = (data) => {
+            this.rx(data)
+          }
+        },
         mounted() {
           modal = new tingle.modal()
         },
         methods: {
+          toggleBlog() {
+            this.showBlog = !this.showBlog
+          },
+          async tx(fn, data) {
+            ws.send([fn, data].join("➝")) // Send message to server
+          },
+          async rx(data) {
+            console.log("Rx:", data)
+          },
           openModal(type) {
             modal.setContent(document.getElementById(`mod-${type}`).innerHTML)
             modal.open()
