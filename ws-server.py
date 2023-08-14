@@ -18,9 +18,9 @@ functions = {
 
 async def echo(websocket, path):
     async for message in websocket:
-        # Messages are in the format [function]>[data]
+        # Messages are in the format "function➝[data]"
         
-        split = message.split('>')
+        split = message.split('➝')
         function = split[0]
         data = split[1]
         
