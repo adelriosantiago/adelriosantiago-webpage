@@ -1,22 +1,46 @@
 import asyncio
 import websockets
+from git import Repo
+
+repo = Repo('./blog/')
+assert not repo.bare
+
+def repoHasChanges():
+    repo_status = repo.git.status()
+    print("Repo status:", repo_status)
+
+    return 'nothing to commit, working tree clean' not in repo_status
+
+# Endpoints
+def attemptSave(data):
+    print('attemptSave', data)
+
+    # Check if there are changes
+    if repoHasChanges():
+        repo.git.add('--all')
+        repo.git.commit('-m', 'autocommit')
+
+        return 'COMMIT_SUCCESS'
+    else:
+        return 'NOTHING_TO_COMMIT'
 
 def getLog(data):
-    print('getLog', data)
+    print('TODO getLog', data)
 
     return 'getLog'
 
-def getVersion(data):
-    print('getVersion', data)
+def getVersions(data):
+    print('TODO getVersions', data)
 
-    return 'getVersion'
+    return 'getVersions'
 
 functions = {
+    'attemptSave': attemptSave,
     'getLog': getLog,
-    'getVersion': getVersion,
+    'getVersions': getVersions,
 }
 
-async def echo(websocket, path):
+async def rx(websocket, path):
     async for message in websocket:
         # Messages are in the format "function➝[data]"
         
@@ -30,7 +54,8 @@ async def echo(websocket, path):
         await websocket.send(res)
 
 async def main():
-    server = await websockets.serve(echo, "localhost", 8765)
+    attemptSave() # Attempt to save as soon as the script runs
+    server = await websockets.serve(rx, "localhost", 8765)
 
     await server.wait_closed()
 
