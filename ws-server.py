@@ -1,35 +1,44 @@
 import asyncio
 import websockets
+import html5lib
 from git import Repo
 
 repo = Repo('./blog/')
 assert not repo.bare
 
-def repoHasChanges():
-    repo_status = repo.git.status()
-    print("Repo status:", repo_status)
-
-    return 'nothing to commit, working tree clean' not in repo_status
-
 # Endpoints
-def attemptSave(data):
-    print('attemptSave', data)
+def attemptSave(data = None):
+    # Get all files from the blog folder
+    files = repo.git.ls_files().split('\n')
+    
+    # Iterate through all files
+    for file in files:
+        # Read file
+        f = open('./blog/' + file, 'r')
+        html = f.read()
+        # Validate it is valid HTML
+        try:
+            html5parser = html5lib.HTMLParser(strict=True)
+            html5parser.parse(html)
+        except Exception as e:            
+            return f"INVALID_HTML ({file}: {e})"
+        finally:
+            f.close()
 
-    # Check if there are changes
-    if repoHasChanges():
+    try:
         repo.git.add('--all')
         repo.git.commit('-m', 'autocommit')
 
-        return 'COMMIT_SUCCESS'
-    else:
-        return 'NOTHING_TO_COMMIT'
+        return "CHANGES_COMMITED"
+    except:
+        return "NO_CHANGES"    
 
-def getLog(data):
+def getLog(data = None):
     print('TODO getLog', data)
 
     return 'getLog'
 
-def getVersions(data):
+def getVersions(data = None):
     print('TODO getVersions', data)
 
     return 'getVersions'
@@ -54,7 +63,7 @@ async def rx(websocket, path):
         await websocket.send(res)
 
 async def main():
-    attemptSave() # Attempt to save as soon as the script runs
+    attemptSave(None) # Attempt to save as soon as the script runs
     server = await websockets.serve(rx, "localhost", 8765)
 
     await server.wait_closed()

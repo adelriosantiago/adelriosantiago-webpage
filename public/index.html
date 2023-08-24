@@ -278,6 +278,7 @@
         data: {
           showBlog: false,
           wsReady: false,
+          saveLock: false,
           // Hovers for non-standard icons
           duoHover: false,
         },
@@ -289,6 +290,17 @@
             console.log("WS Ready")
 
             this.content.versions = await this.tx("getVersions")
+
+            // Autocommit interval
+            setInterval(async () => {
+              if (this.saveLock) return
+              if (!this.editing.writeKey) return
+
+              console.log("Trying to save data...")
+              this.saveLock = true
+              await this.tx("attemptSave", this.editing.writeKey)
+              this.saveLock = false
+            }, 500)
           }
           ws.onmessage = (data) => {
             this.rx(data)
