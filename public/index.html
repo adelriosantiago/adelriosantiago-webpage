@@ -269,6 +269,11 @@
 
       new Vue({
         el: "#app",
+        filters: {
+          shorten: (str) => {
+            return str.slice(0, 4) + "..." + str.slice(-4)
+          },
+        },
         data: {
           showBlog: false,
           wsReady: false,
