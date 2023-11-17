@@ -39,14 +39,19 @@ def getLog(data = None):
     return 'getLog'
 
 def getVersions(data = None):
-    print('TODO getVersions', data)
+    return f"setVersions➝{repo.git.log('--pretty=format:%H|%cd', '--date=iso', '--', 'blog.html')}"
 
-    return 'getVersions'
+def getArticle(hash = None):    
+    # Get the file at the specified hash
+    content = repo.git.show(f'{hash}:blog.html')
+
+    return f"setArticle➝{content}"
 
 functions = {
     'attemptSave': attemptSave,
     'getLog': getLog,
     'getVersions': getVersions,
+    'getArticle': getArticle,
 }
 
 async def rx(websocket, path):
