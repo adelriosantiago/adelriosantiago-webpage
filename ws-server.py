@@ -3,6 +3,8 @@ import websockets
 import html5lib
 from git import Repo
 
+port = 8765
+
 repo = Repo('./blog/')
 assert not repo.bare
 
@@ -69,9 +71,10 @@ async def rx(websocket, path):
 
 async def main():
     attemptSave(None) # Attempt to save as soon as the script runs
-    server = await websockets.serve(rx, "localhost", 8765)
+    server = await websockets.serve(rx, "localhost", port)
 
     await server.wait_closed()
 
 if __name__ == "__main__":
+    print(f'Server running at ws://localhost:{port}')
     asyncio.get_event_loop().run_until_complete(main())
